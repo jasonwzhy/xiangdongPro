@@ -108,12 +108,12 @@ header .logo a {
    padding: 0;
    margin: 0;
    height: 18px;
-   width: 91px;
+   width: 60px;
    line-height: 18px;
 
    position: absolute;
-   left: 35px;
-   top: 16px;
+   left: 45px;
+   top: 1px;
 }
 
 /* primary navigation
@@ -279,6 +279,9 @@ ul#nav li.active a { color: #11ABB0; }
    padding-bottom: 120px;
    color: #4E565F;
 }
+#services h2{
+   color: #fff;
+}
 
 #services a, #services a:visited  { color: #C4C4C4; }
 #services a:hover, #services a:focus { color: #11ABB0; }
@@ -299,9 +302,13 @@ ul#nav li.active a { color: #11ABB0; }
    color: #C4C4C4;
    margin-bottom: 18px;
 }
+.services-wrapper h4 {
+   color: #fff;
+}
 .services-wrapper p {
    font-size: 16px;
    line-height: 30px;
+   /*color: #fff;*/
 }
 #services .services-wrapper i { margin-right: 10px; }
 
@@ -545,12 +552,15 @@ ul#nav li.active a { color: #11ABB0; }
    font: 14px/24px montserrat-bold, sans-serif;
    color: #fff;
 }
+#about .team-wrap img{
+   border-radius: 220px;
+}
 #about .team-wrap span {
    position: relative;
    top: -6px;
    font-size: 13px;
    line-height: 18px;
-   color: #969696;
+   color: #fff;
 }
 #about .team-wrap .member-social {
    font-size: 14px;
@@ -668,7 +678,7 @@ ul#nav li.active a { color: #11ABB0; }
 	border: 0;
 	outline: none;
    font-size: 15px;
-   line-height: 24px;
+   line-height: 18px;
    width: 66%;
 }
 #contact input:focus,
