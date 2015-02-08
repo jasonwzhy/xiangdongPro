@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>响动健身 商家登陆</title>
 
     <!-- Bootstrap core CSS -->
     <link href="http://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
@@ -32,19 +32,21 @@
     <nav class="navbar navbar-fixed-top">
       <div class="container">
           <!-- <a class="navbar-brand" href="#">Bootstrap theme</a> -->
-        <center><p class="nav-title">响动健身 商家注册</p></center>
+        <center><p class="nav-title">响动健身 商家登陆</p></center>
       </div>
     </nav>
 
-    <div class="container" style="padding-top:60px">
+    <div class="container logo-header">
       <div class="row">
-        <div class="col-xs-offset-1 col-xs-8 ">
-          <h1>响动健身</h1>
-          <h6>便捷低价的健身消费</h6>
+        <div class="col-sm-offset-1 col-sm-1 col-xs-4 ">
+          <img style="margin-top:25px" src="img/logo2.png" height="45px">
         </div>
-        <div class="col-xs-2">
-          <img src=""> <!-- logo here  -->
+        <div class="col-sm-4 col-xs-8">
+          <h1 style="margin-bottom:0px;">响动健身</h1>
+          <a style="color:#fff;" href="http://www.lifecare.cc"><h7><u>http://www.lifecare.cc</u></h7></a>
+           <!-- logo here  -->
         </div>
+     
       </div>
     </div>
 
@@ -59,31 +61,37 @@
                   <div class="row">
                     <label class="col-sm-3 control-label">登陆方式</label>
                     <div class="btn-group col-sm-9" data-toggle="buttons">
-                      <label class="btn btn-primary active" id="emaillogin">
+                      <label class="btn btn-danger active" id="emaillogin">
                         <input type="radio" name="options" id="emaillogin" autocomplete="off" checked>账号登陆
                       </label>
-                      <label class="btn btn-primary" id="contractlogin">
+                      <label class="btn btn-danger" id="contractlogin">
                         <input type="radio" name="options" id="contractlogin" autocomplete="off">合同号登陆
                       </label>
                     </div>
                   </div>
-                  
-
                 </div>
                 <label for="loginname" id="loginnamelabel" class="sr-only">Email账号登陆</label>
-                <input type="email" id="loginname" class="form-control" name="emaillogin" placeholder="Email账号登陆" required="" autofocus="">
+                <input type="email" id="loginname" class="form-control" name="emaillogin" placeholder="Email账号登陆" required="" autofocus=""><br/>
                 <label for="inputPassword" class="sr-only">密码</label>
                 <input type="password" id="inputPassword" class="form-control" placeholder="密码" required="">
                 <div class="checkbox">
                   <label>
-                    <input type="checkbox" value="remember-me"> Remember me
+                    <input type="checkbox" value="remember-me"> 记住登陆
                   </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-danger btn-block" type="submit">登陆</button>
               </form>
             </div>
 
-            <div class="col-sm-5 col-xs-12">
+            <div class="col-sm-5 col-xs-12 signupway-box">
+              <h3 class="form-signin-heading">没有开通响动?</h3>
+              <div class="rlink">
+                <a href="signup.html"><h4><u>点击这里 快速注册 <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span></u></h4></a>
+              </div>
+              <h4>或使用以下帐号直接登录:</h4>
+              <a href="#"><img src="img/wb.png"></a>
+             
+
              <!--  <form class=" ">
                 <div class="form-group">
                   <h2 class="form-signin-heading">商家注册</h2>
@@ -104,7 +112,7 @@
                       <input type="checkbox" value="remember-me"> Remember me
                     </label>
                   </div>
-                  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                  <button class="btn btn-lg btn-danger btn-block" type="submit">Sign in</button>
                 </form> -->
             </div>
           </div>

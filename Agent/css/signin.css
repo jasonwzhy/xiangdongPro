@@ -2,7 +2,8 @@ body {
   padding-top: 40px;
   padding-bottom: 40px;
   /*background-color: #006699;*/
-  background-color: #003366;
+  /*background-color: #003366;*/
+  background-color: #000;
   color: #fff;
 }
 nav{
@@ -16,15 +17,24 @@ nav .nav-title{
   font-weight: bold;
   margin-top: 10px;  
 }
-
+.logo-header{
+  padding-top:60px;
+  padding-bottom: 15px;
+}
 .login-container{
-  background-color: #006699;
-
+  /*background-color: #006699;*/
+  background-color: #000;
+  border:1px dashed #999;
 }
 .form-signin {
   /*max-width: 330px;*/
   padding: 15px;
+  padding-bottom: 30px;
   margin: 0 auto;
+  /*border-right:1px dashed #999;*/
+}
+.login-container .col-sm-7{
+  border-right:1px dashed #999;
 }
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
@@ -55,3 +65,23 @@ nav .nav-title{
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.signupway-box{
+  padding: 25px;
+}
+.signupway-box .rlink{
+  margin-bottom: 40px;
+  margin-left: 10px;
+}
+.signupway-box .rlink a{
+  color: coral;
+}
+.signup-container{
+  /*height: 400px;*/
+  background-color: brown;
+  padding: 20px;
+  /*opacity:0.2;*/
+  border-radius: 10px;
+}
+
+
+
