@@ -6,6 +6,9 @@ body {
   background-color: #000;
   color: #fff;
 }
+a{
+  color: #fff;
+}
 nav{
   background-color: #CC0033;
   margin:0px auto;
@@ -78,10 +81,14 @@ nav .nav-title{
 .signup-container{
   /*height: 400px;*/
   background-color: brown;
-  padding: 25px;
-  /*border*/-radius: 2px;
+  padding: 20px;
+  padding-top: 35px;
+  border-radius: 5px;
   border: 1px #000;
 }
-
+.pact{
+  color: #000;
+  padding: 15px;
+}
 
 
