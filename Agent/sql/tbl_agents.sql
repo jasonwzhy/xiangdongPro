@@ -27,7 +27,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `tbl_agents` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT '签约商家编号',
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '签约商家编号',
   `contract` varchar(30) NOT NULL COMMENT '签约商家合同编号',
   `contract_pwd` varchar(35) NOT NULL COMMENT '商家登录密码',
   `contract_loginname` varchar(50) NOT NULL COMMENT '商家登录后台账号',
