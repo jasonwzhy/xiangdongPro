@@ -3,15 +3,18 @@ namespace Home\Controller;
 use Think\Controller;
 class AgentController extends Controller {
     public function index(){
-    	if (isset($_SESSION['agentid'])) {
+    	// if (isset($_SESSION['agentid'])) {
+        if(True){
     		$agent = M('agents');
     		$agentid = $_SESSION['agentid'];
     		$condition['id'] = $agentid;
     		$agentdata = $agent->where($condition)->find();
     		var_dump($agentdata);
+            //test
+            $agentdata = 1;
     		if ($agentdata) {
     			$render['agentdata'] = $agentdata;
-    			$this->assign($render);
+    		//	$this->assign($render);
     			$this->display('agent/index');
     		}
     	}
