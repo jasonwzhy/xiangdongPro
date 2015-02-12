@@ -196,30 +196,77 @@
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-lg-12">
-                        {$agentdata}
                         <h1 class="page-header">
-                            Dashboard <small>Statistics Overview</small>
+                            商户基础信息 <!-- <small>Statistics Overview</small> -->
                         </h1>
                         <ol class="breadcrumb">
                             <li class="active">
-                                <i class="fa fa-dashboard"></i> Dashboard
+                                <i class="fa fa-dashboard"></i> 商家基础信息
                             </li>
                         </ol>
                     </div>
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
+               <!--  <div class="row">
                     <div class="col-lg-12">
                         <div class="alert alert-info alert-dismissable">
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                             <i class="fa fa-info-circle"></i>  <strong>Like SB Admin?</strong> Try out <a href="http://startbootstrap.com/template-overviews/sb-admin-2" class="alert-link">SB Admin 2</a> for additional features!
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /.row -->
 
                 <div class="row">
+                    <div class="col-sm-offset-1 col-sm-9">
+                        <!-- <h2>Striped Rows</h2> -->
+                            <table class="table table-hover table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>商家信息名称</th>
+                                        <th>详细信息内容</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>商家名称</td>
+                                        <td>{$agentdata['agent_name']}</td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td>商家合同号</td>
+                                        <td>{$agentdata['contract']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>审核状态</td>
+                                        <td>{$agentdata['agent_state']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>所在位置</td>
+                                        <td>{$agentdata['province']}省 {$agentdata['city']} 市</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>合同签订日期</td>
+                                        <td>{$agentdata['contract_signdt']}</td>
+                                       
+                                    </tr>
+                                    <tr>
+                                        <td>商家负责人</td>
+                                        <td>{$agentdata['contactor']}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>负责人电话</td>
+                                        <td>{$agentdata['contactor_tel']}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+               <!--  <div class="row">
                     <div class="col-lg-3 col-md-6">
                         <div class="panel panel-primary">
                             <div class="panel-heading">
@@ -308,10 +355,10 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /.row -->
 
-                <div class="row">
+              <!--   <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -322,10 +369,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /.row -->
 
-                <div class="row">
+               <!--  <div class="row">
                     <div class="col-lg-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -459,8 +506,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
                 <!-- /.row -->
+                
 
             </div>
             <!-- /.container-fluid -->
