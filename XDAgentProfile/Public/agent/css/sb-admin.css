@@ -25,6 +25,9 @@ body {
     width: 100%;
     padding: 0;
     background-color: #fff;
+    /*add by jasonw*/
+    min-height: 1024px;
+
 }
 
 .huge {
@@ -230,7 +233,7 @@ ul.alert-dropdown {
 .table>tbody>tr>td,
 .table>tfoot>tr>td{
     padding: 15px;
-    font-size: 21px;
+    font-size: 18px;
 }
 
 

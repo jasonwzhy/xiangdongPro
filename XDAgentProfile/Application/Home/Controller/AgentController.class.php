@@ -54,7 +54,18 @@ class AgentController extends Controller {
     		// echo $_POST['emaillogin'];
     	}
     	else{
-
+            if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $agentdata = $agent->where($condition)->find();
+            // var_dump($agentdata);
+            if ($agentdata) {
+                $render['agentdata'] = $agentdata;
+                $this->assign($render);
+                $this->display('agent/index');
+            }
+        }
     		$this->display('agent/login');
     	}
     	
