@@ -55,17 +55,15 @@ class AgentController extends Controller {
     	}
     	else{
             if (isset($_SESSION['agentid'])) {
-            $agent = M('agents');
-            $agentid = $_SESSION['agentid'];
-            $condition['id'] = $agentid;
-            $agentdata = $agent->where($condition)->find();
-            // var_dump($agentdata);
-            if ($agentdata) {
-                $render['agentdata'] = $agentdata;
-                $this->assign($render);
-                $this->display('agent/index');
+                $agent = M('agents');
+                $agentid = $_SESSION['agentid'];
+                $condition['id'] = $agentid;
+                $agentdata = $agent->where($condition)->find();
+                // var_dump($agentdata);
+                if ($agentdata) {
+                    redirect('index',3,'页面跳转中...');
+                }
             }
-        }
     		$this->display('agent/login');
     	}
     	
