@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,16 +12,16 @@
     <title>响动健身 商家后台</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="__PUBLIC__/agent/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Public/agent/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="__PUBLIC__/agent/css/sb-admin.css" rel="stylesheet">
+    <link href="/Public/agent/css/sb-admin.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="__PUBLIC__/agent/css/plugins/morris.css" rel="stylesheet">
+    <link href="/Public/agent/css/plugins/morris.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="__PUBLIC__/agent/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/Public/agent/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -201,22 +201,158 @@
             <!-- /.navbar-collapse -->
         </nav>
 
-        <block name="page-wrapper"></block>
+        
+    <div id="page-wrapper">
+        <div class="container-fluid">
+        	<div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        查看商户店铺<!-- <small>Statistics Overview</small> -->
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-dashboard"></i> 商家店铺信息
+                        </li>
+                    </ol>
+
+                </div>
+            </div>
+
+        	<div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">26</div>
+                                    <div>家</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">商家门店总数</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">312</div>
+                                    <div>人次</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">累计消费人次</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                	<i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">94%</div>
+                                    <div>的赞</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">客户满意度</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">9213</div>
+                                    <div>元</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">累计营收</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row"><!-- shops item list  -->
+                <div class="col-lg-12">
+                  <!--   <h1 class="page-header">
+                        商家店铺<small>Statistics Overview</small>
+                    </h1> -->
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-dashboard">商家店铺列表</i>
+                        </li>
+                    </ol>
+                </div>
+             <!--    <div class="col-lg-12">
+                	<div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Panel title</h3>
+                        </div>
+                        <div class="panel-body">
+                            Panel content
+                        </div>
+                        <table class="table">
+                        	
+                        </table>
+                    </div>
+                </div> -->
+            </div><!-- end shops item list  -->
+
+        </div>
+    </div>
+
         <!-- /#page-wrapper -->
 
     </div>
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="__PUBLIC__/agent/js/jquery.js"></script>
+    <script src="/Public/agent/js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="__PUBLIC__/agent/js/bootstrap.min.js"></script>
+    <script src="/Public/agent/js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="__PUBLIC__/agent/js/plugins/morris/raphael.min.js"></script>
-    <script src="__PUBLIC__/agent/js/plugins/morris/morris.min.js"></script>
-    <script src="__PUBLIC__/agent/js/plugins/morris/morris-data.js"></script>
+    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
 
 </body>
 

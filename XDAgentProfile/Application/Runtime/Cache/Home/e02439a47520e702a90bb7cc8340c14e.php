@@ -144,7 +144,7 @@
                         </li>
                         <li class="divider"></li>
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="signout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
                         </li>
                     </ul>
                 </li>
@@ -152,8 +152,9 @@
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li class="active">
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> 商户基础信息</a>
+                    <!-- <li class="active"> -->
+                    <li>
+                        <a href="index"><i class="fa fa-fw fa-dashboard"></i> 商户基础信息</a>
                     </li>
                    <!--  <li>
                         <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> 创建店铺</a>
@@ -162,7 +163,7 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>商户店铺<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-dashboard"></i>查看店铺</a>
+                                <a href="shopsview"><i class="fa fa-fw fa-dashboard"></i>查看店铺</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-fw fa-dashboard"></i>添加新店铺</a>
@@ -203,7 +204,6 @@
         
     <div id="page-wrapper">
         <div class="container-fluid">
-
             <!-- Page Heading -->
             <div class="row">
                 <div class="col-lg-12">

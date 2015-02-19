@@ -28,7 +28,7 @@ class AgentController extends Controller {
     		}
     		elseif (isset($_POST['contractlogin'])) {
     			$condition['contract'] = $_POST['contractlogin'];
-    			echo $_POST['contractlogin'];;
+    			echo $_POST['contractlogin'];
     		}
     		else{
     			#no post data return error...
@@ -81,6 +81,14 @@ class AgentController extends Controller {
     	// 	$this->display('agent/signup');	
     	// }
     	$this->display('agent/signup');
+    }
+    public function signout(){
+        unset($_SESSION['agentid']);
+        redirect('index',1,'页面跳转中...');
+    }
+    public function shopsview(){
+        $this->display('agent/shopsview');
+
     }
     public function hello(){
     	echo "hello";
