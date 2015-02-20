@@ -309,7 +309,7 @@
                 </div>
             </div>
 
-            <div class="row"><!-- shops item list  -->
+            <div class="row">
                 <div class="col-lg-12">
                   <!--   <h1 class="page-header">
                         商家店铺<small>Statistics Overview</small>
@@ -333,8 +333,31 @@
                         </table>
                     </div>
                 </div> -->
-            </div><!-- end shops item list  -->
+            </div>
 
+            <div class="shoplist-container "><!-- shops item list  -->
+                <div class="panel panel-info shopitem" id="1">
+                    <div class="panel-heading">
+                        印象瑜伽国际
+                    </div>
+                    <div class="panel-body row">
+                        <div class="col-md-2">
+                            <img src="/Public/agent/img/shopimg.png" width="100%">
+                        </div>
+                        <div class="col-md-8">
+                            <p></p>
+                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
+                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
+                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
+                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
+                            
+                        </div>
+                        <div class="col-md-2">
+                            <img src="/Public/agent/img/qrcodeimg.png" width="80%">
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end shops item list  -->
         </div>
     </div>
 
