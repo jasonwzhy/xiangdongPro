@@ -171,7 +171,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> 申请加盟</a>
+                        <a href="joinmember"><i class="fa fa-fw fa-table"></i> 申请加盟</a>
                     </li>
                     <li>
                         <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 消费统计</a>

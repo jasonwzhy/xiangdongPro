@@ -226,22 +226,33 @@ ul.alert-dropdown {
     color: #df8a13;
 }
 
-.table>thead>tr>th,
+.table>thead>tr>th{
+    padding: 15px;
+    font-size: 16px;
+    font-weight:bold;
+    color: #666666;
+}
 .table>tbody>tr>th,
 .table>tfoot>tr>th,
 .table>thead>tr>td,
 .table>tbody>tr>td,
 .table>tfoot>tr>td{
     padding: 15px;
-    font-size: 18px;
+    font-size: 14px;
+    font-weight:bold;
+    color: #333333;
 }
 .shoplist-container{
 
 }
 .shoplist-container .shopitem{
-    
-}
 
+}
+img{
+    border-radius: 3px;
+    border: 2px solid grey ;
+
+}
 
 
 

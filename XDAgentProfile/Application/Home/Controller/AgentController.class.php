@@ -10,6 +10,7 @@ class AgentController extends Controller {
     		$agentdata = $agent->where($condition)->find();
     		// var_dump($agentdata);
     		if ($agentdata) {
+                $agentdata['account1_no'] = substr_replace($agentdata['account1_no'],"**********",3,10);
     			$render['agentdata'] = $agentdata;
     			$this->assign($render);
     			$this->display('agent/index');
@@ -89,6 +90,9 @@ class AgentController extends Controller {
     public function shopsview(){
         $this->display('agent/shopsview');
 
+    }
+    public function joinmember(){
+        $this->display('agent/joinmember');
     }
     public function hello(){
     	echo "hello";

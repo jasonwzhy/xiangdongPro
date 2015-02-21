@@ -171,7 +171,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="tables.html"><i class="fa fa-fw fa-table"></i> 申请加盟</a>
+                        <a href="joinmember"><i class="fa fa-fw fa-table"></i> 申请加盟</a>
                     </li>
                     <li>
                         <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 消费统计</a>
@@ -345,7 +345,29 @@
                             <img src="/Public/agent/img/shopimg.png" width="100%">
                         </div>
                         <div class="col-md-8">
-                            <p></p>
+                            <!-- <p></p> -->
+                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
+                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
+                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
+                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
+                            
+                        </div>
+                        <div class="col-md-2">
+                            <img src="/Public/agent/img/qrcodeimg.png" width="80%">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-info shopitem" id="1">
+                    <div class="panel-heading">
+                        印象瑜伽国际
+                    </div>
+                    <div class="panel-body row">
+                        <div class="col-md-2">
+                            <img src="/Public/agent/img/shopimg.png" width="100%">
+                        </div>
+                        <div class="col-md-8">
+                            <!-- <p></p> -->
                             <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
                             <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
                             <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
