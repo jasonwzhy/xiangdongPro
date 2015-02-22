@@ -39,7 +39,7 @@
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-offset-1 col-xs-12 col-sm-9  signup-container">
+				<div class="col-md-offset-1 col-sm-12 col-md-10  signup-container">
 					<form class="form-horizontal" method="post">
 
 						<div class="form-group">
@@ -63,43 +63,51 @@
 					  		</div>
 					 	</div>
 
+			
 					 	<div class="form-group">
-					 		<label for="agentState" class="col-sm-2 control-label">商家状态</label>
+					 		<label for="province" class="col-sm-2 control-label">省</label>
+					  		<div class="col-sm-4">
+					  			<!-- <select class="form-control" id="province" name="province">
+					  				<option>四川</option>
+					  			</select> -->
+					  			<select name="selProvince" id="province"  class="form-control" onChange = "getCity(this.options[this.selectedIndex].value)"> 
+							        <option value="">-请选择-</option> 
+							        <option value="北京">北京</option> 
+							        <option value="上海">上海</option> 
+							        <option value="广东">广东</option> 
+							        <option value="江苏">江苏</option> 
+							        <option value="四川">四川</option> 
+							    </select>
+					  		</div>
+					  		<label for="city" class="col-sm-1 control-label">市</label>
+					  		<div class="col-sm-4">
+					  		<!-- 	<select class="form-control" id="city" name="city">
+					  				<option>成都</option>
+					  			</select> -->
+					  			<select name="selCity" id="city" class="form-control">
+									<option value="">-城市-</option> 
+								</select>
+					  		</div>
+					 	</div>
+
+					 	<div class="form-group">
+					 		<label for="address" class="col-sm-2 control-label">详细地址</label>
 					 		<div class="col-sm-9">
-					 			<select class="form-control"  id="agentState" name="agentstate">
-					 				<option>正常营业</option>
-					 				<option>暂停营业</option>
-					 				<option>商家注销</option>
-					 			</select>	
+					 			<input type="text" class="form-control" id="address" name="address" placeholder="商家联系地址 例:xx区 xxx街xxx号 xx楼xx号" required="required">
 					 		</div>
 					 	</div>
 
 					 	<div class="form-group">
-					 		<label for="province" class="col-sm-2 control-label">省</label>
-					  		<div class="col-sm-4">
-					  			<select class="form-control" id="province" name="province">
-					  				<option>四川</option>
-					  			</select>
-					  		</div>
-					  		<label for="city" class="col-sm-1 control-label">市</label>
-					  		<div class="col-sm-4">
-					  			<select class="form-control" id="city" name="city">
-					  				<option>成都</option>
-					  			</select>
-					  		</div>
-					 	</div>
-
-					 	<div class="form-group">
-					 		<label for="contactor" class="col-sm-2 control-label">商家经理</label>
+					 		<label for="contactor" class="col-sm-2 control-label">商家负责人</label>
 					 		<div class="col-sm-9">
 					 			<input type="text" class="form-control" id="contactor" name="contactor" placeholder="商家负责人姓名" required="required">
 					 		</div>
 					 	</div>
 
 					 	<div class="form-group">
-					 		<label for="ontactorTel" class="col-sm-2 control-label">联系电话</label>
+					 		<label for="contactorTel" class="col-sm-2 control-label">联系电话</label>
 					 		<div class="col-sm-9">
-					 			<input type="text" class="form-control" id="ontactorTel" name="ontactortel" placeholder="负责人联系电话" required="required">
+					 			<input type="number" class="form-control" id="contactorTel" name="contactortel" placeholder="负责人联系电话" required="required">
 					 		</div>
 					 	</div>
 					 	<div class="form-group">
@@ -154,7 +162,7 @@
 				 -->
 			</div>
 		</div>
-
+		<script src="/Public/agent/js/city.js"></script>
 		<script>
 			$("#submitbtn").click(function(){
 				if($("#pactcheckbox").prop("checked")){

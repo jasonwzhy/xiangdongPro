@@ -71,18 +71,53 @@ class AgentController extends Controller {
     }
 
     public function signup(){
-    	// if (IS_POST){
-    	// 	$contract = "";
-    	// 	$contract_begindt = d
-    	// 	$AgentSginup = M('tbl_agents');
-    	// 	// $AgentSginup -> 
+    	if (IS_POST){
+    		// $contract = "";
+    		// $contract_begindt = d;
+    		$AgentSginup = M('agents');
+    		// $AgentSginup -> 
+            if (isset($_POST['sginupemail']) && 
+                isset($_POST['contactortel'] )) {
+                # code...
+                if ($AgentSginup->where(array('contract_loginname'=>$_POST['sginupemail']))->find()) {
+                    # code...
+                    $render['error'] = "邮箱已存在";
+                }
+                elseif ($AgentSginup->where(array('contactor_tel'=>$_POST['contactortel']))->find()) {
+                    # code...
+                    $render['error'] = "联系电话已经存在";
+                }
+                else{
+                    $agdata['contract'] = $this->contractnum();
+                    $agdata['contract_loginname'] = $_POST['sginupemail'];
+                    $agdata['contract_pwd'] = isset($_POST['sginuppwd']) ? $_POST['sginuppwd']: '';
+                    $agdata['agent_name'] = isset($_POST['agentname']) ? $_POST['agentname'] : '';
+                    $agdata['selProvince'] = isset($_POST['province']) ? $_POST['province'] : '';
+                    $agdata['selCity'] = isset($_POST['city']) ? $_POST['city'] : '';
+                    $agdata['address'] = isset($_POST['address']) ? $_POST['address'] : '';
+                    $agdata['contactor'] = isset($_POST['contactor']) ? $_POST['contactor'] : '';
+                    $agdata['contactor_tel'] = isset($_POST['contactortel']) ? $_POST['contactortel'] : '';
 
-    	// }
-    	// else{
-    	// 	$this->display('agent/signup');	
-    	// }
-    	$this->display('agent/signup');
+
+
+                }
+                
+                var_dump($_POST);
+                
+            }
+            $contract = $this->contractnum();
+            var_dump($contract);
+    	}
+    	else{
+    		$this->display('agent/signup');	
+    	}
+      
+    	// $this->display('agent/signup');
     }
+    private function contractnum(){
+        return "620150105123";
+    }
+
     public function signout(){
         unset($_SESSION['agentid']);
         redirect('index',1,'页面跳转中...');
