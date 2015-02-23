@@ -76,8 +76,11 @@ class AgentController extends Controller {
     		// $contract_begindt = d;
     		$AgentSginup = M('agents');
     		// $AgentSginup -> 
-            if (isset($_POST['sginupemail']) && 
-                isset($_POST['contactortel'] )) {
+            $render['error']="";
+            var_dump($_POST);
+            exit(0);
+            if ($_POST['sginupemail'] != NULL&& 
+                $_POST['contactortel'] != NULL) {
                 # code...
                 if ($AgentSginup->where(array('contract_loginname'=>$_POST['sginupemail']))->find()) {
                     # code...
@@ -88,27 +91,55 @@ class AgentController extends Controller {
                     $render['error'] = "联系电话已经存在";
                 }
                 else{
-                    $agdata['contract'] = $this->contractnum();
-                    $agdata['contract_loginname'] = $_POST['sginupemail'];
-                    $agdata['contract_pwd'] = isset($_POST['sginuppwd']) ? $_POST['sginuppwd']: '';
-                    $agdata['agent_name'] = isset($_POST['agentname']) ? $_POST['agentname'] : '';
-                    $agdata['selProvince'] = isset($_POST['province']) ? $_POST['province'] : '';
-                    $agdata['selCity'] = isset($_POST['city']) ? $_POST['city'] : '';
-                    $agdata['address'] = isset($_POST['address']) ? $_POST['address'] : '';
-                    $agdata['contactor'] = isset($_POST['contactor']) ? $_POST['contactor'] : '';
-                    $agdata['contactor_tel'] = isset($_POST['contactortel']) ? $_POST['contactortel'] : '';
-                    $agdata['agent_state'] = '';
-                    $agdata['reg_date'] = '';
-                    
+                    $agdata = [
+                        "contract" =>  $this->contractnum(),
+                        "contract_pwd" => isset($_POST['sginuppwd']) ? $_POST['sginuppwd']: '',
+                        "contract_loginname" => $_POST['sginupemail'],
+                        "contactor" => isset($_POST['contactor']) ? $_POST['contactor'] : '',
+                        "contactor_tel" => $_POST['contactortel'],
+                        "agent_name" => isset($_POST['agentname']) ? $_POST['agentname'] : '',
+                        "agent_src" => "",
+                        "agent_state" => "未审核",
+                        "city_code" => "",
+                        "province" => isset($_POST['selProvince']) ? $_POST['selProvince'] : '',
+                        "city" => isset($_POST['selCity']) ? $_POST['selCity'] : '',
+                        "reg_date" =>date('Y-m-d H:i:s',time()),
+                        "address" => isset($_POST['address']) ? $_POST['address'] : '',
 
+                        "contract_begindt" => date('Y-m-d H:i:s',time()),
+                        "contract_begintimestamp" =>date('Y-m-d H:i:s',time()),
+                        "contract_enddt" => date('Y-m-d H:i:s',time()),
+                        "contract_endtimestamp" => date('Y-m-d H:i:s',time()),
+                        "contract_signdt" => date('Y-m-d H:i:s',time()),
+                        "contract_sign_name" => "",
 
+                        "contactor_finance" => "",
+                        "contactortel_finance" => "",
+                        "account1_no" => "",
+                        "account1_name" => "",
+                        "account1_bankname" => "",
+                        "account2_no" => "",
+                        "account2_name" => "",
+                        "account2_bankname" => "",
+                        "zhifubao" => "",
+                        "wxpay" => "",
+                        "trade_no" => "",
+                        "trade_name" => "",
+                        "trade_pic" => ""
+                    ];
+                    $retid=$AgentSginup->add($agdata);
+                    var_dump($retid);
+                    if ($retid) {
+                        $_SESSION['agentid'] = $retid;
+                        redirect('index',3,'页面跳转中...');
+                    }
                 }
-                
-                var_dump($_POST);
-                
             }
-            $contract = $this->contractnum();
-            var_dump($contract);
+            else{   
+                    $render['error'] = "请将表单填写完整!";
+                    $this->assign($render);
+                    $this->display('agent/signup');
+                }
     	}
     	else{
     		$this->display('agent/signup');	

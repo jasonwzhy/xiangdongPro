@@ -353,7 +353,7 @@
                             
                         </div>
                         <div class="col-md-2">
-                            <img src="/Public/agent/img/qrcodeimg.png" width="80%">
+                            <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%">
                         </div>
                     </div>
                 </div>
@@ -375,7 +375,7 @@
                             
                         </div>
                         <div class="col-md-2">
-                            <img src="/Public/agent/img/qrcodeimg.png" width="80%">
+                            <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%">
                         </div>
                     </div>
                 </div>

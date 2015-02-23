@@ -40,19 +40,19 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-1 col-sm-12 col-md-10  signup-container">
-					<form class="form-horizontal" method="post">
-
+					<!-- <form class="form-horizontal" method="post" id="signupform" action="/"> -->
+					<form id="signupform">
 						<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">登陆Email</label>
 						<div class="col-sm-9">
-						  <input type="email" class="form-control" id="inputEmail3" name="sginupemail" placeholder="注册Email地址" required="required">
+						  <input type="email" class="form-control" id="inputEmail" name="sginupemail" placeholder="注册Email地址" required="required">
 						</div>
 						</div>
 
 						<div class="form-group">
 						    <label for="inputPassword3" class="col-sm-2 control-label">登陆密码</label>
 						    <div class="col-sm-9">
-						      <input type="password" class="form-control" id="inputPassword3" name="sginuppwd" placeholder="设置登录密码" required="required">
+						      <input type="password" class="form-control" id="inputPassword" name="sginuppwd" placeholder="设置登录密码" required="required">
 						    </div>
 					 	</div>
 
@@ -121,13 +121,16 @@
 										<input type="checkbox"  id="pactcheckbox">同意
 									</label>
 									<a href="#"  data-toggle="modal" data-target=".bs-example-modal-lg"><u>《响动健身服务注册协议》</u></a>
+									<?php if($error): ?><label><h4><?php echo ($error); ?></h4></label>
+									<?php else: ?>
+										<label></label><?php endif; ?>
 								</div>
 							</div>
 						</div>
 
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-9">
-								<button class="btn btn-lg btn-danger btn-block" id="submitbtn" type="submit" >确认提交信息</button>
+								<button class="btn btn-lg btn-danger btn-block" id="submitbtn" type="submit" onclick="javascript:" href="javascript:" >确认提交信息</button>
 							</div>
 						</div>
 						<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -166,7 +169,16 @@
 		<script>
 			$("#submitbtn").click(function(){
 				if($("#pactcheckbox").prop("checked")){
-					return true;
+					//return true;
+					alert("submin");
+					var inputEmail = $("#inputEmail").val();
+					var inputPassword = $("#inputPassword").val();
+					var agentName = $("#agentName").val();
+					var province = $("province").val();
+					$.post("http://127.0.0.1/home/agent/signup",{inputEmail:inputEmail},function(){
+						alert("alert!!!");
+					});
+					break;
 				}
 				else{
 					alert("您未同意《响动健身注册协议》,请选中同意并继续提交！");
