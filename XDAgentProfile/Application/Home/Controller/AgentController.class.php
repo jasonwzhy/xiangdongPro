@@ -97,7 +97,9 @@ class AgentController extends Controller {
                     $agdata['address'] = isset($_POST['address']) ? $_POST['address'] : '';
                     $agdata['contactor'] = isset($_POST['contactor']) ? $_POST['contactor'] : '';
                     $agdata['contactor_tel'] = isset($_POST['contactortel']) ? $_POST['contactortel'] : '';
-
+                    $agdata['agent_state'] = '';
+                    $agdata['reg_date'] = '';
+                    
 
 
                 }
