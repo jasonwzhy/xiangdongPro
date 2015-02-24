@@ -121,9 +121,10 @@
 										<input type="checkbox"  id="pactcheckbox">同意
 									</label>
 									<a href="#"  data-toggle="modal" data-target=".bs-example-modal-lg"><u>《响动健身服务注册协议》</u></a>
-									<?php if($error): ?><label><h4><?php echo ($error); ?></h4></label>
+									<!-- <?php if($error): ?><label><h4><?php echo ($error); ?></h4></label>
 									<?php else: ?>
-										<label></label><?php endif; ?>
+										<label></label> -->
+									<label id="errlabel"></label><?php endif; ?>
 								</div>
 							</div>
 						</div>
@@ -171,20 +172,37 @@
 				e.preventDefault();
 				if($("#pactcheckbox").prop("checked")){
 					//return true;
-					
 					var inputEmail = $("#inputEmail").val();
-					alert(inputEmail);
 					var inputPassword = $("#inputPassword").val();
 					var agentName = $("#agentName").val();
-					var province = $("province").val();
-					$.post("/Home/Agent/signup",{inputEmail:"inputEmail"},function(rjson){
-							alert("post");
-							console.log(rjson);
-							if (rjson.status==1) {
-								alert("alert!!!",rjson);
+					var province = $("#province").val();
+					var city = $("#city").val();
+					var address = $("#address").val();
+					var contactor = $("#contactor").val();
+					var contactorTel = $("#contactorTel").val();
+
+					$.post("/Home/Agent/signup",
+						{
+							sginupemail:inputEmail,
+							sginuppwd:inputPassword,
+							agentname:agentName,
+							selProvince:province,
+							selCity:city,
+							address:address,
+							contactor:contactor,
+							contactortel:contactorTel
+						},
+						function(ret){
+							console.log(ret);
+							if ("" != ret.error ) {
+								alert(ret.error);
+								$("#errlabel").text(ret.error);
 							}
-							
-					});
+							else{
+								window.location.href="/Home/Agent/index";
+							}
+						}
+					);
 				}
 				else{
 					alert("您未同意《响动健身注册协议》,请选中同意并继续提交！");

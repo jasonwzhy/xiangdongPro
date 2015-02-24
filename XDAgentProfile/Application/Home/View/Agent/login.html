@@ -79,13 +79,14 @@
                   <label>
                     <input type="checkbox" value="remember-me"> 记住登陆
                   </label>
-                  <if condition="$error">
+                  <!-- <if condition="$error">
                     <label><h4>{$error}</h4></label>
                   <else />
-                    <label></label>
+                    <label></label> -->
+                    <label id="errlabel"></label>
                   </if>
                 </div>
-                <button class="btn btn-lg btn-danger btn-block" type="submit">登陆</button>
+                <button class="btn btn-lg btn-danger btn-block" type="submit" id="signinbtn">登陆</button>
               </form>
             </div>
 
@@ -117,6 +118,31 @@
       $('#loginname').attr('placeholder','合同号登陆');
       // $('#loginnamelabel').val('Email账号登陆')
     })
+    $('#signinbtn').click(function(e){
+      e.preventDefault();
+      var signinname = $("#loginname").val();
+      var emaillogin ="";
+      var contractlogin = "";
+      var passwd = $("#inputPassword").val();
+      "emaillogin" == $('#loginname').attr('name') ? emaillogin = signinname : contractlogin = signinname;
+      $.post("__URL__/signin",
+          {
+            emaillogin : emaillogin,
+            contractlogin : contractlogin,
+            loginpwd:$("#inputPassword").val()
+          },
+          function(ret){
+            if ("" != ret.error) {
+              alert(ret.error);
+              $("#errlabel").text(ret.error);
+            }
+            else{
+              window.location.href = "__URL__/index";
+            }
+          }
+        );
+
+    });
     </script>
 
 </body></html>

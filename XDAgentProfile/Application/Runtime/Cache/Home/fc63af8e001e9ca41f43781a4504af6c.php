@@ -204,7 +204,34 @@
         
 	<div id="page-wrapper">
         <div class="container-fluid">
+        	<!-- Page Heading -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        商家加盟 <!-- <small>Statistics Overview</small> -->
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-dashboard"></i> 商家加盟信息提交
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            <!-- /.row -->
+			
+			<div class="panel panel-primary">
+				<div class="panel-heading">Panel heading</div>
+				<div class="panel-body">
+					<p class="text-center">您的申请已通过,若对加盟协议有疑问,请联系........</p>
+				</div>
+			</div>
 
+			<div class="panel panel-primary">
+				<div class="panel-heading">Panel heading</div>
+				<div class="panel-body">
+					<p class="text-center">您的申请正在审核,若对加盟协议有疑问,请联系....</p>
+				</div>
+			</div>
         </div>
     </div>
 

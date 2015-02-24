@@ -22,37 +22,34 @@ class AgentController extends Controller {
     }
     public function signin(){
     	if (IS_POST){
+            //$this->ajaxReturn($_POST);
     		$agentlogin = M('agents');
-    		if(isset($_POST['emaillogin'])){
+            $render['error'] = "";
+            $render['post'] = $_POST;
+    		if(isset($_POST['emaillogin']) && NULL != $_POST['emaillogin']){
     			$condition['contract_loginname'] = $_POST['emaillogin'];
-    			echo $_POST['emaillogin'];
     		}
-    		elseif (isset($_POST['contractlogin'])) {
+    		elseif (isset($_POST['contractlogin']) && NULL != $_POST['contractlogin']) {
     			$condition['contract'] = $_POST['contractlogin'];
-    			echo $_POST['contractlogin'];
     		}
     		else{
+                $render['error'] = "用户名或密码不能为空";
     			#no post data return error...
     		}
     		$condition['contract_pwd'] = $_POST['loginpwd'];
     		$agent = $agentlogin->where($condition)->find();
-    		// var_dump($agent);
     		if ($agent==NULL) {
     			#账号或密码错误
     			$render['error'] = "账号或密码错误!";
-    			$this->assign($render);
-    			$this->display('agent/login');
-    			//exit();
+                $this->ajaxReturn($render);
+    			// $this->assign($render);
+    			// $this->display('agent/login');
     		}
     		else{
     			$_SESSION['agentid']=$agent['id'];
-    			//$this->success($agent,'?m=home&c=agent&a=index');
-    			redirect('index',3,'页面跳转中...');
-    			// $render['data'] = $agent;
-    			// $this->assign($render);
-    			// $this->display('agent/index');
+                $this->ajaxReturn($render);
+    			//redirect('index',3,'页面跳转中...');
     		}
-    		// echo $_POST['emaillogin'];
     	}
     	else{
             if (isset($_SESSION['agentid'])) {
@@ -72,42 +69,38 @@ class AgentController extends Controller {
 
     public function signup(){
     	if (IS_POST){
-    		// $contract = "";
-    		// $contract_begindt = d;
     		$AgentSginup = M('agents');
-    		// $AgentSginup -> 
             $render['error']="";
-            $str['err']='asdfasdfsa';
-            $str['nn']='123';
-
-            $this->ajaxReturn($str);
-            // exit();
-            if ($_POST['sginupemail'] != NULL&& 
-                $_POST['contactortel'] != NULL) {
-                # code...
+            if ( NULL != $_POST['sginupemail'] && 
+                NULL != $_POST['contactortel'] &&
+                NULL != $_POST['sginuppwd'] &&
+                NULL != $_POST['contactor'] && 
+                NULL != $_POST['agentname'] &&
+                NULL != $_POST['selProvince'] &&
+                NULL != $_POST['selCity'] &&
+                NULL != $_POST['address']
+                ) {
                 if ($AgentSginup->where(array('contract_loginname'=>$_POST['sginupemail']))->find()) {
-                    # code...
                     $render['error'] = "邮箱已存在";
                 }
                 elseif ($AgentSginup->where(array('contactor_tel'=>$_POST['contactortel']))->find()) {
-                    # code...
                     $render['error'] = "联系电话已经存在";
                 }
                 else{
                     $agdata = [
                         "contract" =>  $this->contractnum(),
-                        "contract_pwd" => isset($_POST['sginuppwd']) ? $_POST['sginuppwd']: '',
+                        "contract_pwd" => $_POST['sginuppwd'],
                         "contract_loginname" => $_POST['sginupemail'],
-                        "contactor" => isset($_POST['contactor']) ? $_POST['contactor'] : '',
+                        "contactor" => $_POST['contactor'],
                         "contactor_tel" => $_POST['contactortel'],
-                        "agent_name" => isset($_POST['agentname']) ? $_POST['agentname'] : '',
+                        "agent_name" => $_POST['agentname'],
                         "agent_src" => "",
                         "agent_state" => "未审核",
                         "city_code" => "",
-                        "province" => isset($_POST['selProvince']) ? $_POST['selProvince'] : '',
-                        "city" => isset($_POST['selCity']) ? $_POST['selCity'] : '',
+                        "province" => $_POST['selProvince'],
+                        "city" => $_POST['selCity'],
                         "reg_date" =>date('Y-m-d H:i:s',time()),
-                        "address" => isset($_POST['address']) ? $_POST['address'] : '',
+                        "address" => $_POST['address'],
 
                         "contract_begindt" => date('Y-m-d H:i:s',time()),
                         "contract_begintimestamp" =>date('Y-m-d H:i:s',time()),
@@ -131,24 +124,21 @@ class AgentController extends Controller {
                         "trade_pic" => ""
                     ];
                     $retid=$AgentSginup->add($agdata);
-                    var_dump($retid);
                     if ($retid) {
                         $_SESSION['agentid'] = $retid;
-                        redirect('index',3,'页面跳转中...');
+                        $this->ajaxReturn($render);
                     }
                 }
+                $this->ajaxReturn($render);
             }
             else{   
                     $render['error'] = "请将表单填写完整!";
-                    $this->assign($render);
-                    $this->display('agent/signup');
-                }
+                    $this->ajaxReturn($render);
+            }
     	}
     	else{
     		$this->display('agent/signup');	
     	}
-      
-    	// $this->display('agent/signup');
     }
     private function contractnum(){
         return "620150105123";
@@ -163,6 +153,7 @@ class AgentController extends Controller {
 
     }
     public function joinmember(){
+        $agentdata['id'] = $_SESSION['agentid'];
         $this->display('agent/joinmember');
     }
     public function hello(){

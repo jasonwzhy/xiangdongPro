@@ -79,11 +79,12 @@
                   <label>
                     <input type="checkbox" value="remember-me"> 记住登陆
                   </label>
-                  <?php if($error): ?><label><h4><?php echo ($error); ?></h4></label>
+                  <!-- <?php if($error): ?><label><h4><?php echo ($error); ?></h4></label>
                   <?php else: ?>
-                    <label></label><?php endif; ?>
+                    <label></label> -->
+                    <label id="errlabel"></label><?php endif; ?>
                 </div>
-                <button class="btn btn-lg btn-danger btn-block" type="submit">登陆</button>
+                <button class="btn btn-lg btn-danger btn-block" type="submit" id="signinbtn">登陆</button>
               </form>
             </div>
 
@@ -115,6 +116,31 @@
       $('#loginname').attr('placeholder','合同号登陆');
       // $('#loginnamelabel').val('Email账号登陆')
     })
+    $('#signinbtn').click(function(e){
+      e.preventDefault();
+      var signinname = $("#loginname").val();
+      var emaillogin ="";
+      var contractlogin = "";
+      var passwd = $("#inputPassword").val();
+      "emaillogin" == $('#loginname').attr('name') ? emaillogin = signinname : contractlogin = signinname;
+      $.post("/Home/Agent/signin",
+          {
+            emaillogin : emaillogin,
+            contractlogin : contractlogin,
+            loginpwd:$("#inputPassword").val()
+          },
+          function(ret){
+            if ("" != ret.error) {
+              alert(ret.error);
+              $("#errlabel").text(ret.error);
+            }
+            else{
+              window.location.href = "/Home/Agent/index";
+            }
+          }
+        );
+
+    });
     </script>
 
 </body></html>
