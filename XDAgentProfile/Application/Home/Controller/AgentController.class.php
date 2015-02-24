@@ -77,8 +77,11 @@ class AgentController extends Controller {
     		$AgentSginup = M('agents');
     		// $AgentSginup -> 
             $render['error']="";
-            var_dump($_POST);
-            exit(0);
+            $str['err']='asdfasdfsa';
+            $str['nn']='123';
+
+            $this->ajaxReturn($str);
+            // exit();
             if ($_POST['sginupemail'] != NULL&& 
                 $_POST['contactortel'] != NULL) {
                 # code...
@@ -163,6 +166,7 @@ class AgentController extends Controller {
         $this->display('agent/joinmember');
     }
     public function hello(){
-    	echo "hello";
+        $this->ajaxReturn("123","321",1);
+        exit();
     }
 }

@@ -40,8 +40,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-offset-1 col-sm-12 col-md-10  signup-container">
-					<!-- <form class="form-horizontal" method="post" id="signupform" action="/"> -->
-					<form id="signupform">
+					<form class="form-horizontal" method="post" id="signupform">
+					<!-- <form id="signupform"> -->
 						<div class="form-group">
 						<label for="inputEmail3" class="col-sm-2 control-label">登陆Email</label>
 						<div class="col-sm-9">
@@ -130,7 +130,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-offset-2 col-sm-9">
-								<button class="btn btn-lg btn-danger btn-block" id="submitbtn" type="submit" onclick="javascript:" href="javascript:" >确认提交信息</button>
+								<button class="btn btn-lg btn-danger btn-block" id="submitbtn" type="submit" >确认提交信息</button>
 							</div>
 						</div>
 						<div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -167,24 +167,31 @@
 		</div>
 		<script src="/Public/agent/js/city.js"></script>
 		<script>
-			$("#submitbtn").click(function(){
+			$("#submitbtn").click(function(e){
+				e.preventDefault();
 				if($("#pactcheckbox").prop("checked")){
 					//return true;
-					alert("submin");
+					
 					var inputEmail = $("#inputEmail").val();
+					alert(inputEmail);
 					var inputPassword = $("#inputPassword").val();
 					var agentName = $("#agentName").val();
 					var province = $("province").val();
-					$.post("http://127.0.0.1/home/agent/signup",{inputEmail:inputEmail},function(){
-						alert("alert!!!");
+					$.post("/Home/Agent/signup",{inputEmail:"inputEmail"},function(rjson){
+							alert("post");
+							console.log(rjson);
+							if (rjson.status==1) {
+								alert("alert!!!",rjson);
+							}
+							
 					});
-					break;
 				}
 				else{
 					alert("您未同意《响动健身注册协议》,请选中同意并继续提交！");
 					return false;
 				}
 			});
+		
 		</script>
 
 	</body>
