@@ -171,11 +171,12 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="joinmember"><i class="fa fa-fw fa-table"></i> 申请加盟</a>
-                    </li>
-                    <li>
                         <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 消费统计</a>
                     </li>
+                    <li>
+                        <a href="faq"><i class="fa fa-fw fa-table"></i> 帮助中心</a>
+                    </li>
+                    
                    <!--  <li>
                         <a href="bootstrap-elements.html"><i class="fa fa-fw fa-desktop"></i> Bootstrap Elements</a>
                     </li>
@@ -301,20 +302,20 @@
             </div>
 
             <!-- 加盟信息  -->
-            <?php if($agentdata['agent_state'] == '已通过' ): ?><div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">
-                            商家加盟信息 <!-- <small>Statistics Overview</small> -->
-                        </h1>
-                        <ol class="breadcrumb">
-                            <li class="active">
-                                <i class="fa fa-dashboard"></i> 商家合同信息
-                            </li>
-                        </ol>
-                    </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">
+                        商家加盟信息 <!-- <small>Statistics Overview</small> -->
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li class="active">
+                            <i class="fa fa-dashboard"></i> 商家合同信息
+                        </li>
+                    </ol>
                 </div>
-
-                <div class="row">
+            </div>            
+            </if>
+            <?php if($agentdata['agent_state'] == '已通过' ): ?><div class="row">
                     <div class="col-md-6">
                         <!-- <h2>Striped Rows</h2> -->
                         <table class="table table-hover  table-striped">
@@ -413,7 +414,37 @@
                             </tbody>
                         </table>
                     </div>
-                </div><?php endif; ?>
+                </div>
+            <?php elseif($agentdata['agent_state'] == '审核中' ): ?>
+                <div class="alert alert-warning" role="alert">
+                    感谢您关注响动，您提交的申请资料正在审核中！预计3-5个工作日，请耐心等待。
+                    <a href="#" class="alert-link">若有疑问，请联系我们xxxxxxx。</a>
+                </div>
+                <!-- <div class="panel panel-primary">
+                    <div class="panel-heading">审核受理中</div>
+                    <div class="panel-body">
+                        <p class="text-center">您提交的加盟资料正在审核受理中！预计3-5个工作日，请耐心等待。<br>
+                            若有疑问，请联系我们xxxxxxx。
+                        </p>
+                    </div>
+                </div> -->
+            <?php else: ?>
+                <div class="alert alert-info" role="alert">
+                    <strong>感谢您注册响动!</strong> 您目前未提交加盟申请！想了解商家加盟的好处或如何加盟响动？
+                    <a href="#" class="alert-link">请点击这里(FAQ)</a>
+                </div>
+                <div class="alert alert-success" role="alert">
+                    <a href="/Home/Agent/joinmember" class="alert-link"><strong>点击这里，直接进入加盟申请资料提交。</strong></a>
+                </div>
+                <!-- <div class="panel panel-primary">
+                    <div class="panel-heading">您未申请加盟</div>
+                    <div class="panel-body">
+                        <p class="text-left">感谢您注册响动，您目前未提交加盟申请！
+                            <br>想了解商家加盟的好处或如何加盟响动？请点击这里
+                            <br><a href="/Home/Agent/joinmember" />点击这里，直接进入加盟申请资料提交。
+                        </p>
+                    </div>
+                </div> --><?php endif; ?>
 
         </div>
         <!-- /.container-fluid -->

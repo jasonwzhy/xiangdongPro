@@ -261,7 +261,11 @@ ul.alert-dropdown {
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
 }
-
-
+.alert{
+    border-radius: 0px;
+}
+.form-control{
+    border-radius:0px;
+}
 
 

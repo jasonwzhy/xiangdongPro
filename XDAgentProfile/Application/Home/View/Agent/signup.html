@@ -43,14 +43,14 @@
 					<form class="form-horizontal" method="post" id="signupform">
 					<!-- <form id="signupform"> -->
 						<div class="form-group">
-						<label for="inputEmail3" class="col-sm-2 control-label">登陆Email</label>
-						<div class="col-sm-9">
-						  <input type="email" class="form-control" id="inputEmail" name="sginupemail" placeholder="注册Email地址" required="required">
-						</div>
+							<label for="inputEmail" class="col-sm-2 control-label">登陆Email</label>
+							<div class="col-sm-9">
+							  <input type="email" class="form-control" id="inputEmail" name="sginupemail" placeholder="注册Email地址" required="required">
+							</div>
 						</div>
 
 						<div class="form-group">
-						    <label for="inputPassword3" class="col-sm-2 control-label">登陆密码</label>
+						    <label for="inputPassword" class="col-sm-2 control-label">登陆密码</label>
 						    <div class="col-sm-9">
 						      <input type="password" class="form-control" id="inputPassword" name="sginuppwd" placeholder="设置登录密码" required="required">
 						    </div>

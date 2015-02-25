@@ -2,13 +2,14 @@
 namespace Home\Controller;
 use Think\Controller;
 class AgentController extends Controller {
+
+    // index
     public function index(){
         if (isset($_SESSION['agentid'])) {
     		$agent = M('agents');
     		$agentid = $_SESSION['agentid'];
     		$condition['id'] = $agentid;
     		$agentdata = $agent->where($condition)->find();
-    		// var_dump($agentdata);
     		if ($agentdata) {
                 $agentdata['account1_no'] = substr_replace($agentdata['account1_no'],"**********",3,10);
     			$render['agentdata'] = $agentdata;
@@ -42,8 +43,6 @@ class AgentController extends Controller {
     			#账号或密码错误
     			$render['error'] = "账号或密码错误!";
                 $this->ajaxReturn($render);
-    			// $this->assign($render);
-    			// $this->display('agent/login');
     		}
     		else{
     			$_SESSION['agentid']=$agent['id'];
@@ -57,7 +56,6 @@ class AgentController extends Controller {
                 $agentid = $_SESSION['agentid'];
                 $condition['id'] = $agentid;
                 $agentdata = $agent->where($condition)->find();
-                // var_dump($agentdata);
                 if ($agentdata) {
                     redirect('index',3,'页面跳转中...');
                 }
@@ -153,8 +151,29 @@ class AgentController extends Controller {
 
     }
     public function joinmember(){
-        $agentdata['id'] = $_SESSION['agentid'];
-        $this->display('agent/joinmember');
+        if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $agentdata = $agent->where($condition)->find();
+            // var_dump($agentdata);
+            if ($agentdata) {
+                //$agentdata['account1_no'] = substr_replace($agentdata['account1_no'],"**********",3,10);
+                $render['agentdata'] = $agentdata;
+                if ($agentdata['agent_state'] == "已通过" || $agentdata['agent_state'] == "审核中") {
+                    # code...
+                    redirect('index',1,' ');
+                }
+                $this->assign($render);
+                $this->display('agent/joinmember');
+            }
+        }
+        else{
+            redirect('signin',1,'请先登录...');
+        }
+    }
+    public function faq(){
+        echo "";
     }
     public function hello(){
         $this->ajaxReturn("123","321",1);
