@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Think\Controller;
 class AgentController extends Controller {
 
-    // index
+    // index 
     public function index(){
         if (isset($_SESSION['agentid'])) {
     		$agent = M('agents');
@@ -26,7 +26,6 @@ class AgentController extends Controller {
             //$this->ajaxReturn($_POST);
     		$agentlogin = M('agents');
             $render['error'] = "";
-            $render['post'] = $_POST;
     		if(isset($_POST['emaillogin']) && NULL != $_POST['emaillogin']){
     			$condition['contract_loginname'] = $_POST['emaillogin'];
     		}
