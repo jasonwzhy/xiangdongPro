@@ -1,0 +1,78 @@
+
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountant" class="col-md-3">财务联系人</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountant" name="accountant" placeholder="财务负责人姓名" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountantTel" class="col-md-3">财务联系人电话</label>
+							<div class="col-md-5"><input type="number" class="form-control" id="accountantTel" name="accountanttel" placeholder="财务联系人电话" required="required"></div>
+						</div>
+					</li>
+				</ul>
+
+				<div class="panel-heading">财务信息</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountNo1" class="col-md-3">开户行账号</label>
+							<div class="col-md-5"><input type="number" class="form-control" id="accountNo1" name="accountno1" placeholder="开户行账号" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountName1" class="col-md-3">账户开户名</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountName1" name="accountname1" placeholder="账户开户名" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountBankname1" class="col-md-3">账户开户行</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountBankname1" name="accountbankname1" placeholder="账户开户行" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountNo2" class="col-md-3">备用开户行账号</label>
+							<div class="col-md-5"><input type="number" class="form-control" id="accountNo2" name="accountno2" placeholder="备用开户行账号(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountName2" class="col-md-3">备用账户开户名</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountName2" name="accountname2" placeholder="备用账户开户名(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountBankname2" class="col-md-3">备用账户开户行</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountBankname2" name="accountbankname2" placeholder="备用账户开户行(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="zhifubao" class="col-md-3">支付宝账号</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="zhifubao" name="zhifubao" placeholder="支付宝账号(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="wxpay" class="col-md-3">微信支付账号</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="wxpay" name="wxpay" placeholder="微信支付账号(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-md-offset-2 col-md-2">
+								<button id="submitbtn" type="button" class="btn btn-success btn-block ">确定提交</button>
+							</div>
+							<div class="col-md-offset-1 col-md-2">
+								<button id="resetbtn" type="reset" class="btn btn-info btn-block ">重置</button>
+							</div>
+						</div>
+					</li>
+
+
+				</ul>

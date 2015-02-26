@@ -86,40 +86,40 @@ class AgentController extends Controller {
                 }
                 else{
                     $agdata = [
-                        "contract" =>  $this->contractnum(),
-                        "contract_pwd" => $_POST['sginuppwd'],
-                        "contract_loginname" => $_POST['sginupemail'],
-                        "contactor" => $_POST['contactor'],
-                        "contactor_tel" => $_POST['contactortel'],
-                        "agent_name" => $_POST['agentname'],
-                        "agent_src" => "",
-                        "agent_state" => "未审核",
-                        "city_code" => "",
-                        "province" => $_POST['selProvince'],
-                        "city" => $_POST['selCity'],
-                        "reg_date" =>date('Y-m-d H:i:s',time()),
-                        "address" => $_POST['address'],
+                        "contract"              =>  $this->contractnum(),
+                        "contract_pwd"          => $_POST['sginuppwd'],
+                        "contract_loginname"    => $_POST['sginupemail'],
+                        "contactor"             => $_POST['contactor'],
+                        "contactor_tel"         => $_POST['contactortel'],
+                        "agent_name"            => $_POST['agentname'],
+                        "agent_src"             => "",
+                        "agent_state"           => "未审核",
+                        "city_code"             => "",
+                        "province"              => $_POST['selProvince'],
+                        "city"                  => $_POST['selCity'],
+                        "reg_date"              =>date('Y-m-d H:i:s',time()),
+                        "address"               => $_POST['address'],
 
-                        "contract_begindt" => date('Y-m-d H:i:s',time()),
+                        "contract_begindt"      => date('Y-m-d H:i:s',time()),
                         "contract_begintimestamp" =>date('Y-m-d H:i:s',time()),
-                        "contract_enddt" => date('Y-m-d H:i:s',time()),
+                        "contract_enddt"        => date('Y-m-d H:i:s',time()),
                         "contract_endtimestamp" => date('Y-m-d H:i:s',time()),
-                        "contract_signdt" => date('Y-m-d H:i:s',time()),
-                        "contract_sign_name" => "",
+                        "contract_signdt"       => date('Y-m-d H:i:s',time()),
+                        "contract_sign_name"    => "",
 
-                        "contactor_finance" => "",
-                        "contactortel_finance" => "",
-                        "account1_no" => "",
-                        "account1_name" => "",
-                        "account1_bankname" => "",
-                        "account2_no" => "",
-                        "account2_name" => "",
-                        "account2_bankname" => "",
-                        "zhifubao" => "",
-                        "wxpay" => "",
-                        "trade_no" => "",
-                        "trade_name" => "",
-                        "trade_pic" => ""
+                        "contactor_finance"     => "",
+                        "contactortel_finance"  => "",
+                        "account1_no"           => "",
+                        "account1_name"         => "",
+                        "account1_bankname"     => "",
+                        "account2_no"           => "",
+                        "account2_name"         => "",
+                        "account2_bankname"     => "",
+                        "zhifubao"              => "",
+                        "wxpay"                 => "",
+                        "trade_no"              => "",
+                        "trade_name"            => "",
+                        "trade_pic"             => ""
                     ];
                     $retid=$AgentSginup->add($agdata);
                     if ($retid) {
@@ -157,6 +157,7 @@ class AgentController extends Controller {
             $agent = M('agents');
             $agentid = $_SESSION['agentid'];
             $condition['id'] = $agentid;
+            $render['error'] = "";
             $agentdata = $agent->where($condition)->find();
             if ($agentdata) {
                 //$render['agentdata'] = $agentdata;
@@ -177,9 +178,29 @@ class AgentController extends Controller {
                         }else{
                             $this->ajaxReturn($info);
                         }
-                    } else {
-                        $render['post'] = $_POST;
-                        $render['files'] = $_FILES;
+                    } elseif(isset($_POST) && NULL != $_POST) {
+                        $agentcheckdata = [
+                            "contract_sign_name"    => $_POST["contract_sign_name"],
+                            "trade_no"              => $_POST["trade_no"],
+                            "trade_name"            => $_POST["trade_name"],
+                            "trade_pic"             => $_POST["trade_pic"],
+                            "contactor_finance"     => $_POST["contactor_finance"],
+                            "contactortel_finance"  => $_POST["contactortel_finance"],
+                            "account1_no"           => $_POST["account1_no"],
+                            "account1_name"         => $_POST["account1_name"],
+                            "account1_bankname"     => $_POST["account1_bankname"],
+                            "account2_no"           => $_POST["account2_no"],
+                            "account2_name"         => $_POST["account2_name"],
+                            "account2_bankname"     => $_POST["account2_bankname"],
+                            "zhifubao"              => $_POST["zhifubao"],
+                            "wxpay"                 => $_POST["wxpay"],
+                            "agent_state"           => "审核中"
+                        ];
+                        $agentdata = $agent->where($condition)->save($agentcheckdata);
+                        if (!$agentdata) {
+                            # code...
+                            $render['error'] = "提交失败";
+                        }
                         $this->ajaxReturn($render);
                     }
                 }

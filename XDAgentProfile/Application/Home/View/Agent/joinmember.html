@@ -45,7 +45,7 @@
 						<div class="row">
 							<form id="imgform">
 								<label for="tradePic" class="col-md-3">营业执照扫描件</label>
-								<div class="col-md-5"><div id="imgview"></div><input type="file" class="" id="tradePic" name="tradepic" placeholder="营业执照 照片" required="required" accept="image/*"  runat="server"></div>
+								<div class="col-md-5"><div id="imgview"></div><p id="imgpath" style="display: none;"></p><input type="file" class="" id="tradePic" name="tradepic" placeholder="营业执照 照片" required="required" accept="image/*"  runat="server"></div>
 							</form>
 						</div>
 					</li>
@@ -113,6 +113,17 @@
 							<div class="col-md-5"><input type="text" class="form-control" id="wxpay" name="wxpay" placeholder="微信支付账号(可选)" required="required"></div>
 						</div>
 					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-md-offset-2 col-md-2">
+								<button id="submitbtn" type="button" class="btn btn-success btn-block ">确定提交</button>
+							</div>
+							<div class="col-md-offset-1 col-md-2">
+								<button id="resetbtn" type="reset" class="btn btn-info btn-block ">重置</button>
+							</div>
+						</div>
+					</li>
+
 
 				</ul>
 			</div>
@@ -126,46 +137,106 @@
 			var r = new FileReader();
 			r.readAsDataURL(file);	//Base64
 			$(r).load(function(){
-				$('#imgview').html('<img id="tradeimg" src="'+ this.result +'" width=200px; /> <button id="upImgBtn" type="button" class="btn btn-primary">上传图片</button>');
-	            upfile3();
+				$('#imgview').html('<img id="tradeimg" src="'+ this.result +'" width=200px; /> <button id="upImgBtn" type="button" class="btn btn-danger btn-xs">上传图片</button>');
+	            upfile();
 	        });
     	});
-    	function upfile3(){
+    	function upfile(){
     		$("#upImgBtn").click(function(e){
-					e.preventDefault();
-					$("#upImgBtn").attr("disabled","disabled");
-					var formData = new FormData($( "#imgform" )[0]);
-					$.ajax({
-						url: '__URL__/joinmember',
-						type: 'POST',
-						data: formData,
-						// async: false,
-						async: true,
-						cache: false,
-						contentType: false,
-						processData: false,
-						success: function (returndata) {
-							alert("图片上传成功!");
-							console.log(returndata);
-							$("#tradePic").hide();
-							$("#upImgBtn").attr("disabled",false).text("重新上传");
-							$("#upImgBtn").unbind();
-							$("#upImgBtn").click(function(e){
-								//删除img->隐藏button->显示input
-								$("#tradeimg").remove();
-								$("#upImgBtn").remove();
-								$("#tradePic").show();
-								$("#tradePic").val("");
-								//$("#tradePic").show().attr('value','');
-							});
-					    },
-					    error: function (returndata) {
-					    	console.log(returndata);
-							alert("图片上传失败,请将图片控制在3M以内,并且用 jpg | gif | png | jpeg格式");
-					    }
-					  });
-		    	});
+				e.preventDefault();
+				$("#upImgBtn").attr("disabled","disabled");
+				var formData = new FormData($( "#imgform" )[0]);
+				$.ajax({
+					url: '__URL__/joinmember',
+					type: 'POST',
+					data: formData,
+					// async: false,
+					async: true,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success: function (returndata) {
+						alert("图片上传成功!");
+						console.log(returndata);
+						$("#tradePic").hide();
+						$("#upImgBtn").attr("disabled",false).text("重新上传");
+						$("#upImgBtn").unbind();
+						$("#imgpath").val(returndata.savename);
+						alert($("#imgpath").val());
+						$("#upImgBtn").click(function(e){
+							//删除img->隐藏button->显示input
+							$("#tradeimg").remove();
+							$("#upImgBtn").remove();
+							$("#tradePic").show();
+							$("#tradePic").val("");
+							$("#imgpath").val("");
+							alert($("#imgpath").val());
+							//$("#tradePic").show().attr('value','');
+						});
+				    },
+				    error: function (returndata) {
+				    	console.log(returndata);
+						alert("图片上传失败,请将图片控制在3M以内,并且用 jpg | gif | png | jpeg格式");
+				    }
+				  });
+	    	});
     	};
+    	$("#resetbtn").click(function(e){
+    		$('input').val('');
+    		$("#tradeimg").remove();
+			$("#upImgBtn").remove();
+			$("#tradePic").show();
+    	});
+    	$("#submitbtn").click(function(e){
+    		e.preventDefault();
+    		var contractSignName = $("#contractSignName").val() ? $("#contractSignName").val() : formwarring("合同经办人");
+    		var tradeNo = $("#tradeNo").val() ? $("#tradeNo").val() : formwarring("营业执照号");
+    		var tradeName = $("#tradeName").val() ? $("#tradeName").val() : formwarring("营业执照企业名");
+    		var imgpath = $("#imgpath").val() ? $("#imgpath").val() : formwarring("营业执照扫描件");
+    		var accountant = $("#accountant").val() ? $("#accountant").val() : formwarring("财务联系人");
+    		var accountantTel = $("#accountantTel").val() ? $("#accountantTel").val() : formwarring("财务联系人电话");
+    		var accountNo1 = $("#accountNo1").val() ? $("#accountNo1").val() : formwarring("开户行账号");
+    		var accountName1 = $("#accountName1").val() ? $("#accountName1").val() : formwarring("账户开户名");
+    		var accountBankname1 = $("#accountBankname1").val() ? $("#accountBankname1").val(): formwarring("账户开户行");
+    		var accountNo2 = $("#accountNo2").val();
+    		var accountName2 = $("#accountName2").val();
+    		var accountBankname2 = $("#accountBankname2").val();
+    		var zhifubao = $("#zhifubao").val();
+    		var wxpay = $("#wxpay").val();
+    		$.post("__URL__/joinmember",
+    				{
+    					contract_sign_name:contractSignName,
+    					trade_no:tradeNo,
+    					trade_name:tradeName,
+    					trade_pic:imgpath,
+    					contactor_finance:accountant,
+    					contactortel_finance:accountantTel,
+    					account1_no:accountNo1,
+    					account1_name:accountName1,
+    					account1_bankname:accountBankname1,
+    					account2_no:accountNo2,
+    					account2_name:accountName2,
+    					account2_bankname:accountBankname2,
+    					zhifubao:zhifubao,
+    					wxpay:wxpay
+    				},
+    				function(ret){
+    					if ("" != ret.error ) {
+							alert(ret.error);
+							//$("#errlabel").text(ret.error);
+						}
+						else{
+							alert("审核资料提交成功!");
+							window.location.href="__URL__/index";
+						}
+    				}
+
+    			);
+    	});
+    	function formwarring(errname){
+    		alert(errname+" 不能为空或类型不符,请将表格填写完整!");
+    		throw "";
+    	}
     </script>
 
 </block>
