@@ -124,6 +124,8 @@ class AgentController extends Controller {
                     $retid=$AgentSginup->add($agdata);
                     if ($retid) {
                         $_SESSION['agentid'] = $retid;
+                        $agentdir = "./Uploads/".$retid;
+                        mkdir($agentdir);
                         $this->ajaxReturn($render);
                     }
                 }
@@ -156,13 +158,30 @@ class AgentController extends Controller {
             $agentid = $_SESSION['agentid'];
             $condition['id'] = $agentid;
             $agentdata = $agent->where($condition)->find();
-            // var_dump($agentdata);
             if ($agentdata) {
-                //$agentdata['account1_no'] = substr_replace($agentdata['account1_no'],"**********",3,10);
-                $render['agentdata'] = $agentdata;
+                //$render['agentdata'] = $agentdata;
                 if ($agentdata['agent_state'] == "已通过" || $agentdata['agent_state'] == "审核中") {
-                    # code...
                     redirect('index',1,' ');
+                }
+                elseif(IS_POST){
+                    if ($_FILES != NULL) {
+                        $upload = new \Think\Upload();// 实例化上传类
+                        $upload->maxSize   =     3145728 ;// 设置附件上传大小
+                        $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+                        $upload->rootPath  =     './Uploads/'; // 设置附件上传根目录
+                        // $upload->savePath  =     $agentid.'/';
+                        $upload->subName   =     $agentid.'/';
+                        $info   =   $upload->uploadOne($_FILES['tradepic']);
+                        if(!$info) {
+                            $this->error($upload->getError());
+                        }else{
+                            $this->ajaxReturn($info);
+                        }
+                    } else {
+                        $render['post'] = $_POST;
+                        $render['files'] = $_FILES;
+                        $this->ajaxReturn($render);
+                    }
                 }
                 $this->assign($render);
                 $this->display('agent/joinmember');

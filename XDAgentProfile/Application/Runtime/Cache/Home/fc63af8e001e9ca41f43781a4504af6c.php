@@ -23,6 +23,19 @@
     <!-- Custom Fonts -->
     <link href="/Public/agent/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    <!-- jQuery -->
+    <script src="/Public/agent/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Public/agent/js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
+    <!--  <script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
+     -->
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -224,105 +237,152 @@
 				<div class="panel-heading">商家加盟资料</div>
 		<!-- 		<div class="panel-body">
 				</div> -->
-				
 				<!-- List group -->
-					<ul class="list-group">
-						<li class="list-group-item">
-							<div class="row">
-								<label for="contractSignName" class="col-md-3">合同经办人</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="contractSignName" name="contractsignname" placeholder="合同经办人姓名" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="tradeNo" class="col-md-3">营业执照号</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="tradeNo" name="tradeno" placeholder="营业执照号" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="tradeName" class="col-md-3">营业执照企业名</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="tradeName" name="tradename" placeholder="营业执照企业名" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div class="row">
+							<label for="contractSignName" class="col-md-3">合同经办人</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="contractSignName" name="contractsignname" placeholder="合同经办人姓名" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="tradeNo" class="col-md-3">营业执照号</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="tradeNo" name="tradeno" placeholder="营业执照号" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="tradeName" class="col-md-3">营业执照企业名</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="tradeName" name="tradename" placeholder="营业执照企业名" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<form id="imgform">
 								<label for="tradePic" class="col-md-3">营业执照扫描件</label>
-								<div class="col-md-5"><input type="file" class="form-control" id="tradePic" name="tradepic" placeholder="营业执照 照片" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="accountant" class="col-md-3">财务联系人</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="accountant" name="accountant" placeholder="财务负责人姓名" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="accountantTel" class="col-md-3">财务联系人电话</label>
-								<div class="col-md-5"><input type="number" class="form-control" id="accountantTel" name="accountanttel" placeholder="财务联系人电话" required="required"></div>
-							</div>
-						</li>
-						
-						
-					</ul>
-						<div class="panel-heading">财务信息</div>
-					<ul class="list-group">
-						<li class="list-group-item">
-							<div class="row">
-								<label for="accountNo1" class="col-md-3">开户行账号</label>
-								<div class="col-md-5"><input type="number" class="form-control" id="accountNo1" name="accountno1" placeholder="开户行账号" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="accountName1" class="col-md-3">账户开户名</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="accountName1" name="accountname1" placeholder="账户开户名" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="accountBankname1" class="col-md-3">账户开户行</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="accountBankname1" name="accountbankname1" placeholder="账户开户行" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="accountNo2" class="col-md-3">备用开户行账号</label>
-								<div class="col-md-5"><input type="number" class="form-control" id="accountNo2" name="accountno2" placeholder="备用开户行账号(可选)" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="accountName2" class="col-md-3">备用账户开户名</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="accountName2" name="accountname2" placeholder="备用账户开户名(可选)" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="accountBankname2" class="col-md-3">备用账户开户行</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="accountBankname2" name="accountbankname2" placeholder="备用账户开户行(可选)" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="zhifubao" class="col-md-3">支付宝账号</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="zhifubao" name="zhifubao" placeholder="支付宝账号(可选)" required="required"></div>
-							</div>
-						</li>
-						<li class="list-group-item">
-							<div class="row">
-								<label for="wxpay" class="col-md-3">微信支付账号</label>
-								<div class="col-md-5"><input type="text" class="form-control" id="wxpay" name="wxpay" placeholder="微信支付账号(可选)" required="required"></div>
-							</div>
-						</li>
+								<div class="col-md-5"><div id="imgview"></div><input type="file" class="" id="tradePic" name="tradepic" placeholder="营业执照 照片" required="required" accept="image/*"  runat="server"></div>
+							</form>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountant" class="col-md-3">财务联系人</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountant" name="accountant" placeholder="财务负责人姓名" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountantTel" class="col-md-3">财务联系人电话</label>
+							<div class="col-md-5"><input type="number" class="form-control" id="accountantTel" name="accountanttel" placeholder="财务联系人电话" required="required"></div>
+						</div>
+					</li>
+				</ul>
 
-					</ul>
-				</form>
+				<div class="panel-heading">财务信息</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountNo1" class="col-md-3">开户行账号</label>
+							<div class="col-md-5"><input type="number" class="form-control" id="accountNo1" name="accountno1" placeholder="开户行账号" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountName1" class="col-md-3">账户开户名</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountName1" name="accountname1" placeholder="账户开户名" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountBankname1" class="col-md-3">账户开户行</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountBankname1" name="accountbankname1" placeholder="账户开户行" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountNo2" class="col-md-3">备用开户行账号</label>
+							<div class="col-md-5"><input type="number" class="form-control" id="accountNo2" name="accountno2" placeholder="备用开户行账号(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountName2" class="col-md-3">备用账户开户名</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountName2" name="accountname2" placeholder="备用账户开户名(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="accountBankname2" class="col-md-3">备用账户开户行</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="accountBankname2" name="accountbankname2" placeholder="备用账户开户行(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="zhifubao" class="col-md-3">支付宝账号</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="zhifubao" name="zhifubao" placeholder="支付宝账号(可选)" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="wxpay" class="col-md-3">微信支付账号</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="wxpay" name="wxpay" placeholder="微信支付账号(可选)" required="required"></div>
+						</div>
+					</li>
+
+				</ul>
 			</div>
 
         </div>
     </div>
+
+    <script>
+    	$("#tradePic").change(function(){
+    		var file = this.files[0];    //选择上传的文件
+	        var r = new FileReader();
+	        r.readAsDataURL(file);    //Base64
+	        $(r).load(function(){
+	            $('#imgview').html('<img id="tradeimg" src="'+ this.result +'" width=200px; /> <button id="upImgBtn" type="button" class="btn btn-primary">上传图片</button>');
+	            upfile3();
+	        });
+    	});
+    	function upfile3(){
+    		$("#upImgBtn").click(function(e){
+		    		e.preventDefault();
+		    		$("#upImgBtn").attr("disabled","disabled");
+		    		var formData = new FormData($( "#imgform" )[0]);
+		    		$.ajax({
+					    url: '/Home/Agent/joinmember',
+					    type: 'POST',
+					    data: formData,
+					    // async: false,
+					    async: true,
+					    cache: false,
+					    contentType: false,
+					    processData: false,
+					    success: function (returndata) {
+					        alert("图片上传成功....");
+					        console.log(returndata);
+					        $("#tradePic").hide();
+					        $("#upImgBtn").attr("disabled",false).text("重新上传");
+					        $("#upImgBtn").unbind();
+					        $("#upImgBtn").click(function(e){
+					        	//删除img->隐藏button->显示input
+					        	$("#tradeimg").remove();
+					        	$("#upImgBtn").remove();
+					        	$("#tradePic").show();
+					        	$("#tradePic").val("");
+					        	//$("#tradePic").show().attr('value','');
+					        });
+					    },
+					    error: function (returndata) {
+					    	console.log(returndata);
+					        alert("图片上传失败,请将图片控制在3M以内,并且用 jpg | gif | png | jpeg格式");
+					    }
+					  });
+		    	});
+    	};
+    </script>
 
 
         <!-- /#page-wrapper -->
@@ -330,16 +390,7 @@
     </div>
     <!-- /#wrapper -->
 
-    <!-- jQuery -->
-    <script src="/Public/agent/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/Public/agent/js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
-    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
-    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
+    
 
 </body>
 
