@@ -306,11 +306,11 @@
 						<div class="row">
 							<label for="shopmanagerTel" class="col-md-3">店铺项目</label>
 							<div class="col-md-5">
-								<input type="checkbox" id="inlineCheckbox1" value="option1"> 器械
-								<input type="checkbox" id="inlineCheckbox1" value="option1"> 瑜伽
-								<input type="checkbox" id="inlineCheckbox1" value="option1"> 单车
-								<input type="checkbox" id="inlineCheckbox1" value="option1"> 游泳
-								<input type="checkbox" id="inlineCheckbox1" value="option1"> 体操
+								<input type="checkbox" id="inlineCheckbox1" value="器械"> 器械
+								<input type="checkbox" id="inlineCheckbox1" value="瑜伽"> 瑜伽
+								<input type="checkbox" id="inlineCheckbox1" value="单车"> 单车
+								<input type="checkbox" id="inlineCheckbox1" value="游泳"> 游泳
+								<input type="checkbox" id="inlineCheckbox1" value="体操"> 体操
 							</div>
 						</div>
 					</li>
@@ -318,25 +318,64 @@
 						<div class="row">
 							<label for="shopmanagerTel" class="col-md-3">店铺描述</label>
 							<div class="col-md-5">
-							<textarea class="form-control" rows="5" cols="20" id="shopdesc" placeholder="店铺简介">
-							</textarea>
+								<textarea class="form-control" rows="5" cols="20" id="shopdesc" placeholder="店铺简介">
+								</textarea>
+							</div>
 						</div>
 					</li>
 					
 
 				</ul>
 
-				<div class="panel-heading">店铺照片(可选)</div>
+				<div class="panel-heading">店铺照片(可选 限三张)</div>
 				<ul class="list-group">
 					<li class="list-group-item">
 						<div class="row">
-								<label for="shopPic1" class="col-md-3">店铺照片</label>
-								<div class="col-md-5"><button type="button" class="btn btn-primary btn-sm" id="addpicbtn">添加照片</button></div>
+							<label class="col-md-3 col-sm-3">店铺照片</label>
+							<div class="col-md-5 col-sm-3">
+								<button type="button" class="btn btn-primary btn-sm" id="addpicbtn" data-toggle="modal" data-target="#myModal" >添加照片</button>
+							</div>
+							<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+											<h4 class="modal-title" id="myModalLabel">添加照片</h4>
+										</div>
+										<div class="modal-body">
+											<div class="row">
+												<form id="addshoppicform">
+													<label for="shoppic" class="col-md-2">选择照片</label>
+													<div class="col-md-6">
+														<input type="file" class="" id="shoppic" name="shoppic" placeholder="添加图片" required="required" accept="image/*"  runat="server">
+													</div>
+												</form>
+											</div>
+											<div class="row" style="padding-top:20px;">
+												<div class="col-md-offset-2 col-md-2">
+													<button  type="button" class="btn btn-primary btn-xs" id="uppicbtn">开始上传</button>
+												</div>
+												<div class="col-md-2">
+													<button  type="button" class="btn btn-primary btn-xs"  data-dismiss="modal" aria-label="Close" id="cancel"> 取  消</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- <div class="modal-footer">
+										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+										<button type="button" class="btn btn-primary">Save changes</button>
+									</div> -->
+								</div>
+							</div>
 						</div>
 					</li>
 
 					<li class="list-group-item">
-						
+						<div class="row"  id="piccontainer">
+							<label class="col-md-3" id="shoppreview">图片预览</label>
+							
+
+						</div>
 					</li>
 
 					<li class="list-group-item">
@@ -367,9 +406,9 @@
     <script src="/Public/agent/js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
-    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
-    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
+    // <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
+    // <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
+    // <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
     <!--  <script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
      -->
     
@@ -377,6 +416,7 @@
 	<script src="/Public/agent/js/city.js"></script>
 	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=ac8dc3ed6052d2d27fc0b1c97266d1a0"></script>
 	<script>
+	//--------------地图--------------
 		$("#amapbtn").click(function(){
 			$("#amap").toggle(500);
 		});
@@ -405,6 +445,80 @@
 			$("#lonlat").val(e.lnglat.getLng()+','+e.lnglat.getLat());
 			marker.setPosition(new AMap.LngLat(e.lnglat.getLng(), e.lnglat.getLat()));
 		});
+
+	//--------------图片上传--------------
+		function addpic(url){
+			var picid = url.split("/")[1].split(".")[0];
+			$("#shoppreview").after('<div class="col-sm-3" id="picsview"><img src="/Uploads/'+url+'" width="200px" height="130px"><br><button type="button" class="btn btn-primary btn-xs delbtn"   id="'+picid+'">删除</button></div>');
+			$("#"+picid).click(function(){
+				$(this).parent().remove();
+			});
+		};
+		$("#addpicbtn").click(function(e){
+			//如果图片预览超过三张，就return false
+			if ($("#piccontainer > div").length > 2) {
+				alert("最多上传三张。");
+				return false;
+			};
+		});
+		$("#uppicbtn").click(function(e){
+			upshoppic();
+		});
+		function upshoppic(){
+			var formData = new FormData($( "#addshoppicform" )[0]);
+			$.ajax({
+				url: '/Home/Agent/createshop',
+				type: 'POST',
+				data: formData,
+				async: true,
+				cache: false,
+				contentType: false,
+				processData: false,
+				success: function (returndata) {
+					addpic(returndata.savepath+returndata.savename);
+					$("#shoppic").val('');
+					alert("上传成功");
+					$("#cancel").click();
+					
+				},
+				error: function (returndata) {
+				   	//console.log(returndata);
+					alert("图片上传失败,请将图片控制在3M以内,并且用 jpg | gif | png | jpeg格式");
+				}
+			})
+		};
+	//--------------ajax 提交表单----------------
+		$("#submitbtn").click(function(e){
+			// var shopname = $("#shopName").val() ? $("#shopName").val() : warring("店面名称");
+			// var province = $("#province").val() ? $("#province").val() : warring("所在省份");
+			// var city = $("#city").val() ? $("#city").val() : warring("所在城市");
+			// var shopaddress = $("#shopAddress").val() ? $("#shopAddress").val() : warring("店铺详细地址");
+			// var lon = $("#lonlat").val() ? $("#lonlat").val().split(",")[0] : warring("经纬度");
+			// var lat = $("#lonlat").val() ? $("#lonlat").val().split(",")[1] : warring("经纬度");
+			// var contractor = $("#shopmanager").val() ? $("#shopmanager").val() : warring("店铺经理");
+			// var contractor_tel = $("#shopmanagerTel").val() ? $("#shopmanagerTel").val() : warring("联系电话");
+			// var shopdesc = $("#shopdesc").val();
+			var shoptype = "";
+			$("input[type='checkbox']:checked").each(function(){
+				shoptype=$(this).val()+","+shoptype;
+			});
+			if (shoptype == "") {
+				warring("店铺项目类型");
+			};
+			var shoppicpaths = "";
+			$("#piccontainer > div > img").each(function(){
+				shoppicpaths = $(this).attr('src')+","+shoppicpaths;
+				alert(shoppicpaths);
+			});
+			console.log(shoppicpaths);
+			alert(shoppicpaths);
+		});
+		function warring(errstr)
+		{
+			alert(errstr+" 不能为空或类型不符,请将表格填写完整!");
+    		throw "";
+		}
+
 	</script>
 
 

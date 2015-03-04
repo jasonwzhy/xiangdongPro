@@ -212,7 +212,44 @@ class AgentController extends Controller {
         }
     }
     public function createshop(){
-        $this->display('agent/createshop');
+        if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $render['error'] = "";
+            $agentdata = $agent->where($condition)->find();
+            if ($agentdata) {
+                if ($agentdata['agent_state'] == "未审核" || $agentdata['agent_state'] == "审核中") {
+                    redirect('index',1,'未提交审核或审核通过中... <br><br>不能使用此功能');
+                }
+                elseif(IS_POST){
+                    if ($_FILES != NULL) {
+                        $upload = new \Think\Upload();// 实例化上传类
+                        $upload->maxSize   =     3145728 ;// 设置附件上传大小
+                        $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+                        $upload->rootPath  =     './Uploads/'; // 设置附件上传根目录
+                        // $upload->savePath  =     $agentid.'/';
+                        $upload->subName   =     $agentid;
+                        $info   =   $upload->uploadOne($_FILES['shoppic']);
+                        if(!$info) {
+                            $this->error($upload->getError());
+                        }else{
+                            $this->ajaxReturn($info);
+                        }
+                    }
+                    elseif(isset($_POST) && NULL != $_POST){
+                        echo "";
+                    }
+                    echo "post";
+                }
+                
+            }
+
+            $this->display('agent/createshop');
+        }
+        else{
+            redirect('signin',1,'请先登录...');
+        }
     }
     public function faq(){
         echo "";

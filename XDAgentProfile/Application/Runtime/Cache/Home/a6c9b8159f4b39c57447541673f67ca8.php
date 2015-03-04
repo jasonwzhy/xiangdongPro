@@ -402,9 +402,9 @@
     <script src="/Public/agent/js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
-    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
-    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
+    // <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
+    // <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
+    // <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
     <!--  <script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
      -->
     

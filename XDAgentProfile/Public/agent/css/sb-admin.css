@@ -26,7 +26,7 @@ body {
     padding: 0;
     background-color: #fff;
     /*add by jasonw*/
-    min-height: 1024px;
+    min-height: 1224px;
 
 }
 
@@ -272,5 +272,8 @@ ul.alert-dropdown {
     margin-bottom: 10px;
     height: 300px;
 }
-
+.delbtn{
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
 

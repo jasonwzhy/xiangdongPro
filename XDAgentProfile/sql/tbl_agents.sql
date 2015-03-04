@@ -28,41 +28,41 @@ SET time_zone = "+00:00";
 
 CREATE TABLE IF NOT EXISTS `tbl_agents` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '签约商家编号',
-  `contract` varchar(30) NOT NULL COMMENT '签约商家合同编号 info',
+  `contract` varchar(30) NOT NULL COMMENT '签约商家合同编号 ',
   `contract_pwd` varchar(35) NOT NULL COMMENT '商家登录密码',
-  `contract_loginname` varchar(50) NOT NULL COMMENT '商家登录后台账号 info',
-  `agent_name` varchar(30) NOT NULL COMMENT '商家名称 info',
+  `contract_loginname` varchar(50) NOT NULL COMMENT '商家登录后台账号 ',
+  `agent_name` varchar(30) NOT NULL COMMENT '商家名称 ',
   `agent_src` varchar(4) NOT NULL COMMENT '合同来源:网签/地推',
-  `agent_state` varchar(8) NOT NULL, 'info'
+  `agent_state` varchar(8) NOT NULL, ''
   `city_code` varchar(5) NOT NULL, 
-  `province` varchar(6) NOT NULL, 'info'
-  `city` varchar(6) NOT NULL, 'info'
-  `reg_date` datetime NOT NULL, '商家注册时间  --add new info'
-  `address` varchar(128) NOT NULL, '商家详细地址 --add new info'
+  `province` varchar(6) NOT NULL, ''
+  `city` varchar(6) NOT NULL, ''
+  `reg_date` datetime NOT NULL, '商家注册时间  --add new '
+  `address` varchar(128) NOT NULL, '商家详细地址 --add new '
 
-  `contract_begindt` datetime NOT NULL,'合同开始时间 check'
+  `contract_begindt` datetime NOT NULL,'合同开始时间'
   `contract_begintimestamp` int(11) NOT NULL,
-  `contract_enddt` datetime NOT NULL, '合同截止时间 check'
+  `contract_enddt` datetime NOT NULL, '合同截止时间'
   `contract_endtimestamp` int(11) NOT NULL,
-  `contract_signdt` datetime NOT NULL COMMENT '合同签订日期 check',
-  `contract_sign_name` varchar(10) NOT NULL COMMENT '合同经办人 check',
+  `contract_signdt` datetime NOT NULL COMMENT '合同签订日期',
+  `contract_sign_name` varchar(10) NOT NULL COMMENT '合同经办人',
   
-  `contactor` varchar(8) NOT NULL COMMENT '商家负责人 info',
-  `contactor_tel` varchar(12) NOT NULL COMMENT '负责人电话 info',
+  `contactor` varchar(8) NOT NULL COMMENT '商家负责人 ',
+  `contactor_tel` varchar(12) NOT NULL COMMENT '负责人电话 ',
 
-  `contactor_finance` varchar(8) NOT NULL COMMENT '财务联系人 check',
-  `contactortel_finance` varchar(12) NOT NULL COMMENT '财务联系人电话 check',
-  `account1_no` varchar(20) NOT NULL COMMENT '开户行1账号 check',
-  `account1_name` varchar(20) NOT NULL COMMENT '账号1开户名 check',
-  `account1_bankname` varchar(30) NOT NULL COMMENT '开户行1银行名称 check',
-  `account2_no` varchar(20) NOT NULL COMMENT '开户行2账号 check',
-  `account2_name` varchar(20) NOT NULL COMMENT '账号2开户名称 check',
-  `account2_bankname` varchar(30) NOT NULL COMMENT '账号2开户行名称 check',
-  `zhifubao` varchar(30) NOT NULL COMMENT '支付宝账号 check',
-  `wxpay` varchar(30) NOT NULL COMMENT '微信支付账号 check',
-  `trade_no` varchar(15) NOT NULL COMMENT '营业执照号 check',
-  `trade_name` varchar(40) NOT NULL COMMENT '营业执照企业名 check',
-  `trade_pic` varchar(30) NOT NULL COMMENT '上传的营业执照照片路径 check no',
+  `contactor_finance` varchar(8) NOT NULL COMMENT '财务联系人',
+  `contactortel_finance` varchar(12) NOT NULL COMMENT '财务联系人电话',
+  `account1_no` varchar(20) NOT NULL COMMENT '开户行1账号',
+  `account1_name` varchar(20) NOT NULL COMMENT '账号1开户名',
+  `account1_bankname` varchar(30) NOT NULL COMMENT '开户行1银行名称',
+  `account2_no` varchar(20) NOT NULL COMMENT '开户行2账号',
+  `account2_name` varchar(20) NOT NULL COMMENT '账号2开户名称',
+  `account2_bankname` varchar(30) NOT NULL COMMENT '账号2开户行名称',
+  `zhifubao` varchar(30) NOT NULL COMMENT '支付宝账号',
+  `wxpay` varchar(30) NOT NULL COMMENT '微信支付账号',
+  `trade_no` varchar(15) NOT NULL COMMENT '营业执照号',
+  `trade_name` varchar(40) NOT NULL COMMENT '营业执照企业名',
+  `trade_pic` varchar(30) NOT NULL COMMENT '上传的营业执照照片路径',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
