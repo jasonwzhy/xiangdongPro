@@ -9,6 +9,9 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- for AMap -->
+    <meta name="viewport" content="initial-scale=1.1,user-scalable=no">
+
     <title>响动健身 商家后台</title>
 
     <!-- Bootstrap Core CSS -->
@@ -23,19 +26,7 @@
     <!-- Custom Fonts -->
     <link href="/Public/agent/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
-    <!-- jQuery -->
-    <script src="/Public/agent/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/Public/agent/js/bootstrap.min.js"></script>
-
-    <!-- Morris Charts JavaScript -->
-    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
-    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
-    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
-    <!--  <script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
-     -->
-
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -179,7 +170,7 @@
                                 <a href="shopsview"><i class="fa fa-fw fa-dashboard"></i>查看店铺</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-dashboard"></i>添加新店铺</a>
+                                <a href="createshop"><i class="fa fa-fw fa-dashboard"></i>添加新店铺</a>
                             </li>
                         </ul>
                     </li>
@@ -467,7 +458,19 @@
 
     </div>
     <!-- /#wrapper -->
+    <!-- jQuery -->
+    <script src="/Public/agent/js/jquery.js"></script>
 
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Public/agent/js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
+    <!--  <script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
+     -->
+    
     
 
 </body>

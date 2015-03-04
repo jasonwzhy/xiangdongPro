@@ -207,189 +207,154 @@
         </nav>
 
         
-    <div id="page-wrapper">
-        <div class="container-fluid">
-        	<div class="row">
-                <div class="col-lg-12">
+	<div id="page-wrapper">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-lg-12">
                     <h1 class="page-header">
-                        查看商户店铺<!-- <small>Statistics Overview</small> -->
+                        创建店铺<!-- <small>Statistics Overview</small> -->
                     </h1>
                     <ol class="breadcrumb">
                         <li class="active">
-                            <i class="fa fa-dashboard"></i> 商家店铺信息
-                        </li>
-                    </ol>
-
-                </div>
-            </div>
-
-        	<div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>家</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">商家门店总数</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">312</div>
-                                    <div>人次</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">累计消费人次</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                	<i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">94%</div>
-                                    <div>的赞</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">客户满意度</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">9213</div>
-                                    <div>元</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">累计营收</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-12">
-                  <!--   <h1 class="page-header">
-                        商家店铺<small>Statistics Overview</small>
-                    </h1> -->
-                    <ol class="breadcrumb">
-                        <li class="active">
-                            <i class="fa fa-dashboard">商家店铺列表</i>
+                            <i class="fa fa-dashboard"></i> 商家店铺创建
                         </li>
                     </ol>
                 </div>
-             <!--    <div class="col-lg-12">
-                	<div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Panel title</h3>
-                        </div>
-                        <div class="panel-body">
-                            Panel content
-                        </div>
-                        <table class="table">
-                        	
-                        </table>
-                    </div>
-                </div> -->
-            </div>
+        	</div>
 
-            <div class="shoplist-container "><!-- shops item list  -->
-                <div class="panel panel-info shopitem" id="1">
-                    <div class="panel-heading">
-                        印象瑜伽国际
-                    </div>
-                    <div class="panel-body ">
-                        <div class="col-md-3">
-                            <img src="/Public/agent/img/shopimg.png" width="80%">
-                        </div>
-                        <div class="col-md-7">
-                            <!-- <p></p> -->
-                            <p><span style="color:#336699;">地址：</span><span style="color:#00CC99;">中国四川成都xxx路，xxx街道，xxx楼xxx号</span></p>
-                            <p>电话：028-88888888</p>
-                            <div>
-                            <p>
-                            <span style="float:left;">门店介绍：</span><span style="display:block;overflow:hidden;">传奇健身，一个已陪伴您近八年历程的中国人的健身品牌，倡导简单、快乐的健身习惯，提供便捷而充满活力的健身环境和服务。坚持以具有超强竞争力的硬件设备，结合精致与细腻的服务，为会员提供一个高性价比的健身场所，和广大健身爱好者一起，创造自己的生活“传奇”！</span></p>
-                            </div>
-                            <p>门店服务：免费WIFI,洗浴</p>
-                            
-                        </div>
-                        <div class="col-md-2">
-                            <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%">
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-info shopitem" id="1">
-                    <div class="panel-heading">
-                        印象瑜伽国际
-                    </div>
-                    <div class="panel-body">
-                        <div class="col-md-2">
-                            <img src="/Public/agent/img/shopimg.png" width="100%">
-                        </div>
-                        <div class="col-md-8">
-                            <!-- <p></p> -->
-                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
-                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
-                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
-                            <p>地址：中国四川成都xxx路，xxx街道，xxx楼xxx号</p>
-                            
-                        </div>
-                        <div class="col-md-2">
-                            <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%">
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end shops item list  -->
+			<div class="panel panel-default">
+			<!-- Default panel contents -->
+				<div class="panel-heading">商家店铺创建</div>
+		<!-- 		<div class="panel-body">
+				</div> -->
+				<!-- List group -->
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div class="row">
+							<label for="shopName" class="col-md-3">店面名称</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="shopName" name="shopname" placeholder="店面名称" required="required"></div>
+						</div>
+					</li>
+					
+					<li class="list-group-item">
+						<div class="row">
+							<label for="province" class="col-sm-3">所在省市</label>
+							
+					  		<div class="col-sm-2">
+					  			<!-- <select class="form-control" id="province" name="province">
+					  				<option>四川</option>
+					  			</select> -->
+					  			<select name="selProvince" id="province"  class="form-control" style="border-radius:0px;" onChange = "getCity(this.options[this.selectedIndex].value)"> 
+							        <option value="">-请选择-</option> 
+							        <option value="北京">北京</option> 
+							        <option value="上海">上海</option> 
+							        <option value="广东">广东</option> 
+							        <option value="江苏">江苏</option> 
+							        <option value="四川">四川</option> 
+							    </select>
+					  		</div>
+					  		<label for="province" class="col-sm-1 control-label">省</label>
+					  		
+					  		<div class="col-sm-2">
+					  		<!-- 	<select class="form-control" id="city" name="city">
+					  				<option>成都</option>
+					  			</select> -->
+					  			<select name="selCity" id="city" class="form-control">
+									<option value="">-城市-</option> 
+								</select>
+					  		</div>
+					  		<label for="city" class="col-sm-1 control-label">市</label>
+						<!-- 	<label for="tradeName" class="col-md-3">营业执照企业名</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="tradeName" name="tradename" placeholder="营业执照企业名" required="required"></div> -->
+						</div>
+					</li>
+
+					<li class="list-group-item">
+						<div class="row">
+							<label for="shopAddress" class="col-md-3">店铺详细地址</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="shopAddress" name="shopaddress" placeholder="店铺详细地址" required="required"></div>
+						</div>
+					</li>
+
+					<li class="list-group-item" hidden="hidden">
+						<div class="row">
+							<label for="lonlat" class="col-md-3 col-xs-12">经纬度</label>
+							<div class="col-md-4 col-xs-5"><input type="text" class="form-control" id="lonlat" name="lonlat" placeholder="经纬度" required="required" readonly></div>
+							<div class="col-md-2 col-xs-3"><button type="button" id="amapbtn" style="margin-top:7%;" class="btn btn-success btn-xs">拾取坐标</button></div>
+						</div>
+						<div class="row">
+							<div class="col-md-offset-3 col-md-7">
+								<div id="amap" class="get-coordinate" style="display:none;"></div>
+							</div>
+						</div>
+					</li>
+
+					<li class="list-group-item">
+						<div class="row">
+							<label for="shopmanager" class="col-md-3">店铺经理</label>
+							<div class="col-md-5"><input type="text" class="form-control" id="shopmanager" name="shopmanager" placeholder="店铺经理" required="required"></div>
+						</div>
+					</li>
+
+					<li class="list-group-item">
+						<div class="row">
+							<label for="shopmanagerTel" class="col-md-3">店铺经理联系电话</label>
+							<div class="col-md-5"><input type="number" class="form-control" id="shopmanagerTel" name="shopmanagerTel" placeholder="店铺经理联系电话" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="shopmanagerTel" class="col-md-3">店铺项目</label>
+							<div class="col-md-5">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 器械
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 瑜伽
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 单车
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 游泳
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 体操
+							</div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<label for="shopmanagerTel" class="col-md-3">店铺描述</label>
+							<div class="col-md-5">
+							<textarea class="form-control" rows="5" cols="20" id="shopdesc" placeholder="店铺简介">
+							</textarea>
+						</div>
+					</li>
+					
+
+				</ul>
+
+				<div class="panel-heading">店铺照片(可选)</div>
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div class="row">
+								<label for="shopPic1" class="col-md-3">店铺照片</label>
+								<div class="col-md-5"><button type="button" class="btn btn-primary btn-sm" id="addpicbtn">添加照片</button></div>
+						</div>
+					</li>
+
+					<li class="list-group-item">
+						
+					</li>
+
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-md-offset-2 col-md-2">
+								<button id="submitbtn" type="button" class="btn btn-success btn-block ">确定提交</button>
+							</div>
+							<div class="col-md-offset-1 col-md-2">
+								<button id="resetbtn" type="reset" class="btn btn-info btn-block ">重置</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+
         </div>
-    </div>
+	</div>
+
 
         <!-- /#page-wrapper -->
 
@@ -409,6 +374,39 @@
      -->
     
     
+	<script src="/Public/agent/js/city.js"></script>
+	<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=ac8dc3ed6052d2d27fc0b1c97266d1a0"></script>
+	<script>
+		$("#amapbtn").click(function(){
+			$("#amap").toggle(500);
+		});
+		// var position=new AMap.LngLat(116.397428,39.90923);
+		var mapObj = new AMap.Map("amap",
+		{
+			resizeEnable: true,
+			view: new AMap.View2D({
+				// center:position,
+				zoom:14,
+				rotation:0
+			}),
+			lang:"zh_cn"
+		});
+		mapObj.plugin(["AMap.ToolBar"],function(){
+			//加载工具条
+			var tool = new AMap.ToolBar();
+			mapObj.addControl(tool);   
+		});
+		var marker = new AMap.Marker({ //创建自定义点标注                 
+			map:mapObj,
+			offset: new AMap.Pixel(-10,-34),                 
+			icon: "http://webapi.amap.com/images/marker_sprite.png"
+		});
+		var clickEventListener=AMap.event.addListener(mapObj,'click',function(e){
+			$("#lonlat").val(e.lnglat.getLng()+','+e.lnglat.getLat());
+			marker.setPosition(new AMap.LngLat(e.lnglat.getLng(), e.lnglat.getLat()));
+		});
+	</script>
+
 
 </body>
 

@@ -267,5 +267,10 @@ ul.alert-dropdown {
 .form-control{
     border-radius:0px;
 }
+.get-coordinate{
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 300px;
+}
 
 

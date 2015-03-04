@@ -3,7 +3,7 @@ namespace Home\Controller;
 use Think\Controller;
 class AgentController extends Controller {
 
-    // index 
+    // index
     public function index(){
         if (isset($_SESSION['agentid'])) {
     		$agent = M('agents');
@@ -210,6 +210,9 @@ class AgentController extends Controller {
         else{
             redirect('signin',1,'请先登录...');
         }
+    }
+    public function createshop(){
+        $this->display('agent/createshop');
     }
     public function faq(){
         echo "";
