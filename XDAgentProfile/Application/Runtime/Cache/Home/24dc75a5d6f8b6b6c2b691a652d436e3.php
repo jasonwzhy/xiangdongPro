@@ -175,10 +175,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 消费统计</a>
+                        <a href="#"><i class="fa fa-fw fa-edit"></i> 消费统计</a>
                     </li>
                     <li>
-                        <a href="faq"><i class="fa fa-fw fa-table"></i> 帮助中心</a>
+                        <a href="#"><i class="fa fa-fw fa-table"></i> 帮助中心</a>
                     </li>
                     
                    <!--  <li>
@@ -406,9 +406,9 @@
     <script src="/Public/agent/js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    // <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
-    // <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
-    // <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
+    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
     <!--  <script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
      -->
     
@@ -489,15 +489,15 @@
 		};
 	//--------------ajax 提交表单----------------
 		$("#submitbtn").click(function(e){
-			// var shopname = $("#shopName").val() ? $("#shopName").val() : warring("店面名称");
-			// var province = $("#province").val() ? $("#province").val() : warring("所在省份");
-			// var city = $("#city").val() ? $("#city").val() : warring("所在城市");
-			// var shopaddress = $("#shopAddress").val() ? $("#shopAddress").val() : warring("店铺详细地址");
-			// var lon = $("#lonlat").val() ? $("#lonlat").val().split(",")[0] : warring("经纬度");
-			// var lat = $("#lonlat").val() ? $("#lonlat").val().split(",")[1] : warring("经纬度");
-			// var contractor = $("#shopmanager").val() ? $("#shopmanager").val() : warring("店铺经理");
-			// var contractor_tel = $("#shopmanagerTel").val() ? $("#shopmanagerTel").val() : warring("联系电话");
-			// var shopdesc = $("#shopdesc").val();
+			var shopname = $("#shopName").val() ? $("#shopName").val() : warring("店面名称");
+			var province = $("#province").val() ? $("#province").val() : warring("所在省份");
+			var city = $("#city").val() ? $("#city").val() : warring("所在城市");
+			var shopaddress = $("#shopAddress").val() ? $("#shopAddress").val() : warring("店铺详细地址");
+			var lon = $("#lonlat").val() ? $("#lonlat").val().split(",")[0] : warring("经纬度");
+			var lat = $("#lonlat").val() ? $("#lonlat").val().split(",")[1] : warring("经纬度");
+			var contractor = $("#shopmanager").val() ? $("#shopmanager").val() : warring("店铺经理");
+			var contractor_tel = $("#shopmanagerTel").val() ? $("#shopmanagerTel").val() : warring("联系电话");
+			var shopdesc = $("#shopdesc").val();
 			var shoptype = "";
 			$("input[type='checkbox']:checked").each(function(){
 				shoptype=$(this).val()+","+shoptype;
@@ -508,10 +508,34 @@
 			var shoppicpaths = "";
 			$("#piccontainer > div > img").each(function(){
 				shoppicpaths = $(this).attr('src')+","+shoppicpaths;
-				alert(shoppicpaths);
 			});
-			console.log(shoppicpaths);
-			alert(shoppicpaths);
+			$.post("/Home/Agent/createshop",
+    				{
+    					shopname:shopname,
+    					province:province,
+    					city:city,
+    					shopaddress:shopaddress,
+    					lon:lon,
+    					lat:lat,
+    					contractor:contractor,
+    					contractor_tel:contractor_tel,
+    					shopdesc:shopdesc,
+    					shoptype:shoptype,
+    					shoppicpaths:shoppicpaths
+    				},
+    				function(ret){
+    					console.log(ret);
+    					if ("" != ret.error ) {
+							alert(ret.error);
+							//$("#errlabel").text(ret.error);
+						}
+						else{
+							alert("店铺创建成功!");
+							window.location.href="/Home/Agent/index";
+						}
+    				}
+
+    			);
 		});
 		function warring(errstr)
 		{

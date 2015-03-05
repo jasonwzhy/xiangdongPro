@@ -148,7 +148,40 @@ class AgentController extends Controller {
         redirect('index',1,'页面跳转中...');
     }
     public function shopsview(){
-        $this->display('agent/shopsview');
+        if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentshop = M('agents_shops');
+            $agentshoppic = M('agents_albums');
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $render['error'] = "";
+            $agentdata = $agent->where($condition)->find();
+            if ($agentdata) {
+                if ($agentdata['agent_state'] == "未审核" || $agentdata['agent_state'] == "审核中") {
+                    redirect('index',1,'未提交审核或审核通过中... <br><br>不能使用此功能');
+                }
+                else{
+                    //查询商家店铺数据
+                    $agentshopcondition['agentid'] = $agentid;
+                    $shopdata = $agentshop->where($agentshopcondition)->find();
+                    if (!$shopdata) {
+                        //该商家无店铺
+                    }
+                    else{
+                        //
+                    }
+                }
+            }
+            else{
+                //如果session中的 agentid 错误则跳出登陆 删除session
+                $this->signout();
+            }
+            $this->display('agent/shopsview');    
+        }
+        else{
+            redirect('signin',1,'请先登录...');
+        }
+        
 
     }
     public function joinmember(){
@@ -214,6 +247,8 @@ class AgentController extends Controller {
     public function createshop(){
         if (isset($_SESSION['agentid'])) {
             $agent = M('agents');
+            $agentshop = M('agents_shops');
+            $agentshoppic = M('agents_albums');
             $agentid = $_SESSION['agentid'];
             $condition['id'] = $agentid;
             $render['error'] = "";
@@ -238,14 +273,68 @@ class AgentController extends Controller {
                         }
                     }
                     elseif(isset($_POST) && NULL != $_POST){
-                        echo "";
+                        $checkshopcondition['agentid'] = $agentid;
+                        $checkshopdata = $agentshop->where($checkshopcondition)->max('shopid');
+                        if ($checkshopdata) {
+                            $shopid = $checkshopdata + 1;
+                        }else{
+                            $shopid = 1;
+                        }
+                        // 店铺数据
+                        $agentshopdata = [
+                            "agentid"           =>  $agentid,
+                            "contract_code"     =>  $agentdata["contract"],
+                            "shopid"            =>  $shopid,
+                            "shopname"          =>  $_POST["shopname"],
+                            "shopprovince"      =>  $_POST["province"],
+                            "shopcity"          =>  $_POST["city"],
+                            "shopaddress"       =>  $_POST["shopaddress"],
+                            "lon"               =>  $_POST["lon"],
+                            "lat"               =>  $_POST["lat"],
+                            "contractor"        =>  $_POST["contractor"],
+                            "contractor_tel"    =>  $_POST["contractor_tel"],
+                            "shopdesc"          =>  $_POST["shopdesc"],
+                            "shoptype"          =>  $_POST["shoptype"]
+                        ];
+                        $shopdata = $agentshop->add($agentshopdata);
+                        if (!$shopdata) {
+                            $render['error'] = "提交失败";
+                            $this->ajaxReturn($render);
+                        }
+                        //相册图片                        
+                        if ($_POST['shoppicpaths'] != NULL) {
+                            $shoppicarry = explode(",",$_POST['shoppicpaths']);
+                            for ($i=0; $i < count($shoppicarry)-1; $i++) {
+                                $agentshoppicdata = [
+                                    "agentid"       =>  $agentid,
+                                    "options"       =>  2,   //商铺相册
+                                    "optionsvalue"  =>  $shopdata,  //商铺id
+                                    "imgpath"       =>  $shoppicarry[$i]
+                                ];
+                                $shoppicdata = $agentshoppic->add($agentshoppicdata);
+                                if (!$shoppicdata) {
+                                    $render['error'] = "提交失败";
+                                    $this->ajaxReturn($render);
+                                }
+                            }
+                            //$this->ajaxReturn($_POST['shoppicpaths']+count($shoppicarry));
+                        }
+                        // else{
+                        //     #没有图片提交
+                        // }
+                        $this->ajaxReturn($render);
+
                     }
-                    echo "post";
                 }
+                $this->display('agent/createshop');
                 
             }
+            else{
+                //如果session中的 agentid 错误则跳出登陆 删除session
+                $this->signout();
+            }
 
-            $this->display('agent/createshop');
+            
         }
         else{
             redirect('signin',1,'请先登录...');

@@ -175,10 +175,10 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 消费统计</a>
+                        <a href="#"><i class="fa fa-fw fa-edit"></i> 消费统计</a>
                     </li>
                     <li>
-                        <a href="faq"><i class="fa fa-fw fa-table"></i> 帮助中心</a>
+                        <a href="#"><i class="fa fa-fw fa-table"></i> 帮助中心</a>
                     </li>
                     
                    <!--  <li>
@@ -402,9 +402,9 @@
     <script src="/Public/agent/js/bootstrap.min.js"></script>
 
     <!-- Morris Charts JavaScript -->
-    // <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
-    // <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
-    // <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
+    <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
+    <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
     <!--  <script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
      -->
     
