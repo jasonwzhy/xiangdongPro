@@ -41,25 +41,25 @@
                         <tbody>
                             <tr>
                                 <td>商家名称</td>
-                                <td>{$agentdata['agent_name']}</td>
+                                <td><{$agentdata['agent_name']}></td>
                                
                             </tr>
                             <tr>
                                 <th>账号名</th>
-                                <td>{$agentdata['contract_loginname']}</td>
+                                <td><{$agentdata['contract_loginname']}></td>
                             </tr>
                             <tr>
                                 <td>合同号</td>
-                                <td>{$agentdata['contract']}</td>
+                                <td><{$agentdata['contract']}></td>
                             </tr>
                             
                             <tr>
                                 <td>所在位置</td>
-                                <td>{$agentdata['province']}省 {$agentdata['city']} 市</td>
+                                <td><{$agentdata['province']}>省 <{$agentdata['city']}> 市</td>
                             </tr>
                             <tr>
                                 <td>详细地址</td>
-                                <td>{$agentdata['address']}</td>
+                                <td><{$agentdata['address']}></td>
                                
                             </tr>
                         </tbody>
@@ -78,20 +78,20 @@
                         <tbody>
                             <tr>
                                 <td>审核状态</td>
-                                <td>{$agentdata['agent_state']}</td>
+                                <td><{$agentdata['agent_state']}></td>
                             </tr>
                             <tr>
                                 <td>注册时间</td>
-                                <td>{$agentdata['reg_date']}</td>
+                                <td><{$agentdata['reg_date']}></td>
                             </tr>
                             <tr>
                                 <td>商家负责人</td>
-                                <td>{$agentdata['contactor']}</td>
+                                <td><{$agentdata['contactor']}></td>
                             </tr>
                            
                             <tr>
                                 <td>负责人电话</td>
-                                <td>{$agentdata['contactor_tel']}</td>
+                                <td><{$agentdata['contactor_tel']}></td>
                             </tr>
                         </tbody>
                     </table>
@@ -114,7 +114,6 @@
             </if>
             <if condition="$agentdata['agent_state'] eq '已通过' ">
 
-
                 <div class="row">
                     <div class="col-md-6">
                         <!-- <h2>Striped Rows</h2> -->
@@ -129,38 +128,38 @@
                             <tbody>
                                 <tr>
                                     <td>营业执照企业名</td>
-                                    <td>{$agentdata['trade_name']}</td>
+                                    <td><{$agentdata['trade_name']}></td>
                                 </tr>
                                 <tr>
                                     <td>营业执照号</td>
-                                    <td>{$agentdata['trade_no']}</td>
+                                    <td><{$agentdata['trade_no']}></td>
                                 </tr>
                                 <tr>
                                     <td>合同签订日期</td>
-                                    <td>{$agentdata['contract_signdt']}</td>
+                                    <td><{$agentdata['contract_signdt']}></td>
                                     
                                 </tr>
                                 <tr>
                                     <td>合同开始时间</td>
-                                    <td>{$agentdata['contract_begindt']}</td>
+                                    <td><{$agentdata['contract_begindt']}></td>
                                 </tr>
                                 <tr>
                                     <td>合同截止时间</td>
-                                    <td>{$agentdata['contract_enddt']}</td>
+                                    <td><{$agentdata['contract_enddt']}></td>
                                 </tr>
                                 <tr>
                                     <td>合同经办人</td>
-                                    <td>{$agentdata['contract_sign_name']}</td>
+                                    <td><{$agentdata['contract_sign_name']}></td>
                                    
                                 </tr>
                                 <tr>
                                     <td>财务联系人</td>
-                                    <td>{$agentdata['contactor_finance']}</td>
+                                    <td><{$agentdata['contactor_finance']}></td>
                                    
                                 </tr>
                                 <tr>
                                     <td>财务联系人电话</td>
-                                    <td>{$agentdata['contactortel_finance']}</td>
+                                    <td><{$agentdata['contactortel_finance']}></td>
                                 </tr>
                                 
                             </tbody>
@@ -178,37 +177,37 @@
                             <tbody>
                                 <tr>
                                     <td>开户行账号</td>
-                                    <td>{$agentdata['account1_no']}</td>
+                                    <td><{$agentdata['account1_no']}></td>
                                 </tr>
                                 <tr>
                                     <td>账号开户名</td>
-                                    <td>{$agentdata['account1_name']}</td>
+                                    <td><{$agentdata['account1_name']}></td>
                                 </tr>
                                 <tr>
                                     <td>开户行银行名称</td>
-                                    <td>{$agentdata['account1_bankname']}</td>
+                                    <td><{$agentdata['account1_bankname']}></td>
                                 </tr>
 
                                 <tr>
                                     <td>账号开户名2</td>
-                                    <td>{$agentdata['account2_no']}</td>
+                                    <td><{$agentdata['account2_no']}></td>
                                 </tr>
                                 <tr>
                                     <td>开户行账号2</td>
-                                    <td>{$agentdata['account2_no']}</td>
+                                    <td><{$agentdata['account2_no']}></td>
                                 </tr>
                                 <tr>
                                     <td>开户行银行名称2</td>
-                                    <td>{$agentdata['account2_no']}</td>
+                                    <td><{$agentdata['account2_no']}></td>
                                 </tr>
 
                                 <tr>
                                     <td>支付宝账号</td>
-                                    <td>{$agentdata['zhifubao']}</td>
+                                    <td><{$agentdata['zhifubao']}></td>
                                 </tr>
                                 <tr>
                                     <td>微信支付账号</td>
-                                    <td>{$agentdata['wxpay']}</td>
+                                    <td><{$agentdata['wxpay']}></td>
                                 </tr>
                                 
                             </tbody>

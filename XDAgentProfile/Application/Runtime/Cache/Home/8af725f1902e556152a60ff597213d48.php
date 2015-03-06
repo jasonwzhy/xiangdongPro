@@ -127,111 +127,51 @@
 
         
     <div id="page-wrapper">
-        <div class="container-fluid">
-        	<div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">
-                        查看商户店铺<!-- <small>Statistics Overview</small> -->
-                    </h1>
-                   <!--  <ol class="breadcrumb">
-                        <li class="active">
-                            <i class="fa fa-dashboard"></i> 商家店铺信息
-                        </li>
-                    </ol> -->
+    	<div class="container-fluid">
 
-                </div>
-            </div>
-
-        	
-
-            <div class="row">
-                <div class="col-lg-12">
-                  <!--   <h1 class="page-header">
-                        商家店铺<small>Statistics Overview</small>
-                    </h1> -->
-                    <ol class="breadcrumb">
-                        <li class="active">
-                            <i class="fa fa-dashboard">商家店铺列表</i>
-                        </li>
-                    </ol>
-                </div>
-             <!--    <div class="col-lg-12">
-                	<div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Panel title</h3>
-                        </div>
-                        <div class="panel-body">
-                            Panel content
-                        </div>
-                        <table class="table">
-                        	
-                        </table>
-                    </div>
-                </div> -->
-            </div>
-            
-            
-            <div class="shoplist-container "><!-- shops item list  -->
-                <?php if(empty($shopdata)): ?><div class="alert alert-success" role="alert">
-                        <a href="/Home/Agent/createshop" class="alert-link"><strong>您还没有提交店铺资料,请完善您的店铺资料。</strong></a>
-                    </div>                
-                <?php else: ?>
-                    <?php if(is_array($shopdata)): foreach($shopdata as $key=>$shopitem): ?><div class="panel panel-primary shopitem" id="1">
-                            <div class="panel-heading">
-                                <?php echo ($shopitem["shopname"]); ?>
-                            </div>
-                            <div class="panel-body">
-                                <div class="col-md-3">
-                                    <?php if(empty($shopitem["imgpaths"])): ?><img src="/Public/agent/img/noimg.png" width="80%">
-                                    <?php else: ?>
-                                        <?php if(is_array($shopitem["imgpaths"])): $i = 0; $__LIST__ = array_slice($shopitem["imgpaths"],0,1,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><img src="<?php echo ($vo["imgpath"]); ?>" width="80%"><?php endforeach; endif; else: echo "" ;endif; endif; ?>
-                                    
-                                </div>
-                                <div class="col-md-7">
-                                    <!-- <p></p> -->
-                                    <p><span style="color:#336699;">地址：</span><span style="color:#00CC99;">
-                                        <?php echo ($shopitem["shopaddress"]); ?>
-                                    </span></p>
-                                    <p>电话：<?php echo ($shopitem["contractor_tel"]); ?></p>
-                                    <div>
-                                    <p>
-                                    <span style="float:left;">门店介绍：</span><span style="display:block;overflow:hidden;"><?php echo (substr($shopitem["shopdesc"],0,127)); ?></span></p>
-                                    </div>
-                                    <p>店铺类型：<?php echo ($shopitem["shoptype"]); ?></p>
-                                </div>
-                                <div class="col-md-2">
-                                    <!-- <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%"> -->
-                                    
-                                    <button  type="button" class="btn btn-success btn-block " onclick="window.location.href='createqr/qrcode/<?php echo ($shopitem["qrcode"]); ?>'">生成二维码</button>
-
-                                </div>
-                            </div>
-                        </div><?php endforeach; endif; endif; ?>
-                <!-- <div class="panel panel-info shopitem" id="1">
-                    <div class="panel-heading">
-                        印象瑜伽国际
-                    </div>
-                    <div class="panel-body ">
-                        <div class="col-md-3">
-                            <img src="/Public/agent/img/shopimg.png" width="80%">
-                        </div>
-                        <div class="col-md-7">
-                            <p><span style="color:#336699;">地址：</span><span style="color:#00CC99;">中国四川成都xxx路，xxx街道，xxx楼xxx号</span></p>
-                            <p>电话：028-88888888</p>
-                            <div>
-                            <p>
-                            <span style="float:left;">门店介绍：</span><span style="display:block;overflow:hidden;">传奇健身，一个已陪伴您近八年历程的中国人的健身品牌，倡导简单、快乐的健身习惯，提供便捷而充满活力的健身环境和服务。坚持以具有超强竞争力的硬件设备，结合精致与细腻的服务，为会员提供一个高性价比的健身场所，和广大健身爱好者一起，创造自己的生活“传奇”！</span></p>
-                            </div>
-                            <p>门店服务：免费WIFI,洗浴</p>
-                            
-                        </div>
-                        <div class="col-md-2">
-                            <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%">
-                        </div>
-                    </div>
-                </div> -->
-            </div><!-- end shops item list  -->
-        </div>
+    		<div id="contentwrapper" class="contentwrapper">
+				<div>
+					<div style="width:40%;float:left">
+						<div>二维码信息:<textarea id="qrtext" disabled="true"><?php echo ($qrcode); ?></textarea></div><br>
+						<div>
+							<label><input id="cbimg" type=checkbox>没有Logo</label>
+							<div>
+								Logo图: <img id="qrimg" style="width:64px;height:64px;" src="/Public/agent/img/logo.jpg"><br>
+								<label><input id="qrclearedges" type="checkbox" checked>Clear edges</label>
+								<input id="fimg" type="file">
+							</div>
+						</div>
+						<!--<div>二维码信息:<textarea id="qrtext"></textarea></div>-->
+						<div>二维码大小:<input id="cellSize" type="range" min="8" max="18" value="2"></div>
+						<table>
+							<tr>
+								<td rowspan=2>二维码形状:</td>
+								<td colspan=3><input id="cellEffect" type="range" min="-50" max="50" step="5" value="0"></td>
+							</tr>
+							<tr id="cellEffectStops">
+								<td align="left"><a href="#" data="l">平滑形</a></td>
+								<td align="center"><a href="#" data="s">方形</a></td>
+								<td align="right"><a href="#" data="r">圆形</a></td>
+							</tr>
+						</table>
+						<div>
+							二维码整体颜色:<input id="colorFore" type="color" value="#4169e1"><br>
+							二维码间隙颜色:<input id="colorBack" type="color" value="#ffffff"><br>
+							二维外边框颜色:<input id="colorOut" type="color" value="#cd5c5c"><br>
+							二维内边框颜色:<input id="colorIn" type="color" value="#191970">
+						</div>
+						
+						<button id="qrgen">生成</button><br><br>
+					</div>
+					<div id="qrcanvas" style="width:50%;float:right;">
+						
+					</div>
+				</div>
+					
+				</div>
+		
+			</div>
+    	</div>
     </div>
 
         <!-- /#page-wrapper -->
@@ -252,6 +192,10 @@
      -->
     
     
+    <script src="/Public/agent/js/qrcode/qrcode-light.js"></script>
+    <script src="/Public/agent/js/qrcode/qrgen.js"></script>
+    <script src="/Public/agent/js/qrcode/createqrcode.js"></script>
+
 
 </body>
 

@@ -276,4 +276,6 @@ ul.alert-dropdown {
     margin-top: 5px;
     margin-bottom: 10px;
 }
-
+.navbar-brand{
+    padding: 5px 20px;
+}

@@ -127,111 +127,112 @@
 
         
     <div id="page-wrapper">
-        <div class="container-fluid">
+    	<div class="container-fluid">
         	<div class="row">
                 <div class="col-lg-12">
                     <h1 class="page-header">
-                        查看商户店铺<!-- <small>Statistics Overview</small> -->
+                        商户经营状态<!-- <small>Statistics Overview</small> -->
                     </h1>
-                   <!--  <ol class="breadcrumb">
-                        <li class="active">
-                            <i class="fa fa-dashboard"></i> 商家店铺信息
-                        </li>
-                    </ol> -->
-
-                </div>
-            </div>
-
-        	
-
-            <div class="row">
-                <div class="col-lg-12">
-                  <!--   <h1 class="page-header">
-                        商家店铺<small>Statistics Overview</small>
-                    </h1> -->
                     <ol class="breadcrumb">
                         <li class="active">
-                            <i class="fa fa-dashboard">商家店铺列表</i>
+                            <i class="fa fa-dashboard"></i> 商户收入状态统计
                         </li>
                     </ol>
                 </div>
-             <!--    <div class="col-lg-12">
-                	<div class="panel panel-primary">
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Panel title</h3>
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">26</div>
+                                    <div>家</div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            Panel content
-                        </div>
-                        <table class="table">
-                        	
-                        </table>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">商家门店总数</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
                     </div>
-                </div> -->
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">312</div>
+                                    <div>人次</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">累计消费人次</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                	<i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">94%</div>
+                                    <div>的赞</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">客户满意度</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge">9213</div>
+                                    <div>元</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">累计营收</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
             </div>
             
-            
-            <div class="shoplist-container "><!-- shops item list  -->
-                <?php if(empty($shopdata)): ?><div class="alert alert-success" role="alert">
-                        <a href="/Home/Agent/createshop" class="alert-link"><strong>您还没有提交店铺资料,请完善您的店铺资料。</strong></a>
-                    </div>                
-                <?php else: ?>
-                    <?php if(is_array($shopdata)): foreach($shopdata as $key=>$shopitem): ?><div class="panel panel-primary shopitem" id="1">
-                            <div class="panel-heading">
-                                <?php echo ($shopitem["shopname"]); ?>
-                            </div>
-                            <div class="panel-body">
-                                <div class="col-md-3">
-                                    <?php if(empty($shopitem["imgpaths"])): ?><img src="/Public/agent/img/noimg.png" width="80%">
-                                    <?php else: ?>
-                                        <?php if(is_array($shopitem["imgpaths"])): $i = 0; $__LIST__ = array_slice($shopitem["imgpaths"],0,1,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><img src="<?php echo ($vo["imgpath"]); ?>" width="80%"><?php endforeach; endif; else: echo "" ;endif; endif; ?>
-                                    
-                                </div>
-                                <div class="col-md-7">
-                                    <!-- <p></p> -->
-                                    <p><span style="color:#336699;">地址：</span><span style="color:#00CC99;">
-                                        <?php echo ($shopitem["shopaddress"]); ?>
-                                    </span></p>
-                                    <p>电话：<?php echo ($shopitem["contractor_tel"]); ?></p>
-                                    <div>
-                                    <p>
-                                    <span style="float:left;">门店介绍：</span><span style="display:block;overflow:hidden;"><?php echo (substr($shopitem["shopdesc"],0,127)); ?></span></p>
-                                    </div>
-                                    <p>店铺类型：<?php echo ($shopitem["shoptype"]); ?></p>
-                                </div>
-                                <div class="col-md-2">
-                                    <!-- <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%"> -->
-                                    
-                                    <button  type="button" class="btn btn-success btn-block " onclick="window.location.href='createqr/qrcode/<?php echo ($shopitem["qrcode"]); ?>'">生成二维码</button>
-
-                                </div>
-                            </div>
-                        </div><?php endforeach; endif; endif; ?>
-                <!-- <div class="panel panel-info shopitem" id="1">
-                    <div class="panel-heading">
-                        印象瑜伽国际
-                    </div>
-                    <div class="panel-body ">
-                        <div class="col-md-3">
-                            <img src="/Public/agent/img/shopimg.png" width="80%">
-                        </div>
-                        <div class="col-md-7">
-                            <p><span style="color:#336699;">地址：</span><span style="color:#00CC99;">中国四川成都xxx路，xxx街道，xxx楼xxx号</span></p>
-                            <p>电话：028-88888888</p>
-                            <div>
-                            <p>
-                            <span style="float:left;">门店介绍：</span><span style="display:block;overflow:hidden;">传奇健身，一个已陪伴您近八年历程的中国人的健身品牌，倡导简单、快乐的健身习惯，提供便捷而充满活力的健身环境和服务。坚持以具有超强竞争力的硬件设备，结合精致与细腻的服务，为会员提供一个高性价比的健身场所，和广大健身爱好者一起，创造自己的生活“传奇”！</span></p>
-                            </div>
-                            <p>门店服务：免费WIFI,洗浴</p>
-                            
-                        </div>
-                        <div class="col-md-2">
-                            <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%">
-                        </div>
-                    </div>
-                </div> -->
-            </div><!-- end shops item list  -->
-        </div>
+		</div>
     </div>
 
         <!-- /#page-wrapper -->

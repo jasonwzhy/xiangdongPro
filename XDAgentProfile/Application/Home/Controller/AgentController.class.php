@@ -163,20 +163,31 @@ class AgentController extends Controller {
                 else{
                     //查询商家店铺数据
                     $agentshopcondition['agentid'] = $agentid;
-                    $shopdata = $agentshop->where($agentshopcondition)->find();
-                    if (!$shopdata) {
-                        //该商家无店铺
+                    $shopdata = $agentshop->where($agentshopcondition)->select();
+                    
+                    if ($shopdata) {
+                        foreach ($shopdata as $index => $shopitem) {
+                            $agentshoppiccondition['options'] =2;
+                            $agentshoppiccondition['optionsvalue'] = $shopitem['id'];
+                            $shopimgpaths = $agentshoppic->where($agentshoppiccondition)->select();
+                            $shopdata[$index]["imgpaths"] = $shopimgpaths;
+                            $shopidstr = sprintf("%04d",$shopitem["shopid"]);
+                            $shopdata[$index]["qrcode"] = $shopitem["contract_code"].$shopidstr;
+                            # code...
+                        }
                     }
-                    else{
-                        //
-                    }
+                    //var_dump($shopdata);
+                    $render['shopdata'] = $shopdata;
+                    $this->assign($render);
+                    $this->display('agent/shopsview');
+                    
                 }
             }
             else{
                 //如果session中的 agentid 错误则跳出登陆 删除session
                 $this->signout();
             }
-            $this->display('agent/shopsview');    
+           // $this->display('agent/shopsview');    
         }
         else{
             redirect('signin',1,'请先登录...');
@@ -338,6 +349,16 @@ class AgentController extends Controller {
         }
         else{
             redirect('signin',1,'请先登录...');
+        }
+    }
+    public function consumestatus(){
+        $this->display('agent/consumestatus');
+    }
+    public function createqr(){
+        if (isset($_GET['qrcode'])){
+            $render['qrcode']  = $_GET['qrcode'];
+            $this->assign($render);
+            $this->display('agent/createqr');
         }
     }
     public function faq(){
