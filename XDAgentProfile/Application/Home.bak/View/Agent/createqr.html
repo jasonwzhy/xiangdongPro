@@ -1,0 +1,55 @@
+<extend name="base" />
+<block name="page-wrapper">
+    <div id="page-wrapper">
+    	<div class="container-fluid">
+
+    		<div id="contentwrapper" class="contentwrapper">
+				<div>
+					<div style="width:40%;float:left">
+						<div>二维码信息:<textarea id="qrtext" disabled="true"><{$qrcode}></textarea></div><br>
+						<div>
+							<label><input id="cbimg" type=checkbox>没有Logo</label>
+							<div>
+								Logo图: <img id="qrimg" style="width:64px;height:64px;" src="__PUBLIC__/agent/img/logo.jpg"><br>
+								<label><input id="qrclearedges" type="checkbox" checked>Clear edges</label>
+								<input id="fimg" type="file">
+							</div>
+						</div>
+						<!--<div>二维码信息:<textarea id="qrtext"></textarea></div>-->
+						<div>二维码大小:<input id="cellSize" type="range" min="8" max="18" value="2"></div>
+						<table>
+							<tr>
+								<td rowspan=2>二维码形状:</td>
+								<td colspan=3><input id="cellEffect" type="range" min="-50" max="50" step="5" value="0"></td>
+							</tr>
+							<tr id="cellEffectStops">
+								<td align="left"><a href="#" data="l">平滑形</a></td>
+								<td align="center"><a href="#" data="s">方形</a></td>
+								<td align="right"><a href="#" data="r">圆形</a></td>
+							</tr>
+						</table>
+						<div>
+							二维码整体颜色:<input id="colorFore" type="color" value="#4169e1"><br>
+							二维码间隙颜色:<input id="colorBack" type="color" value="#ffffff"><br>
+							二维外边框颜色:<input id="colorOut" type="color" value="#cd5c5c"><br>
+							二维内边框颜色:<input id="colorIn" type="color" value="#191970">
+						</div>
+						
+						<button id="qrgen">生成</button><br><br>
+					</div>
+					<div id="qrcanvas" style="width:50%;float:right;">
+						
+					</div>
+				</div>
+					
+				</div>
+		
+			</div>
+    	</div>
+    </div>
+</block>
+<block name="page-js">
+    <script src="__PUBLIC__/agent/js/qrcode/qrcode-light.js"></script>
+    <script src="__PUBLIC__/agent/js/qrcode/qrgen.js"></script>
+    <script src="__PUBLIC__/agent/js/qrcode/createqrcode.js"></script>
+</block>

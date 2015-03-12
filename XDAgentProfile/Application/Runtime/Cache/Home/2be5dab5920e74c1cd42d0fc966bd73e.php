@@ -150,7 +150,7 @@
                                     <i class="fa fa-comments fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
+                                    <div class="huge"><?php echo ($shopcount); ?></div>
                                     <div>家</div>
                                 </div>
                             </div>
@@ -172,7 +172,7 @@
                                     <i class="fa fa-shopping-cart fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">312</div>
+                                    <div class="huge"><?php echo ($usecount); ?></div>
                                     <div>人次</div>
                                 </div>
                             </div>
@@ -194,7 +194,7 @@
                                 	<i class="fa fa-tasks fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">94%</div>
+                                    <div class="huge">100%</div>
                                     <div>的赞</div>
                                 </div>
                             </div>
@@ -216,7 +216,7 @@
                                     <i class="fa fa-support fa-5x"></i>
                                 </div>
                                 <div class="col-xs-9 text-right">
-                                    <div class="huge">9213</div>
+                                    <div class="huge"><?php echo ($income); ?></div>
                                     <div>元</div>
                                 </div>
                             </div>

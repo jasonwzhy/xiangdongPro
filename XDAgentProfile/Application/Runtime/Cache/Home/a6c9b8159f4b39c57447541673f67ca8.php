@@ -173,10 +173,10 @@
             
             <div class="shoplist-container "><!-- shops item list  -->
                 <?php if(empty($shopdata)): ?><div class="alert alert-success" role="alert">
-                        <a href="/Home/Agent/createshop" class="alert-link"><strong>您还没有提交店铺资料,请完善您的店铺资料。</strong></a>
+                        <a href="/Agent/createshop" class="alert-link"><strong>您还没有提交店铺资料,请完善您的店铺资料。</strong></a>
                     </div>                
                 <?php else: ?>
-                    <?php if(is_array($shopdata)): foreach($shopdata as $key=>$shopitem): ?><div class="panel panel-primary shopitem" id="1">
+                    <?php if(is_array($shopdata)): foreach($shopdata as $key=>$shopitem): ?><div class="panel panel-default shopitem" id="1">
                             <div class="panel-heading">
                                 <?php echo ($shopitem["shopname"]); ?>
                             </div>
@@ -187,22 +187,21 @@
                                         <?php if(is_array($shopitem["imgpaths"])): $i = 0; $__LIST__ = array_slice($shopitem["imgpaths"],0,1,true);if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?><img src="<?php echo ($vo["imgpath"]); ?>" width="80%"><?php endforeach; endif; else: echo "" ;endif; endif; ?>
                                     
                                 </div>
-                                <div class="col-md-7">
+                                <div class="col-md-7" style="font-weight:bold;">
                                     <!-- <p></p> -->
-                                    <p><span style="color:#336699;">地址：</span><span style="color:#00CC99;">
+                                    <p>地址<span style="color:#009999;">
                                         <?php echo ($shopitem["shopaddress"]); ?>
                                     </span></p>
-                                    <p>电话：<?php echo ($shopitem["contractor_tel"]); ?></p>
-                                    <div>
-                                    <p>
-                                    <span style="float:left;">门店介绍：</span><span style="display:block;overflow:hidden;"><?php echo (substr($shopitem["shopdesc"],0,127)); ?></span></p>
-                                    </div>
-                                    <p>店铺类型：<?php echo ($shopitem["shoptype"]); ?></p>
+                                    <p>电话：<span style="color:#009999;"><?php echo ($shopitem["contractor_tel"]); ?></span></p>
+                                    
+                                    <p>门店介绍：<span style="color:#009999;"><?php echo (substr($shopitem["shopdesc"],0,127)); ?></span></p>
+                                    
+                                    <p>店铺类型：<span style="color:#009999;"><?php echo ($shopitem["shoptype"]); ?></span></p>
                                 </div>
                                 <div class="col-md-2">
                                     <!-- <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%"> -->
                                     
-                                    <button  type="button" class="btn btn-success btn-block " onclick="window.location.href='createqr/qrcode/<?php echo ($shopitem["qrcode"]); ?>'">生成二维码</button>
+                                    <button  type="button" class="btn btn-primary btn-block " onclick="window.location.href='createqr/qrcode/<?php echo ($shopitem["qrcode"]); ?>'">生成二维码</button>
 
                                 </div>
                             </div>

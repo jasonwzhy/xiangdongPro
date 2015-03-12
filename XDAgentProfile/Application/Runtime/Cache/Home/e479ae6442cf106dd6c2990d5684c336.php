@@ -79,7 +79,7 @@
                   <label>
                     <input type="checkbox" value="remember-me"> 记住登陆
                   </label>
-                  <!-- <?php if($error): ?><label><h4><?php echo ($error); ?></h4></label>
+                  <!-- <?php if($error): ?><label><h4>{$error}</h4></label>
                   <?php else: ?>
                     <label></label> -->
                     <label id="errlabel"></label><?php endif; ?>
@@ -123,7 +123,7 @@
       var contractlogin = "";
       var passwd = $("#inputPassword").val();
       "emaillogin" == $('#loginname').attr('name') ? emaillogin = signinname : contractlogin = signinname;
-      $.post("/Home/Agent/signin",
+      $.post("/Agent/signin",
           {
             emaillogin : emaillogin,
             contractlogin : contractlogin,
@@ -135,7 +135,7 @@
               $("#errlabel").text(ret.error);
             }
             else{
-              window.location.href = "/Home/Agent/index";
+              window.location.href = "/Agent/index";
             }
           }
         );

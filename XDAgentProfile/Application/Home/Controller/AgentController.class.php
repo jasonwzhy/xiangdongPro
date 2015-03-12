@@ -14,26 +14,36 @@ class AgentController extends Controller {
                 $agentdata['account1_no'] = substr_replace($agentdata['account1_no'],"**********",3,10);
     			$render['agentdata'] = $agentdata;
     			$this->assign($render);
-    			$this->display('agent/index');
+    			$this->display('Agent/index');
     		}
     	}
     	else{
-			redirect('signin',1,'请先登录...');
+			//redirect(__ROOT__.'/Agent/signin',1,'请先登录...');
+			$this->assign('waitSecond',3);
+			$this->assign("jumpUrl",__ROOT__."/Agent/signin");
+            $this->success('请先登录');
 		}
     }
     public function signin(){
     	if (IS_POST){
-            //$this->ajaxReturn($_POST);
     		$agentlogin = M('agents');
             $render['error'] = "";
-    		if(isset($_POST['emaillogin']) && NULL != $_POST['emaillogin']){
+            $Verify = new \Think\Verify();
+            $code = $_POST['verifycode'];
+            if (!$Verify->check($code)) {
+                $render['error'] = "验证码错误";
+                $this->ajaxReturn($render);//error
+            }
+            //if verify is right
+    		if(isset($_POST['emaillogin']) && NULL != $_POST['emaillogin'] && NULL != $_POST['loginpwd']){
     			$condition['contract_loginname'] = $_POST['emaillogin'];
     		}
-    		elseif (isset($_POST['contractlogin']) && NULL != $_POST['contractlogin']) {
+    		elseif (isset($_POST['contractlogin']) && NULL != $_POST['contractlogin'] && NULL != $_POST['loginpwd']) {
     			$condition['contract'] = $_POST['contractlogin'];
     		}
     		else{
                 $render['error'] = "用户名或密码不能为空";
+                $this->ajaxReturn($render);
     			#no post data return error...
     		}
     		$condition['contract_pwd'] = $_POST['loginpwd'];
@@ -56,12 +66,25 @@ class AgentController extends Controller {
                 $condition['id'] = $agentid;
                 $agentdata = $agent->where($condition)->find();
                 if ($agentdata) {
-                    redirect('index',3,'页面跳转中...');
+                    //redirect('index',3,'页面跳转中...');
+					$this->assign('waitSecond',3);
+					$this->assign("jumpUrl",__ROOT__."/Agent/index");
+                    $this->success('页面跳转中...');                    
                 }
             }
-    		$this->display('agent/login');
+    		$this->display('Agent/signin');
     	}
     	
+    }
+    public function verify(){
+        $config =    [
+            'fontSize'  =>  30,     // 验证码字体大小
+            'length'    =>  4,      // 验证码位数
+            'useNoise'  =>  false,  // 关闭验证码杂点
+            'expire'    =>  40,
+        ];
+        $Verify = new \Think\Verify($config);
+        $Verify->entry();
     }
 
     public function signup(){
@@ -84,8 +107,8 @@ class AgentController extends Controller {
                     $render['error'] = "联系电话已经存在";
                 }
                 else{
-                    $agdata = [
-                        "contract"              =>  $this->contractnum(),
+                    $agdata = array(
+                        "contract"              => "",
                         "contract_pwd"          => $_POST['sginuppwd'],
                         "contract_loginname"    => $_POST['sginupemail'],
                         "contactor"             => $_POST['contactor'],
@@ -119,7 +142,7 @@ class AgentController extends Controller {
                         "trade_no"              => "",
                         "trade_name"            => "",
                         "trade_pic"             => ""
-                    ];
+                    );
                     $retid=$AgentSginup->add($agdata);
                     if ($retid) {
                         $_SESSION['agentid'] = $retid;
@@ -136,16 +159,17 @@ class AgentController extends Controller {
             }
     	}
     	else{
-    		$this->display('agent/signup');	
+    		$this->display('Agent/signup');	
     	}
     }
-    private function contractnum(){
-        return "620150105123";
-    }
+    
 
     public function signout(){
         unset($_SESSION['agentid']);
-        redirect('index',1,'页面跳转中...');
+        //redirect('signin',1,'页面跳转中...');
+				$this->assign('waitSecond',3);
+				$this->assign("jumpUrl",__ROOT__."/Agent/signin");
+				$this->success('页面跳转中...');   
     }
     public function shopsview(){
         if (isset($_SESSION['agentid'])) {
@@ -158,7 +182,11 @@ class AgentController extends Controller {
             $agentdata = $agent->where($condition)->find();
             if ($agentdata) {
                 if ($agentdata['agent_state'] == "未审核" || $agentdata['agent_state'] == "审核中") {
-                    redirect('index',1,'未提交审核或审核通过中... <br><br>不能使用此功能');
+                    //redirect('index',1,'未提交审核或审核通过中... <br><br>不能使用此功能');
+										$this->assign('waitSecond',3);
+										$this->assign("jumpUrl",__ROOT__."/Agent/index");
+										$this->success('未提交审核或审核通过中...<br>不能使用此功能页面跳转中...');
+										return;
                 }
                 else{
                     //查询商家店铺数据
@@ -179,7 +207,7 @@ class AgentController extends Controller {
                     //var_dump($shopdata);
                     $render['shopdata'] = $shopdata;
                     $this->assign($render);
-                    $this->display('agent/shopsview');
+                    $this->display('Agent/shopsview');
                     
                 }
             }
@@ -187,13 +215,15 @@ class AgentController extends Controller {
                 //如果session中的 agentid 错误则跳出登陆 删除session
                 $this->signout();
             }
-           // $this->display('agent/shopsview');    
+           // $this->display('Agent/shopsview');    
         }
         else{
-            redirect('signin',1,'请先登录...');
+            //redirect('Agent/signin',1,'请先登录...');
+						$this->assign('waitSecond',3);
+						$this->assign("jumpUrl",__ROOT__."/Agent/signin");
+						$this->success('未提交审核或审核通过中... <br><br>不能使用此功能.页面跳转中...');
+						return;
         }
-        
-
     }
     public function joinmember(){
         if (isset($_SESSION['agentid'])) {
@@ -205,7 +235,11 @@ class AgentController extends Controller {
             if ($agentdata) {
                 //$render['agentdata'] = $agentdata;
                 if ($agentdata['agent_state'] == "已通过" || $agentdata['agent_state'] == "审核中") {
-                    redirect('index',1,' ');
+                    //redirect('index',1,' ');
+										$this->assign('waitSecond',3);
+										$this->assign("jumpUrl",__ROOT__."/Agent/index");
+										$this->success('未提交审核或审核通过中... <br><br>不能使用此功能.页面跳转中...');
+										return;
                 }
                 elseif(IS_POST){
                     if ($_FILES != NULL) {
@@ -222,7 +256,7 @@ class AgentController extends Controller {
                             $this->ajaxReturn($info);
                         }
                     } elseif(isset($_POST) && NULL != $_POST) {
-                        $agentcheckdata = [
+                        $agentcheckdata = array(
                             "contract_sign_name"    => $_POST["contract_sign_name"],
                             "trade_no"              => $_POST["trade_no"],
                             "trade_name"            => $_POST["trade_name"],
@@ -238,7 +272,7 @@ class AgentController extends Controller {
                             "zhifubao"              => $_POST["zhifubao"],
                             "wxpay"                 => $_POST["wxpay"],
                             "agent_state"           => "审核中"
-                        ];
+                        );
                         $agentdata = $agent->where($condition)->save($agentcheckdata);
                         if (!$agentdata) {
                             # code...
@@ -248,11 +282,14 @@ class AgentController extends Controller {
                     }
                 }
                 $this->assign($render);
-                $this->display('agent/joinmember');
+                $this->display('Agent/joinmember');
             }
         }
         else{
-            redirect('signin',1,'请先登录...');
+            //redirect('Agent/signin',1,'请先登录...');
+			$this->assign('waitSecond',3);
+			$this->assign("jumpUrl",__ROOT__."/Agent/signin");
+			$this->success('请先登录... 页面跳转中...');              
         }
     }
     public function createshop(){
@@ -266,7 +303,11 @@ class AgentController extends Controller {
             $agentdata = $agent->where($condition)->find();
             if ($agentdata) {
                 if ($agentdata['agent_state'] == "未审核" || $agentdata['agent_state'] == "审核中") {
-                    redirect('index',1,'未提交审核或审核通过中... <br><br>不能使用此功能');
+                    //redirect('index',1,'未提交审核或审核通过中... <br><br>不能使用此功能');
+										$this->assign('waitSecond',3);
+										$this->assign("jumpUrl",__ROOT__."/Agent/index");
+										$this->success('未提交审核或审核通过中... <br><br>不能使用此功能.页面跳转中...');
+										return;
                 }
                 elseif(IS_POST){
                     if ($_FILES != NULL) {
@@ -292,7 +333,7 @@ class AgentController extends Controller {
                             $shopid = 1;
                         }
                         // 店铺数据
-                        $agentshopdata = [
+                        $agentshopdata = array(
                             "agentid"           =>  $agentid,
                             "contract_code"     =>  $agentdata["contract"],
                             "shopid"            =>  $shopid,
@@ -306,7 +347,7 @@ class AgentController extends Controller {
                             "contractor_tel"    =>  $_POST["contractor_tel"],
                             "shopdesc"          =>  $_POST["shopdesc"],
                             "shoptype"          =>  $_POST["shoptype"]
-                        ];
+                        );
                         $shopdata = $agentshop->add($agentshopdata);
                         if (!$shopdata) {
                             $render['error'] = "提交失败";
@@ -316,12 +357,12 @@ class AgentController extends Controller {
                         if ($_POST['shoppicpaths'] != NULL) {
                             $shoppicarry = explode(",",$_POST['shoppicpaths']);
                             for ($i=0; $i < count($shoppicarry)-1; $i++) {
-                                $agentshoppicdata = [
+                                $agentshoppicdata = array(
                                     "agentid"       =>  $agentid,
                                     "options"       =>  2,   //商铺相册
                                     "optionsvalue"  =>  $shopdata,  //商铺id
                                     "imgpath"       =>  $shoppicarry[$i]
-                                ];
+                                );
                                 $shoppicdata = $agentshoppic->add($agentshoppicdata);
                                 if (!$shoppicdata) {
                                     $render['error'] = "提交失败";
@@ -337,35 +378,80 @@ class AgentController extends Controller {
 
                     }
                 }
-                $this->display('agent/createshop');
+                $this->display('Agent/createshop');
                 
             }
             else{
                 //如果session中的 agentid 错误则跳出登陆 删除session
                 $this->signout();
             }
-
-            
         }
         else{
-            redirect('signin',1,'请先登录...');
+            //redirect('Agent/signin',1,'请先登录...');
+			$this->assign('waitSecond',3);
+			$this->assign("jumpUrl",__ROOT__."/Agent/signin");
+			$this->success('请先登录...页面跳转中...');              
+            
         }
     }
     public function consumestatus(){
-        $this->display('agent/consumestatus');
+        if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentshop = M('agents_shops');
+            $carduselog = M('card_uselog');
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $render['error'] = "";
+            $agentdata = $agent->where($condition)->find();
+            if ($agentdata) {
+                if ($agentdata['agent_state'] == "未审核" || $agentdata['agent_state'] == "审核中") {
+                    //redirect('index',1,'未提交审核或审核通过中... <br><br>不能使用此功能');
+					$this->assign('waitSecond',3);
+					$this->assign("jumpUrl",__ROOT__."/Agent/index");
+			    	$this->success('未提交审核或审核通过中...不能使用此功能');       
+			    	return;             
+                }
+                else{
+                    //查询商家店铺经营数据
+                    $agentshopcondition['agentid'] = $agentid;
+                    //店铺个数
+                    $shopdata = $agentshop->where($agentshopcondition)->count();
+                    //累计消费人次
+                    $carduselogcondition['contract_code'] = $agentdata['contract'];
+                    $usecount = $carduselog->where($carduselogcondition)->count();
+
+                    $render['shopcount'] = $shopdata;
+                    $render['usecount'] = $usecount;
+                    $render['income'] = $usecount * 20;
+                    $this->assign($render);
+                    $this->display('Agent/consumestatus');
+                }
+            }
+            else{
+                //如果session中的 agentid 错误则跳出登陆 删除session
+                $this->signout();
+            }
+           // $this->display('Agent/shopsview');    
+        }
+        else{
+            //redirect('Agent/signin',1,'请先登录...');
+    		$this->assign('waitSecond',3);
+    		$this->assign("jumpUrl",__ROOT__."/Agent/signin");
+	    	$this->success('请先登录');            
+}
     }
     public function createqr(){
         if (isset($_GET['qrcode'])){
             $render['qrcode']  = $_GET['qrcode'];
             $this->assign($render);
-            $this->display('agent/createqr');
+            $this->display('Agent/createqr');
         }
     }
     public function faq(){
         echo "";
     }
     public function hello(){
-        $this->ajaxReturn("123","321",1);
+        phpinfo();
         exit();
     }
 }

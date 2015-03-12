@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0, maximum-scale=1.0">
+	<meta content="telephone=no" name="format-detection" />
+	<title>响动卡包</title>
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Public/Wechat/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Public/Wechat/css/other.css" />
+		
+</head>
+<body>
+	<div class="clearfix">
+  </div>
+  <div id="sts">
+  	<div><h1 style="margin:15px;">您购买过<font style="font-weight:bold;color:#F49D46">&nbsp <{$totalbuynums}> &nbsp</font>张响动健身卡
+				<div style="width:40px;margin-left:210px;margin-top: -21px;text-align: center;border: 1px solid #F49D46;">
+		    	<a href="http://wd.koudai.com/s/312599354" type="button" id="btnSearch" class="radius5" ><div style="border-radius: 4px;color:#F49D46;background-color:white;">购买</div></a>
+		    </div></h1>
+		</div>
+  </div>
+  
+  <div class="bgstyle indexsub">
+			<ul>
+					<li style="width:25%;float: left;">
+						<a href="#">
+							<div style="font-weight:bold;text-align: center;border-bottom:3px solid #F49D46;width:90%">
+								已激活
+							</div>
+						</a>
+					</li>
+					<li style="width:25%;float: left;">
+						<a href="__ROOT__/Wechat/usercardunav/wx_openid/<{$wx_openid}>">
+							<div style="font-weight:bold;text-align:center;width:90%">
+								未激活
+							</div>
+						</a>
+					</li>						
+			</ul>
+	</div>
+  
+  <!-- 卡片列表 -->
+	<div class="listgoods"style="margin-top:5px;">
+			<volist name="list" id="vo">
+				<dl class="bgstyle">
+        	<a href="__ROOT__/Wechat/usercardItem/cardcode/<{$vo.card_code}>/wx_openid/<{$wx_openid}>" >
+        		<div>
+							<switch name="vo.card_type">
+							    <case value="XDYK199"><p style="font-weight:bold">卡片类型:响动4次月卡 <font style="color:#F49D46;"> ¥199</font> </p></case>
+							    <case value="XDNK199"><p style="font-weight:bold">卡片类型:响动4次年卡 <font style="color:#F49D46;"> ¥199</font> </p></case>
+							    <case value="XDNK222"><p style="font-weight:bold">卡片类型:响动6次年卡 <font style="color:#F49D46;"> ¥222</font> </p></case>
+							    <case value="XDNK266"><p style="font-weight:bold">卡片类型:响动8次年卡 <font style="color:#F49D46;"> ¥266</font> </p></case>
+							    <case value="XDNK299"><p style="font-weight:bold">卡片类型:响动10次年卡 <font style="color:#F49D46;"> ¥299</font> </p></case>
+							</switch>
+
+        			卡号:<{$vo.card_code}>&nbsp &nbsp &nbsp剩余次数:<{$vo.card_leftnums}>
+        			<p>购买时间:<{$vo.order_paydt}></p>
+        			<p>激活时间:<{$vo.active_dt}></p>
+        			<strong style="float:left">过期时间:<{$vo.card_expired_dt}></strong>
+        		</div>
+        	</a>
+				</dl>
+			</volist>		
+		
+			<!-- 分页 -->
+			<div class="page bgstyle clearfix clear">
+				<div><{$page}></div>
+			</div>
+			<!-- 分页 END -->	
+	</div>
+
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script>
+		var checkJsApiSupport = false;
+	  /*
+	   * 注意：
+	   * 1. 所有的JS接口只能在公众号绑定的域名下调用，公众号开发者需要先登录微信公众平台进入“公众号设置”的“功能设置”里填写“JS接口安全域名”。
+	   * 2. 如果发现在 Android 不能分享自定义内容，请到官网下载最新的包覆盖安装，Android 自定义分享接口需升级至 6.0.2.58 版本及以上。
+	   * 3. 常见问题及完整 JS-SDK 文档地址：http://mp.weixin.qq.com/wiki/7/aaa137b55fb2e0456bf8dd9148dd613f.html
+	   *
+	   * 开发中遇到问题详见文档“附录5-常见错误及解决办法”解决，如仍未能解决可通过以下渠道反馈：
+	   * 邮箱地址：weixin-open@qq.com
+	   * 邮件主题：【微信JS-SDK反馈】具体问题
+	   * 邮件内容说明：用简明的语言描述问题所在，并交代清楚遇到该问题的场景，可附上截屏图片，微信团队会尽快处理你的反馈。
+	   */
+	  wx.config({
+	      debug: false,
+	      appId: '<{$appId}>',
+	      timestamp: <{$timestamp}>,
+	      nonceStr: '<{$nonceStr}>',
+	      signature: '<{$signature}>',
+	      jsApiList: [
+	        'checkJsApi',
+	        'onMenuShareTimeline',
+	        'onMenuShareAppMessage',
+	        'onMenuShareQQ',
+	        'onMenuShareWeibo',
+	        'hideMenuItems'
+	      ]
+	  });
+	  
+	  wx.ready(function () {
+	    wx.checkJsApi({
+	      jsApiList: [
+	        'getLocation',
+	        'openLocation'
+	      ],
+	      success: function (res) {
+	       	//alert(JSON.stringify(res));
+					//alert(res.errMsg);
+					checkJsApiSupport = true;
+	      }
+	    });
+	    //屏蔽右上角菜单
+	    wx.hideOptionMenu();
+	    // 分享微信好友
+			wx.onMenuShareAppMessage({
+				title: '互联网之子',
+				desc: '在长大的过程中，我才慢慢发现，我身边的所有事，别人跟我说的所有事，那些所谓本来如此，注定如此的事，它们其实没有非得如此，事情是可以改变的。更重要的是，有些事既然错了，那就该做出改变。',
+				link: 'http://movie.douban.com/subject/25785114/',
+				imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg',
+				trigger: function (res) {
+					alert('用户点击发送给朋友');
+				},
+				success: function (res) {
+					alert('已分享');
+				},
+				cancel: function (res) {
+					alert('已取消');
+				},
+				fail: function (res) {
+					alert(JSON.stringify(res));
+				}
+			});
+			// 分享朋友圈
+			wx.onMenuShareTimeline({
+	      title: '互联网之子',
+	      link: 'http://movie.douban.com/subject/25785114/',
+	      imgUrl: 'http://demo.open.weixin.qq.com/jssdk/images/p2166127561.jpg',
+	      trigger: function (res) {
+	        alert('用户点击分享到朋友圈');
+	      },
+	      success: function (res) {
+	        alert('已分享');
+	      },
+	      cancel: function (res) {
+	        alert('已取消');
+	      },
+	      fail: function (res) {
+	        alert(JSON.stringify(res));
+	      }
+    	});			
+	  });
+	  
+		wx.error(function (res) {
+		  alert(res.errMsg+',请确认定位是否打开');
+		});	  
+	</script>	
+</body>
+</html>

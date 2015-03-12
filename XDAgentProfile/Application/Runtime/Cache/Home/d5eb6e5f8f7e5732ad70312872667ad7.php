@@ -2,12 +2,14 @@
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+
+    <!-- for AMap -->
+    <meta name="viewport" content="initial-scale=1.1,user-scalable=no">
 
     <title>响动健身 商家后台</title>
 
@@ -23,6 +25,7 @@
     <!-- Custom Fonts -->
     <link href="/Public/agent/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -46,105 +49,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">响动健身</a>
+                <a class="navbar-brand" href="/Agent/index"><img src="/Public/agent/img/logo1.png" width="100px"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu message-dropdown">
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-preview">
-                            <a href="#">
-                                <div class="media">
-                                    <span class="pull-left">
-                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
-                                    </span>
-                                    <div class="media-body">
-                                        <h5 class="media-heading"><strong>John Smith</strong>
-                                        </h5>
-                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="message-footer">
-                            <a href="#">Read All New Messages</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
-                    <ul class="dropdown-menu alert-dropdown">
-                        <li>
-                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
-                        </li>
-                        <li>
-                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
-                        </li>
-                        <li class="divider"></li>
-                        <li>
-                            <a href="#">View All</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> John Smith <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 商户设置 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> Profile</a>
+                            <a href="#"><i class="fa fa-fw fa-user"></i> 商户信息</a>
                         </li>
-                        <li>
+                        <!-- <li>
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-fw fa-gear"></i> Settings</a>
-                        </li>
+                        </li> -->
                         <li class="divider"></li>
                         <li>
-                            <a href="signout"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                            <a href="signout"><i class="fa fa-fw fa-power-off"></i>注销登录</a>
                         </li>
                     </ul>
                 </li>
@@ -154,7 +77,7 @@
                 <ul class="nav navbar-nav side-nav">
                     <!-- <li class="active"> -->
                     <li>
-                        <a href="index"><i class="fa fa-fw fa-dashboard"></i> 商户基础信息</a>
+                        <a href="/Agent/index"><i class="fa fa-fw fa-dashboard"></i> 商户基础信息</a>
                     </li>
                    <!--  <li>
                         <a href="charts.html"><i class="fa fa-fw fa-bar-chart-o"></i> 创建店铺</a>
@@ -163,18 +86,18 @@
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i>商户店铺<i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="shopsview"><i class="fa fa-fw fa-dashboard"></i>查看店铺</a>
+                                <a href="/Agent/shopsview"><i class="fa fa-fw fa-dashboard"></i>查看店铺</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-fw fa-dashboard"></i>添加新店铺</a>
+                                <a href="/Agent/createshop"><i class="fa fa-fw fa-dashboard"></i>添加新店铺</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="forms.html"><i class="fa fa-fw fa-edit"></i> 消费统计</a>
+                        <a href="/Agent/consumestatus"><i class="fa fa-fw fa-edit"></i> 消费统计</a>
                     </li>
                     <li>
-                        <a href="faq"><i class="fa fa-fw fa-table"></i> 帮助中心</a>
+                        <a href="#"><i class="fa fa-fw fa-table"></i> 帮助中心</a>
                     </li>
                     
                    <!--  <li>
@@ -420,31 +343,15 @@
                     感谢您关注响动，您提交的申请资料正在审核中！预计3-5个工作日，请耐心等待。
                     <a href="#" class="alert-link">若有疑问，请联系我们xxxxxxx。</a>
                 </div>
-                <!-- <div class="panel panel-primary">
-                    <div class="panel-heading">审核受理中</div>
-                    <div class="panel-body">
-                        <p class="text-center">您提交的加盟资料正在审核受理中！预计3-5个工作日，请耐心等待。<br>
-                            若有疑问，请联系我们xxxxxxx。
-                        </p>
-                    </div>
-                </div> -->
+              
             <?php else: ?>
                 <div class="alert alert-info" role="alert">
                     <strong>感谢您注册响动!</strong> 您目前未提交加盟申请！想了解商家加盟的好处或如何加盟响动？
                     <a href="#" class="alert-link">请点击这里(FAQ)</a>
                 </div>
                 <div class="alert alert-success" role="alert">
-                    <a href="/Home/Agent/joinmember" class="alert-link"><strong>点击这里，直接进入加盟申请资料提交。</strong></a>
-                </div>
-                <!-- <div class="panel panel-primary">
-                    <div class="panel-heading">您未申请加盟</div>
-                    <div class="panel-body">
-                        <p class="text-left">感谢您注册响动，您目前未提交加盟申请！
-                            <br>想了解商家加盟的好处或如何加盟响动？请点击这里
-                            <br><a href="/Home/Agent/joinmember" />点击这里，直接进入加盟申请资料提交。
-                        </p>
-                    </div>
-                </div> --><?php endif; ?>
+                    <a href="/Agent/joinmember" class="alert-link"><strong>点击这里，直接进入加盟申请资料提交。</strong></a>
+                </div><?php endif; ?>
 
         </div>
         <!-- /.container-fluid -->
@@ -454,7 +361,6 @@
 
     </div>
     <!-- /#wrapper -->
-
     <!-- jQuery -->
     <script src="/Public/agent/js/jquery.js"></script>
 
@@ -465,6 +371,10 @@
     <script src="/Public/agent/js/plugins/morris/raphael.min.js"></script>
     <script src="/Public/agent/js/plugins/morris/morris.min.js"></script>
     <script src="/Public/agent/js/plugins/morris/morris-data.js"></script>
+    <!--  <script src="http://cdn.bootcss.com/jquery.form/3.51/jquery.form.min.js"></script>
+     -->
+    
+    
 
 </body>
 

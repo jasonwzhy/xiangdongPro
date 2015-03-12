@@ -1,35 +1,677 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
-<html>
+<!--[if lt IE 8 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
 <head>
-	<title>投诉建议</title>
-	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 
-	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+   <!--- Basic Page Needs
+   ================================================== -->
+	<meta charset="utf-8">
+	<title>响动健身</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+   <!-- Mobile Specific Metas
+  ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- CSS
+   ================================================== -->
+   <link rel="stylesheet" href="/Public/home/css/base.css">
+	<link rel="stylesheet" href="/Public/home/css/layout.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+   <!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="favicon.ico" >
+
+
 </head>
-<body>
-	<div class="row">
-		<div class="col-xs-12">
-			<form class="form-horizontal" role="form">
-			  <div class="form-group">
-			    <label for="inputEmail3" class="col-sm-2 control-label">手机号</label>
-			    <div class="col-sm-10">
-			      <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">投诉建议内容</label>
-			    <div class="col-sm-10">
-			      <textarea class="form-control" rows="3"></textarea>
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <div class="col-sm-offset-2 col-sm-10">
-			      <button type="submit" class="btn btn-default">确定提交</button>
-			    </div>
-			  </div>
-			</form>
-		</div>
-	</div>
+
+<body data-spy="scroll" data-target="#nav-wrap">
+
+
+   <!-- Header
+   ================================================== -->
+   <header class="mobile">
+
+      <div class="row">
+
+         <div class="col full">
+
+            <div class="logo">
+               <a href="#"><img alt="" src="/Public/home/images/logo2.png"></a>
+            </div>
+
+            <nav id="nav-wrap">
+
+               <a class="mobile-btn" href="#nav-wrap" title="Show navigation">Show navigation</a>
+	            <a class="mobile-btn" href="#" title="Hide navigation">Hide navigation</a>
+
+               <ul id="nav" class="nav">
+	               <li><a href="#intro">响动首页</a></li>
+	               <li><a href="#services">服务介绍</a></li>
+	               <li><a href="#portfolio">产品介绍</a></li>
+	               <!-- <li><a href="#journal">关于我们</a></li> -->
+                  <li><a href="#about">关于我们</a></li>
+                  <li><a href="#contact">联系我们</a></li>
+                  <li><a href="/Agent/signin">响动签约商家入口</a></li>
+               </ul>
+
+            </nav>
+
+         </div>
+
+      </div>
+
+   </header> <!-- Header End -->
+
+
+   <!-- Intro Section
+   ================================================== -->
+   <section id="intro">
+
+      <!-- Flexslider Start-->
+	   <div id="intro-slider" class="flexslider">
+
+		   <ul class="slides">
+
+			   <!-- Slide -->
+			   <li>
+				   <div class="row">
+					   <div class="col full">
+						   <div class="slider-text">
+							   <h2>嗨！！这里是<span>响动健身</span>我们有最新的健身咨询、正确的健身方法、科学的健身饮食建议！</h2>
+							   <p>响动倡导更积极的生活态度、更健康的生活方式、更自由的生活乐趣.</p>
+                        <p>你负责订阅我们，我们负责激励你坚持健身，充分享受运动带来的快乐</p>
+                        <img src="/Public/home/images/QRcode_wechatFW.jpg" width="115px" height="115px">
+						   </div>
+					   </div>
+				   </div>
+			   </li>
+
+            <!-- Slide -->
+			   <li>
+				   <div class="row">
+					   <div class="col full">
+						   <div class="slider-text">
+							   <h2>响动！！是一张价格便宜的 <a href="#portfolio" title="">健身次卡</a>一张畅行全国数千家健身房的健身一卡通</h2>
+							   <p>响动采用微信平台引导消费者方便地进行健身卡的购买，以及健身房挑选</p>
+                        <img src="/Public/home/images/QRcode_wechatFW.jpg" width="115px" height="115px">
+						   </div>
+					   </div>
+				   </div>
+			   </li>
+
+		   </ul>
+	   </div>
+	   <!-- Flexslider End-->
+
+   </section> <!-- Intro Section End-->
+
+
+   <!-- Services Section
+   ================================================== -->
+   <section id="services">
+
+      <div class="row section-head">
+
+         <div class="col one-third">
+            <h2>响动是什么</h2>
+            <p class="desc">响动将通过独特的消费模式构建来激励消费者坚持健身</p>
+         </div>
+
+         <div class="col two-thirds">
+            <div class="intro">
+             <p>一张畅行全国数千家健身房、打造健身新模式；一张帮你克服拖延、靠别懒惰、督促坚持健身的健身一卡通。</p>
+            </div>
+         </div>
+
+      </div>
+
+      <div class="row">
+
+         <div class="services-wrapper">
+
+            <div class="col">
+               <h2><i class="icon-desktop"></i>响动的优势</h2>
+               <p>
+                  <li>一卡通在全国数千家特约商户通用，2015年内将突破万家，并增加数千家球馆、舞蹈、武术馆等。消费者可以凭响动健身卡随时随地进入任一特约商户享受运动带来的乐趣;</li>
+                  <li>响动是一张价格便宜的健身次卡，对于没有决心一次花费数千元的消费者来说，一两百元的消费低门槛能吸引他们走进健身房。</li>
+               </p>
+            </div>
+
+            <div class="col">
+               <h2><i class="icon-star"></i>加盟响动</h2>
+               <p>
+                  <li>响动针对的客户与现有的健身房年卡，以及团购客户几乎是完全不重叠的</li>
+                  <li>响动对消费者而言不仅有时间，更有空间上的拓展延续，对于特约商户而言，相当于在全国免费开了无数家分店</li>
+                  <li>响动采用微信平台引导消费者更方便快捷地进行健身卡的购买支付，以及健身房的查询挑选</li>
+              </p>
+            </div>
+
+            <div class="col m-first">
+               <h2><i class="icon-camera"></i>微信平台</h2>
+               <p>
+                  <li>响动健将通过微信平台对特约商户的每月课程安排进行推广，对其年卡、教练放置购买链接</li>
+                  <div>
+                     <img src="/Public/home/images/QRcode_wechatFW.jpg" width="115px" height="115px">
+                  </div>
+               </p>
+            </div>
+         </div> <!-- Services-Wrapper End -->
+
+      </div> <!--end row -->
+      <div class="row">
+         <div class="col full"><h2>使用流程.</h2></div>
+      </div>
+
+      <div class="row services-wrapper">
+
+         <div class="col">
+            <h4>关注微信平台.</h4>
+
+            <p>请通过二维码，关注响动一卡通微信服务号平台.</p>
+            <p><img src="/Public/home/images/QRcode_wechatFW.jpg" width="115px" height="115px"></p>
+         </div>
+
+         <div class="col">
+            <h4>注册会员.</h4>
+
+            <p>通过微信服务号可以注册成为响动会员，可以查看订单详情，消费记录，健身记录等；同时也能享受专业的健身服务咨询和指导.
+            </p>
+         </div>
+
+         <div class="col m-first">
+            <h4>挑选产品.</h4>
+
+            <p>通过微信服务平台，挑选您所适合的 <a href="#portfolio" title="" style="color:#11ABB0">健身次卡</a> ，通过对不同产品了解后，可以直接在服务号中下单、付款；几部操作您就能拥有不同健身中心通用的响动一卡通啦！从而将您的健身需求最小细化至健身项目上，而不用再为不同健身中心特色差异化而纠结.</p>
+         </div>
+
+         <div class="col">
+            <h4>选择健身房消费.</h4>
+
+            <p>最后您只需要查询不同健身房所介绍的项目或位置，结合自身需求，记住健身中心位置，就可以方便的前往通向健康之路啦！
+            <img src="/Public/home/images/xfmap.jpg">
+            </p>
+         </div>
+         <div class="col">
+            <h4>加盟响动.</h4>
+
+            <p>如果您是健身中心商家，想加入响动平台，也可通过关注响动微信服务号后，在关于响动->加盟响动中填写您中心的信息，我们会有专员进行审核，如果需要也会即时与您取得联系！
+            </p>
+         </div>
+
+      </div> <!-- Process Wrap End -->
+
+
+   </section> <!-- Services Section End -->
+
+
+   <!-- Portfolio Section
+   ================================================== -->
+   <section id="portfolio">
+
+      <div class="row section-head">
+         <div class="col full">
+
+            <h2>响动在做什么？</h2>
+            <p class="desc">Check out our latest projects.</p>
+
+            <p class="intro">响动致力于联结全国数千家健身房，为消费者提供丰富的健身选择，便捷的健身方式，以及低价的健身消费。
+            </p>
+
+         </div>
+      </div>
+
+      <div class="row">
+
+		   <!-- Portfolio Wrapper -->
+		   <div id="portfolio-wrapper">
+
+			   <div class="col portfolio-item">
+               <div class="item-wrap">
+					   <a href="#" data-reveal-id="modal-01"><img src="/Public/home/images/card01.png" width="100%" alt=""/></a>
+					   <div class="portfolio-item-meta">
+						   <h5><a href="#">响动199-4次月卡</a></h5>
+					   </div>
+               </div>
+			   </div>
+
+            <div class="col portfolio-item">
+               <div class="item-wrap">
+					   <a href="#" data-reveal-id="modal-02"><img src="/Public/home/images/card02.png" width="100%" alt=""/></a>
+					   <div class="portfolio-item-meta">
+						   <h5><a href="#">响动199-4次年卡</a></h5>
+					   </div>
+               </div>
+			   </div>
+
+            <div class="col portfolio-item">
+               <div class="item-wrap">
+					   <a href="#" data-reveal-id="modal-03"><img src="/Public/home/images/card03.png" width="100%" alt=""/></a>
+					   <div class="portfolio-item-meta">
+						   <h5><a href="#">响动222-6次年卡</a></h5>
+					   </div>
+               </div>
+			   </div>
+
+            <div class="col portfolio-item">
+               <div class="item-wrap">
+					   <a href="#" data-reveal-id="modal-04"><img src="/Public/home/images/card04.png" width="100%" alt=""/></a>
+					   <div class="portfolio-item-meta">
+						   <h5><a href="#">响动266-8次年卡</a></h5>
+					   </div>
+               </div>
+			   </div>
+
+            <div class="col portfolio-item">
+               <div class="item-wrap">
+					   <a href="#" data-reveal-id="modal-05"><img src="/Public/home/images/comingsoon1.png" alt=""/></a>
+					   <div class="portfolio-item-meta">
+						   <h5><a href="#">响动新品</a></h5>
+					   </div>
+               </div>
+			   </div>
+
+            <div class="col portfolio-item">
+               <div class="item-wrap">
+					   <a href="#" data-reveal-id="modal-06"><img src="/Public/home/images/comingsoon2.png" alt=""/></a>
+					   <div class="portfolio-item-meta">
+						   <h5><a href="#">响动新品</a></h5>
+					   </div>
+               </div>
+			   </div>
+
+            <div class="col portfolio-item">
+               <div class="item-wrap">
+					   <a href="#" data-reveal-id="modal-07"><img src="/Public/home/images/comingsoon1.png" alt=""/></a>
+					   <div class="portfolio-item-meta">
+						   <h5><a href="#">响动新品</a></h5>
+					   </div>
+               </div>
+			   </div>
+
+            <div class="col portfolio-item">
+               <div class="item-wrap">
+					   <a href="#" data-reveal-id="modal-08"><img src="/Public/home/images/comingsoon2.png" alt=""/></a>
+					   <div class="portfolio-item-meta">
+						   <h5><a href="#">响动新品</a></h5>
+					   </div>
+               </div>
+			   </div>
+
+		   </div> <!-- Portfolio Wrapper End -->
+
+
+		</div> <!-- End Row -->
+
+
+      <!-- Modal Popup
+	   =========================================================== -->
+
+      <!-- modal-01 -->
+	   <div id="modal-01" class="reveal-modal">
+
+		   <img class="scale-with-grid" src="/Public/home/images/portfolio/carditem01.jpg" alt="" />
+
+		   <div class="description-box">
+			   <h4>响动199-4次月卡</h4>
+			   <p>响动健身月卡，199元／4次，一个月内有效，本人本月全部使用，免费再送4次（一个月內有效）.</p>
+            <span class="categories"><i class="icon-tag"></i>响动,月卡,199</span>
+		   </div>
+
+         <div class="link-box">
+            <!-- <a href="http://sc.chinaz.com">Details</a> -->
+		      <a class="close-reveal-modal">Close</a>
+         </div>
+
+	   </div><!-- modal-01 End -->
+
+      <!-- modal-02 -->
+	   <div id="modal-02" class="reveal-modal">
+
+		   <img class="scale-with-grid" src="/Public/home/images/portfolio/carditem02.jpg" alt="" />
+
+		   <div class="description-box">
+			   <h4>响动199-4次年卡</h4>
+			   <p>响动健身年卡，199元／4次，一年内有效，本人本年全部使用，免费再送4次（一年內有效）.</p>
+            <span class="categories"><i class="icon-tag"></i>响动,年卡,199</span>
+         </div>
+
+         <div class="link-box">
+            <!-- <a href="http://sc.chinaz.com">Details</a> -->
+		      <a class="close-reveal-modal">Close</a>
+         </div>
+
+	   </div> <!-- modal-02 End -->
+
+      <!-- modal-03 -->
+	   <div id="modal-03" class="reveal-modal">
+
+		   <img class="scale-with-grid" src="/Public/home/images/portfolio/carditem03.jpg" alt="" />
+
+		   <div class="description-box">
+			   <h4>响动222-6次年卡</h4>
+			   <p>响动健身年卡，222元／6次，一年内有效，本人本年全部使用，免费再送6次（一年內有效）.</p>
+            <span class="categories"><i class="icon-tag"></i>响动,年卡,222</span>
+         </div>
+
+         <div class="link-box">
+            <!-- <a href="http://sc.chinaz.com">Details</a> -->
+		      <a class="close-reveal-modal">Close</a>
+         </div>
+
+	   </div> <!-- modal-03 End -->
+
+      <!-- modal-04 -->
+	   <div id="modal-04" class="reveal-modal">
+
+		   <img class="scale-with-grid" src="/Public/home/images/portfolio/carditem04.jpg" alt="" />
+
+		   <div class="description-box">
+			   <h4>响动266-8次年卡</h4>
+			   <p>响动健身年卡，266元／8次，一年内有效，本人本年全部使用，免费再送8次（一年內有效）.</p>
+            <span class="categories"><i class="icon-tag"></i>响动,年卡,266</span>
+         </div>
+
+         <div class="link-box">
+            <!-- <a href="http://sc.chinaz.com">Details</a> -->
+		      <a class="close-reveal-modal">Close</a>
+         </div>
+
+	   </div>
+
+   </section> <!-- Portfolio End -->
+
+   <!-- Journal Section
+   ================================================== -->
+     <!-- Journal Section End -->
+
+
+   <!-- About Section
+   ================================================== -->
+   <section id="about">
+
+      <div class="row section-head">
+
+         <div class="col one-fourth">
+            <h2>关于我们</h2>
+            <p class="desc">This is what we are.</p>
+         </div>
+
+         <div class="col three-fourths">
+             <p class="intro">响动是一张价格便宜的健身次卡，对于没有决心一次花费数千元的消费者来说，一两百元的消费低门槛能吸引他们走进健身房。 </p>
+         </div>
+
+      </div>
+
+      
+
+      <div class="row">
+         <div class="col full"><h3>我们的队伍</h3></div>
+      </div>
+
+
+      <!-- Team Wrap End -->
+      <div class="row team-wrap">
+
+         <div class="col one-fourth">
+
+            <img src="/Public/home/images/team/team-img-01.jpg" alt=""/>
+
+            <div class"member-name">
+               <h5>Naruto Uzumaki</h5>
+               <span>CEO</span>
+            </div>
+
+            <ul class="member-social">
+               <li><a href="#"><i class="icon-facebook"></i></a></li>
+               <li><a href="#"><i class="icon-twitter"></i></a></li>
+               <li><a href="#"><i class="icon-google-plus-sign"></i></a></li>
+               <li><a href="#"><i class="icon-linkedin"></i></a></li>
+               <li><a href="#"><i class="icon-skype"></i></a></li>
+            </ul>
+
+			</div>
+
+         <div class="col one-fourth">
+
+            <img src="/Public/home/images/team/team-img-02.jpg" alt=""/>
+
+            <div class"member-name">
+               <h5>Sakura Haruno</h5>
+               <span>市场经理</span>
+            </div>
+
+            <ul class="member-social">
+               <li><a href="#"><i class="icon-facebook"></i></a></li>
+               <li><a href="#"><i class="icon-twitter"></i></a></li>
+               <li><a href="#"><i class="icon-google-plus-sign"></i></a></li>
+               <li><a href="#"><i class="icon-linkedin"></i></a></li>
+               <li><a href="#"><i class="icon-skype"></i></a></li>
+            </ul>
+
+			</div>
+
+         <div class="col one-fourth">
+
+            <img src="/Public/home/images/team/team-img-03.jpg" alt=""/>
+
+            <div class"member-name">
+               <h5>Sasuke Uchiha</h5>
+               <span>产品经理</span>
+            </div>
+
+            <ul class="member-social">
+               <li><a href="#"><i class="icon-facebook"></i></a></li>
+               <li><a href="#"><i class="icon-twitter"></i></a></li>
+               <li><a href="#"><i class="icon-google-plus-sign"></i></a></li>
+               <li><a href="#"><i class="icon-linkedin"></i></a></li>
+               <li><a href="#"><i class="icon-skype"></i></a></li>
+            </ul>
+
+			</div>
+
+         <div class="col one-fourth">
+
+            <img src="/Public/home/images/team/team-img-04.jpg" alt=""/>
+
+            <div class"member-name">
+               <h5>Shikamaru Nara</h5>
+               <span>客户经理</span>
+            </div>
+
+            <ul class="member-social">
+               <li><a href="#"><i class="icon-facebook"></i></a></li>
+               <li><a href="#"><i class="icon-twitter"></i></a></li>
+               <li><a href="#"><i class="icon-google-plus-sign"></i></a></li>
+               <li><a href="#"><i class="icon-linkedin"></i></a></li>
+               <li><a href="#"><i class="icon-skype"></i></a></li>
+            </ul>
+
+			</div>
+
+      </div> <!-- Team Wrap End -->
+
+      <!-- Testimonials -->
+      <div class="row">
+
+         <div class="col full section-head">
+            <h2>有口皆碑</h2>
+            <p class="desc">What our clients are saying.</p>
+         </div>
+
+      </div>
+
+      <div class="row testimonials">
+
+         <div class="col half">
+
+            <div class="client-author">
+               <img src="/Public/home/images/client-img.png" alt="" />
+               <div class="name">
+                  <p>范桥<span>MACTang CEO</span></p>
+               </div>
+            </div>
+
+		      <div class="client-cite">
+			      <p>响动平台弥补了很多我们对运动知识的匮乏，为运动健身爱好者提供了更多乐趣，也激励了很多缺乏运动却徘徊犹豫的人；同时响动会员卡也同化了不同健身中心的差异性，从而不必为喜爱的运动项目分布在不同健身中心的会员体系中而烦恼。</p>
+		      </div>
+
+         </div>
+
+         <div class="col half">
+
+            <div class="client-author">
+               <img src="/Public/home/images/client-img.png" alt="" />
+               <div class="name">
+                  <p>叶勇杰<span>程序猿</span></p>
+               </div>
+            </div>
+
+		      <div class="client-cite">
+			      <p>响动平台整合了线下运动健身资源，聚合了不同健身平台的资源信息，为细化的类目查询提供很多方便，同时也方便不同中心间的消费；平台的记录排名模式也使健身运动提高了很多乐趣，听说即将接入可穿戴设备...真的很期待啊！！</p>
+		      </div>
+
+         </div>
+
+      </div> <!--  Testimonials End-->
+
+
+   </section> <!-- About Section End-->
+
+   <!-- Map Section
+   ================================================== -->
+   <!-- <section id="map">
+
+      <p class="map-error">Something went wrong... Unable to load map... Please try to enable javascript</p>
+
+   </section>  --><!-- Map Section End-->
+
+    <!-- Contact Section
+   ================================================== -->
+   <section id="contact">
+
+      <div class="row section-head">
+         <div class="col full">
+            <h2>联系我们</h2>
+            <p class="desc">Get in touch with us.</p>
+         </div>
+      </div>
+
+      <div class="row">
+				 <!--
+         <div class="col g-7">
+            <form name="contactForm" id="contactForm" method="post" action="">
+					<fieldset>
+
+                  <div>
+						   <label for="contactName">称呼 <span class="required">*</span></label>
+						   <input name="contactName" type="text" id="contactName" size="30" value="" />
+                  </div>
+
+                  <div>
+						   <label for="contactEmail">Email <span class="required">*</span></label>
+						   <input name="contactEmail" type="text" id="contactEmail" size="35" value="" />
+                  </div>
+
+                  <div>
+						   <label for="contactSubject">标题</label>
+						   <input name="contactSubject" type="text" id="contactSubject" size="35" value="" />
+                  </div>
+
+                  <div>
+                     <label  for="contactMessage">内容 <span class="required">*</span></label>
+                     <textarea name="contactMessage"  id="contactMessage" rows="10" cols="50" ></textarea>
+                  </div>
+
+                  <div>
+                     <button class="submit">确定提交</button>
+                     <span id="image-loader">
+                        <img src="/Public/home/images/loader.gif" alt="" />
+                     </span>
+                  </div>
+
+					</fieldset>
+				</form> 
+
+            <div id="message-warning"></div>
+
+				<div id="message-success">
+               <i class="icon-ok"></i>Your message was sent, thank you!<br />
+				</div>
+
+         </div>-->
+
+         <aside class="col g-7">
+
+            <h3>联系方式</h3>
+
+            <p> 响动健身科技 </p>
+
+            <p>
+            成都市 武侯区 <br />
+            新南路44号附1号 <br />
+            腾云商务大厦6楼
+            </p>
+
+            <p>
+            联系电话: 18615722911 <br />
+            联系人: 唐女士<br />
+            Email: tangtang@lifecare.cc
+            </p><br />
+         </aside>
+
+      </div>
+
+   </section> <!-- Contact Section End-->
+
+   <!-- footer
+   ================================================== -->
+   <footer>
+
+      <div class="row">
+
+         <div class="col g-7">
+            <ul class="copyright">
+               <li>Copyright &copy; 2014.Company name All rights reserved.<a href="#">响动健身</a></li>
+            </ul>
+         </div>
+
+         <div class="col g-5 pull-right">
+            <ul class="social-links">
+               <li><a href="#"><i class="icon-facebook"></i></a></li>
+               <li><a href="#"><i class="icon-twitter"></i></a></li>
+               <li><a href="#"><i class="icon-google-plus-sign"></i></a></li>
+               <li><a href="#"><i class="icon-linkedin"></i></a></li>
+               <li><a href="#"><i class="icon-skype"></i></a></li>
+               <li><a href="#"><i class="icon-rss-sign"></i></a></li>
+            </ul>
+         </div>
+
+      </div>
+
+   </footer> <!-- Footer End-->
+
+   <!-- Java Script
+   ================================================== -->
+   <!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>-->
+   <script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+   <script>window.jQuery || document.write('<script src="/Public/home/js/jquery-1.10.2.min.js"><\/script>')</script>
+   <script type="text/javascript" src="/Public/home/js/jquery-migrate-1.2.1.min.js"></script>
+
+   <script src="/Public/home/js/scrollspy.js"></script>
+   <script src="/Public/home/js/jquery.flexslider.js"></script>
+   <script src="/Public/home/js/jquery.reveal.js"></script>
+   <!--<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript"></script>-->
+   <!--<script src="js/gmaps.js"></script>-->
+   <script src="/Public/home/js/init.js"></script>
+   <script src="/Public/home/js/smoothscrolling.js"></script>
+
 </body>
 </html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0, maximum-scale=1.0">
+	<title>响动卡片激活</title>
+	<meta name="keywords" content="响动健身" />
+	<meta name="description" content="响动健身" />
+	<meta content="yes" name="apple-mobile-web-app-capable" />  
+	<meta content="black" name="apple-mobile-web-app-status-bar-style" />  
+	<meta content="telephone=no" name="format-detection" />
+	<link rel="shortcut icon" href="__ROOT__/Public/img/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Public/Wechat/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Public/Wechat/css/other.css" />
+	<script src="__ROOT__/Public/Wechat/js/jquery.min.js" type="text/javascript"></script>
+	<script src="__ROOT__/Public/Wechat/js/alert.js" type="text/javascript"></script>
+</head>
+<body>
+	<div class="main">
+		<!-- banner -->
+		<div class="bgstyle banner" style="margin-top:5px;">
+		   <div class="swiper-container bannerswiper">
+					<div class="swiper-wrapper">
+		        <div class="swiper-slide bawarp"> <img  src="__ROOT__/Public/Wechat/img/adv/1.jpg" alt='1' /></div>         
+		        <div class="swiper-slide bawarp"> <img  src="__ROOT__/Public/Wechat/img/adv/2.jpg" alt='2' /></div>
+		        <div class="swiper-slide bawarp"> <img  src="__ROOT__/Public/Wechat/img/adv/3.jpg" alt='3' /></div>
+		        <div class="swiper-slide bawarp"> <img  src="__ROOT__/Public/Wechat/img/adv/4.jpg" alt='4' /></div>
+		        <div class="swiper-slide bawarp"> <img  src="__ROOT__/Public/Wechat/img/adv/5.jpg" alt='5' /></div>
+		        <div class="swiper-slide bawarp"> <img  src="__ROOT__/Public/Wechat/img/adv/6.jpg" alt='6' /></div>
+					</div>
+			  <div class="pagination"></div>
+		    </div>
+		    <h3 style="margin-left: 10px;font-size:18px;color:#CC0033;">响动健身卡,一卡通全国</h3>
+		    <h3 style="margin-left: 10px;font-size:16px;">响动健身卡,是可以在全国<strong style="color:#CC0033;">5</strong>个城市、<strong style="color:#CC0033;">2148</strong>家响动授权健身房使用的虚拟健身卡，一次购买，多店异地通用。</h3>
+		</div>
+
+		<div class="listgoods" id="TotalGoodsDiv" style="margin-top:5px">
+			<div class="bgstyle textcontent evaluation">
+			  <div class="evalinput clearfix clear">
+					<dl>
+						<lable name="wx_openid" id="wx_openid" type="text" class="a1 radius5"  style="display:none" ><{$wx_openid}></lable>
+						<dt>卡号</dt>
+							<dd><input  name="cardcode" id="cardcode" type="text" class="a1 radius5" value="<{$cardcode}>" readonly="true" style="margin-left:-30px;width:95%;" >
+						</dd>
+					</dl>
+					<dl>
+						<dt>手机号</dt>
+							<dd><input  name="activetel" placeholder="绑定微信的手机号" id="activetel" type="text" class="a1 radius5"  style="margin-left:-30px;width:95%;" autocomplete="off">
+						</dd>
+					</dl>					
+		   	 </div>		  
+				</div>
+			</div>
+		</div>
+
+		<div class="bgstyle indexsub" style="text-align: center;margin-top:-50px">
+			<input class="msubm radius5" type="button" id="btnReg" value="卡片激活">
+		</div>
+			
+		<!-- banner END -->
+
+	</div>
+	
+	<script src="__ROOT__/Public/Wechat/js/idangerous.swiper-2.1.min.js" type="text/javascript"></script>
+	<script>
+	  var mySwiper = new Swiper('.swiper-container',{
+	    pagination: '.pagination',
+	    loop:true,
+	    grabCursor: true,
+	    paginationClickable: true,
+			autoplay: 5000
+	  });
+	  var mySwiper = new Swiper('.hotswiper',{
+		paginationClickable: true,
+	    slidesPerView: 'auto'
+	  });
+	</script>
+	
+	<script type="text/javascript">
+		$(document).ready(function () { 	    
+			$('#btnReg').bind('click', function(){
+				var cardcode = $('#cardcode').val();
+				if( "" == cardcode)
+			  {
+					alert("卡号(订单号)不能为空!");
+					return;
+			  }
+				var activetel = $('#activetel').val();
+				if( "" == activetel)
+			  {
+					alert("手机号不能为空!");
+					return;
+			  }
+				else
+				{
+					var reg = /^1\d{10}$/;
+					if(!reg.test(activetel))
+					{
+						alert("手机号不正确!");  
+            return;  		
+			  	}
+			  }			  
+
+			  var wx_openid = $('#wx_openid').text();
+			  
+				var formData = "cardcode="+cardcode+"&activetel="+activetel;
+				//.serialize() 方法创建以标准 URL 编码表示的文本字符串
+				console.info(formData);
+				$.ajax({ 
+						type : "POST",
+						url  : "__ROOT__/Wechat/saveactivcard",
+						data:formData,
+						cache : false,
+						dataType:"json",
+		        success:function(DataReturn,textStatus) 
+		        {
+		          if(DataReturn.success)
+		          {
+		          	alert(DataReturn.msg);
+		          	return;
+		          }
+							alert(DataReturn.msg);
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+							alert(textStatus);
+		        }
+				}); 
+		    return false;			  
+
+			});
+		});
+		
+		// 所有功能必须包含在 WeixinApi.ready 中进行
+		WeixinApi.ready(function(Api){
+		    // 隐藏右上角popup菜单入口
+		    Api.hideOptionMenu();
+		});		
+	</script>
+
+</body>
+</html>

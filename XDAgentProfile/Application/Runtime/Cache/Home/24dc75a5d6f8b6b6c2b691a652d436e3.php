@@ -386,7 +386,7 @@
 		function upshoppic(){
 			var formData = new FormData($( "#addshoppicform" )[0]);
 			$.ajax({
-				url: '/Home/Agent/createshop',
+				url: '/Agent/createshop',
 				type: 'POST',
 				data: formData,
 				async: true,
@@ -427,7 +427,7 @@
 			$("#piccontainer > div > img").each(function(){
 				shoppicpaths = $(this).attr('src')+","+shoppicpaths;
 			});
-			$.post("/Home/Agent/createshop",
+			$.post("/Agent/createshop",
     				{
     					shopname:shopname,
     					province:province,
@@ -448,7 +448,7 @@
 						}
 						else{
 							alert("店铺创建成功!");
-							window.location.href="/Home/Agent/index";
+							window.location.href="/Agent/index";
 						}
     				}
 
