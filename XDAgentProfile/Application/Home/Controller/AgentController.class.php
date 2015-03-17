@@ -114,7 +114,7 @@ class AgentController extends Controller {
                         "contactor"             => $_POST['contactor'],
                         "contactor_tel"         => $_POST['contactortel'],
                         "agent_name"            => $_POST['agentname'],
-                        "agent_src"             => "",
+                        "agent_src"             => "网签",
                         "agent_state"           => "未审核",
                         "city_code"             => "",
                         "province"              => $_POST['selProvince'],
@@ -246,7 +246,7 @@ class AgentController extends Controller {
                         $upload = new \Think\Upload();// 实例化上传类
                         $upload->maxSize   =     3145728 ;// 设置附件上传大小
                         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-                        $upload->rootPath  =     './Uploads/'; // 设置附件上传根目录
+                        $upload->rootPath  =     './Uploads/Agents/'; // 设置附件上传根目录
                         // $upload->savePath  =     $agentid.'/';
                         $upload->subName   =     $agentid.'/';
                         $info   =   $upload->uploadOne($_FILES['tradepic']);
@@ -314,7 +314,7 @@ class AgentController extends Controller {
                         $upload = new \Think\Upload();// 实例化上传类
                         $upload->maxSize   =     3145728 ;// 设置附件上传大小
                         $upload->exts      =     array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-                        $upload->rootPath  =     './Uploads/'; // 设置附件上传根目录
+                        $upload->rootPath  =     './Uploads/Agents/'; // 设置附件上传根目录
                         // $upload->savePath  =     $agentid.'/';
                         $upload->subName   =     $agentid;
                         $info   =   $upload->uploadOne($_FILES['shoppic']);
@@ -445,6 +445,51 @@ class AgentController extends Controller {
             $render['qrcode']  = $_GET['qrcode'];
             $this->assign($render);
             $this->display('Agent/createqr');
+        }
+    }
+    public function passwd(){
+        if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $render['error'] = "";
+            $agentdata = $agent->where($condition)->find();
+            if ($agentdata) {
+                # code...
+                if (IS_POST) {
+                    if ($_POST['oldpasswd'] != $agentdata['contract_pwd']) {
+                        $render['error'] = "密码错误";
+                        $render['debug'] = $agentdata['contract_pwd'];
+                        $this->ajaxReturn($render);
+                    }else{
+                        $newpasswd = array(
+                                "contract_pwd"  =>  $_POST['newpasswd']
+                            );
+                        $newpwddata = $agent->where($condition)->save($newpasswd);
+                        if ($newpwddata) {
+                            $this->ajaxReturn($render);
+                        }
+                        else
+                        {
+                            $render['error'] = "修改失败";
+                            $this->ajaxReturn($render);
+                        }
+                    }
+                }
+                else{
+                    $this->display('Agent/passwd');
+                }
+            }
+            else{
+                $this->signout();
+            }
+
+        }
+        else
+        {
+            $this->assign('waitSecond',3);
+            $this->assign("jumpUrl",__ROOT__."/Agent/signin");
+            $this->success('请先登录... 页面跳转中...');
         }
     }
     public function faq(){

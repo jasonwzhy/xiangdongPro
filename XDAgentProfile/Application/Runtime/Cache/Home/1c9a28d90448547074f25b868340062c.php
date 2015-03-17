@@ -109,6 +109,7 @@
     </div> <!-- /container -->
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <!--<script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>-->
+    <script src="/Public/agent/js/jquery.md5.js"></script>
     <script type="text/javascript">
     $('#emaillogin').on('click',function(){
       $('#loginname').attr('name','emaillogin');
@@ -128,7 +129,7 @@
       var signinname = $("#loginname").val();
       var emaillogin ="";
       var contractlogin = "";
-      var passwd = $("#inputPassword").val();
+      var passwd = $.md5($("#inputPassword").val());
       "emaillogin" == $('#loginname').attr('name') ? emaillogin = signinname : contractlogin = signinname;
       if (verifycode == "") {
         alert("验证码不能为空!");
@@ -140,7 +141,7 @@
             verifycode : verifycode,
             emaillogin : emaillogin,
             contractlogin : contractlogin,
-            loginpwd:$("#inputPassword").val()
+            loginpwd:passwd
           },
           function(ret){
             console.log(ret);

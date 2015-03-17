@@ -82,14 +82,14 @@ properly.
 /* ================================================================== */
 
 header {
-   height: 54px;
+   height: 80px;
    width: 100%;
    z-index: 99999;
    /*background: url(../images/k-opacity-70.png);*/
-
+   background-color: black;
    position: fixed;
    /*top: 0;*/
-   top: 30px;
+   /*top: 30px;*/
    left: 0;
 }
 header.static {
@@ -100,9 +100,10 @@ header.static {
 /* header logo */
 header .logo {
    position: relative;
-   height: 54px;
+   /*height: 54px;*/
    width: 150px;
    float: left;
+   padding-top:1.5%;
 }
 header .logo a {
    display: block;
@@ -132,6 +133,7 @@ header .logo a {
    font: 18px opensans-regular, sans-serif;
    float: right;
    font-weight:bold;
+   padding-top:10px;
 }
 
 /* hide toggle button */
@@ -164,7 +166,7 @@ ul#nav li a {
    line-height: 54px;
 	text-decoration: none;
    text-align: left;
-   /*color: #fff;*/
+   color: #E6B85C;
 
 	-webkit-transition: color .2s ease-in-out;
 	-moz-transition: color .2s ease-in-out;
@@ -188,10 +190,10 @@ ul#nav li.active a { color: #11ABB0; }
 #intro {
    /*background: #111 url(../images/intro-bg.jpg) no-repeat center;*/
    overflow: hidden;
-   /*padding-top: 156px;*/
-   padding-bottom: 120px;
+   padding-top: 120px;
+   /*padding-bottom: 120px;
    max-height: 500px;
-   min-height: 300px;
+   min-height: 300px;*/
    /*padding-top: 15%;
    padding-bottom: 45%;*/
 }
@@ -279,10 +281,13 @@ ul#nav li.active a { color: #11ABB0; }
 /* ================================================================== */
 
 #services {
-   background: #ed8904;
+   background: #ED8904;
    padding-top: 156px;
    padding-bottom: 120px;
    color: #4E565F;
+   background-image: url("../images/china_map.png");
+   background-repeat:no-repeat;
+   background-position: 60% 10%;
 }
 #services h2{
    color: #fff;

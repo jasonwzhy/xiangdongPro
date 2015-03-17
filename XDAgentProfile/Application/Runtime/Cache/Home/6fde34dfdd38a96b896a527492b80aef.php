@@ -57,7 +57,7 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> 商户设置 <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#"><i class="fa fa-fw fa-user"></i> 商户信息</a>
+                            <a href="/Agent/passwd"><i class="fa fa-fw fa-user"></i> 密码修改</a>
                         </li>
                         <!-- <li>
                             <a href="#"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
@@ -67,7 +67,7 @@
                         </li> -->
                         <li class="divider"></li>
                         <li>
-                            <a href="signout"><i class="fa fa-fw fa-power-off"></i>注销登录</a>
+                            <a href="/Agent/signout"><i class="fa fa-fw fa-power-off"></i>注销登录</a>
                         </li>
                     </ul>
                 </li>
@@ -277,6 +277,7 @@
     
 	<script>
 		$("#tradePic").change(function(){
+			alert("img");
 			var file = this.files[0];	//选择上传的文件
 			var r = new FileReader();
 			r.readAsDataURL(file);	//Base64
