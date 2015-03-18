@@ -478,6 +478,14 @@ input[type="button"] {
    -khtml-border-radius: 3px;
    border-radius: 3px;
 }
+.buttony{
+   color: #fff;
+   background:#F5AD4C;
+   font-weight: bold;
+   font-size: 25px;
+   padding:10px 30px 10px 30px;
+   margin: 0;
+}
 
 .button:hover,
 button:hover,
