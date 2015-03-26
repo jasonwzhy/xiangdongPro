@@ -41,11 +41,11 @@
   
   <!-- 卡片列表 -->
 	<div class="listgoods"style="margin-top:5px;">
-			<volist name="list" id="vo">
+		<if condition="($rowCount gt 0) ">
+			<volist name="list" id="vo" key ="k">
 				<dl class="bgstyle">
         		<div>
-        			<input type="radio" name="cardno" id="cardno" value="<{$vo.card_code}>" checked="true">卡号:<{$vo.card_code}>&nbsp &nbsp &nbsp剩余次数:<{$vo.card_leftnums}>
-
+	       			<input type="radio" name="cardno" id="cardno" value="<{$vo.card_code}>" checked="true" onclick="to_change()">卡号:<{$vo.card_code}>&nbsp &nbsp &nbsp剩余次数:<{$vo.card_leftnums}>
 							<switch name="vo.card_type">
 							    <case value="XDYK199"><p style="font-weight:bold">卡片类型:响动4次月卡 <font style="color:#F49D46;"> ¥199</font> </p></case>
 							    <case value="XDNK199"><p style="font-weight:bold">卡片类型:响动4次年卡 <font style="color:#F49D46;"> ¥199</font> </p></case>
@@ -63,7 +63,13 @@
 			<div class="page bgstyle clearfix clear">
 				<div><{$page}></div>
 			</div><br/>
-			<!-- 分页 END -->	
+			<!-- 分页 END -->
+		<else />
+			<div class="bgstyle indexsub">
+				响动er,您目前没有可使用的卡片记录。速速购买吧:)
+			</div>			
+		</if>
+			
 			<div style="text-align:center;">
 							<ul>
 									<li style="width:25%;float: left;margin-left:10px">
@@ -86,7 +92,7 @@
 		var checkJsApiSupport = false;
 		var card_code='';
 		var obj=document.getElementsByName("cardno");
-		for(i=0;i<obj.length;i++){if(obj[i].checked){card_code=obj[i].value;break;}}		
+		for(i=0;i<obj.length;i++){if(obj[i].checked){card_code=obj[i].value;break;}};
 		
 	  /*
 	   * 注意：
@@ -130,15 +136,7 @@
 					    
 	    //屏蔽右上角菜单
 	    //wx.hideOptionMenu();
-	    
-	    // 分享微信好友
-	    document.querySelector('#btnGift').onclick = function () {
-
-				if(""==card_code){alert("请选择一张卡片");return;}
-
-	    	document.getElementById('mcover').style.display='block';
-			}
-			
+	    wx.showOptionMenu();
 			wx.onMenuShareAppMessage({
 					title: '卡片转赠',
 					desc: '将响动一卡通转赠给朋友',
@@ -146,6 +144,7 @@
 					imgUrl: 'http://www.lifecare.cc/Public/img/gift.png',
 					trigger: function (res) {
 						//alert('用户点击发送给朋友');
+						//alert(card_code);
 					},
 					success: function (res) {
 						alert('转赠成功');
@@ -154,13 +153,13 @@
 					},
 					cancel: function (res) {
 						//alert('已取消');
-						card_code='';
+						//card_code='';
 					},
 					fail: function (res) {
 						alert(JSON.stringify(res));
-						card_code='';
+						//card_code='';
 					}
-			});			
+			});
 			
 			// 分享朋友圈
 			wx.onMenuShareTimeline({
@@ -183,22 +182,71 @@
 	  });
 	  
 		wx.error(function (res) {
-		  alert(res.errMsg+',请确认定位是否打开');
+		  alert(res.errMsg);
 		});
 
 		document.querySelector('#btnActive').onclick= function(){
 	    	var card_code ="";
 				var obj=document.getElementsByName("cardno");
-				for(i=0;i<obj.length;i++)
-				{
-					if(obj[i].checked)
-					{
-				      card_code=obj[i].value;break;
-				  }
-				}
+				for(i=0;i<obj.length;i++){if(obj[i].checked){card_code=obj[i].value;break;}};
 				if(""==card_code){alert("请选择一张卡片");return;}
 	    	self.location="__ROOT__/Wechat/activecard/cardcode/"+card_code;
-		}
+		};
+
+		// 分享微信好友
+		document.querySelector('#btnGift').onclick = function () {
+				if(""==card_code){alert("请选择一张卡片");return;}
+	    	document.getElementById('mcover').style.display='block';
+		};
+		
+		function to_change(){
+			//alert('change');
+				var obj=document.getElementsByName("cardno");
+				for(i=0;i<obj.length;i++){if(obj[i].checked){card_code=obj[i].value;break;}};	
+
+				wx.onMenuShareAppMessage({
+						title: '卡片转赠',
+						desc: '将响动一卡通转赠给朋友',
+						link: 'http://www.lifecare.cc/Wechat/activecard/cardcode/'+card_code,
+						imgUrl: 'http://www.lifecare.cc/Public/img/gift.png',
+						trigger: function (res) {
+							//alert('用户点击发送给朋友');
+							//alert(card_code);
+						},
+						success: function (res) {
+							alert('转赠成功');
+							//alert(JSON.stringify(res));
+							//card_code='';
+						},
+						cancel: function (res) {
+							//alert('已取消');
+							//card_code='';
+						},
+						fail: function (res) {
+							alert(JSON.stringify(res));
+							card_code='';
+						}
+				});
+	
+				// 分享朋友圈
+				wx.onMenuShareTimeline({
+		      title: '响动一卡通转赠',
+		      link: 'http://www.lifecare.cc/Wechat/activecard/cardcode/'+card_code,
+		      imgUrl:  'http://www.lifecare.cc/Public/img/gift.png',
+		      trigger: function (res) {
+		        //alert('用户点击分享到朋友圈');
+		      },
+		      success: function (res) {
+		        //alert('已分享');
+		      },
+		      cancel: function (res) {
+		        //alert('已取消');
+		      },
+		      fail: function (res) {
+		        alert(JSON.stringify(res));
+		      }
+	    	});				
+		};
 
 	</script>	
 </body>

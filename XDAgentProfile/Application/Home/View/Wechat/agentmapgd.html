@@ -126,8 +126,8 @@
 
 			wx.getLocation({
 				    success: function (res) {
-				        mylat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-				        mylng = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+				        mylat = res.latitude-0.006; // 纬度，浮点数，范围为90 ~ -90
+				        mylng = res.longitude+0.002; // 经度，浮点数，范围为180 ~ -180。
 				        //alert(mylng+","+mylat);
 				        var speed = res.speed; // 速度，以米/每秒计
 				        var accuracy = res.accuracy; // 位置精度
@@ -156,8 +156,8 @@
 	  	document.querySelector('#mylocate').onclick = function () {
 				wx.getLocation({
 				    success: function (res) {
-				        mylat = res.latitude; // 纬度，浮点数，范围为90 ~ -90
-				        mylng = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+				        mylat = res.latitude-0.006; // 纬度，浮点数，范围为90 ~ -90
+				        mylng = res.longitude+0.002; // 经度，浮点数，范围为180 ~ -180。
 				        var speed = res.speed; // 速度，以米/每秒计
 				        var accuracy = res.accuracy; // 位置精度
 								mapObj.clearMap();
@@ -353,12 +353,13 @@
 				mapObj.clearMap();
 				
 				mapObj.setZoomAndCenter(14, new AMap.LngLat(mylng,mylat));
+				/*
 				var marker = new AMap.Marker({
 					map: mapObj,
 					icon:"http://www.lifecare.cc/Public/img/me.jpg",
 					offset:new AMap.Pixel(-10,-35),
 					position: new AMap.LngLat(mylng,mylat)
-				});
+				});*/
 								
 				getCurrentPos();
 			});			

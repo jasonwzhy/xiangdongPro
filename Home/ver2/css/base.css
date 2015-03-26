@@ -486,7 +486,9 @@ input[type="button"] {
    padding:10px 30px 10px 30px;
    margin: 0;
 }
-
+.buttony a{
+   color: #fff;
+}
 .button:hover,
 button:hover,
 input[type="submit"]:hover,

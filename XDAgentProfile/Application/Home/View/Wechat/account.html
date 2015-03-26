@@ -31,26 +31,37 @@
 
 		<div class="sortdiv" style="margin-top:-30px;">
 			<ul class="sortList">
-				<li style="min-height:20px">
+				<li style="min-height:45px;pardding:10px;">
 					<a href="__ROOT__/Wechat/bindphone/wx_openid/<{$wx_openid}>">
-							<h3 style="padding: 2px 0px 5px 25px;background: url(__PUBLIC__/img/tel.jpg) no-repeat;">绑定手机
-								<if condition="($bindtel eq '')" >&nbsp&nbsp&nbsp
-									请绑定您的手机号
-								<else />&nbsp&nbsp&nbsp<{$bindtel}>
+							<h3 style="padding: 5px 0px 10px 10px;font-size:17px;">关联手机
+								<if condition="($bindtel eq '')" >&nbsp&nbsp
+									请关联您的手机号
+								<else />&nbsp&nbsp<{$bindtel}>
 								</if>								
 							</h3>
-							<span class="arrow" style="margin-top:-20px"></span>
+							<span class="arrow" style="height:36px;width:36px;margin-top:-35px;margin-right:30px;"><img src="__ROOT__/Public/img/tel.png" style="width:100%;height:100%" /></span>
 					</a>
 				</li>
-				<li style="border-bottom:1px;min-height:20px">
-					<a href="#">
-							<h3 style="padding: 2px 0px 5px 25px;background: url(__PUBLIC__/img/mail.jpg) no-repeat;">绑定邮箱</h3>
-							<span class="arrow" style="margin-top:-20px"></span>
+				<li style="min-height:45px">
+					<a href="__ROOT__/Wechat/bindemail/wx_openid/<{$wx_openid}>">
+							<h3 style="padding:5px 0px 10px 10px;font-size:17px;">关联邮箱
+								<if condition="($email eq '')" >&nbsp&nbsp
+									请关联您的Email
+								<else /><font style="font-size:10px;"><{$email}></font>
+								</if>	
+							</h3>
+							<span class="arrow" style="height:36px;width:36px;margin-top:-35px;margin-right:30px;"><img src="__ROOT__/Public/img/mail.png" style="width:100%;height:100%" /></span>
 					</a>
 				</li>
+				<li style="border-bottom:1px;min-height:45px">
+					<a href="__ROOT__/Wechat/myscore/wx_openid/<{$wx_openid}>">
+							<h3 style="padding: 5px 0px 10px 10px;font-size:17px;">我的积分</h3>
+							<span class="arrow" style="height:36px;width:36px;margin-top:-35px;margin-right:30px;"><img src="__ROOT__/Public/img/jf.png" style="width:100%;height:100%" /></span>
+					</a>
+				</li>				
 			</ul>
 		</div>
-
+		<!--
 		<div class="sortdiv" style="margin-top:-40px;">
 			<ul class="sortList">
 				<li style="min-height:20px">
@@ -65,14 +76,9 @@
 							<span class="arrow" style="margin-top:-20px"></span>
 					</a>
 				</li>				
-				<li style="border-bottom:1px;min-height:20px">
-					<a href="#">
-							<h3 style="padding: 2px 0px 5px 25px;background: url(__PUBLIC__/img/score.jpg) no-repeat;">我的积分</h3>
-							<span class="arrow" style="margin-top:-20px"></span>
-					</a>
-				</li>
+
 			</ul>
-		</div>
+		</div>-->
 
 
 	</div>

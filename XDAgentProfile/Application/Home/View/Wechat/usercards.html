@@ -38,36 +38,49 @@
 			</ul>
 	</div>
   
-  <!-- 卡片列表 -->
-	<div class="listgoods"style="margin-top:5px;">
-			<volist name="list" id="vo">
-				<dl class="bgstyle">
-        	<a href="__ROOT__/Wechat/usercardItem/cardcode/<{$vo.card_code}>/wx_openid/<{$wx_openid}>" >
-        		<div>
-							<switch name="vo.card_type">
-							    <case value="XDYK199"><p style="font-weight:bold">卡片类型:响动4次月卡 <font style="color:#F49D46;"> ¥199</font> </p></case>
-							    <case value="XDNK199"><p style="font-weight:bold">卡片类型:响动4次年卡 <font style="color:#F49D46;"> ¥199</font> </p></case>
-							    <case value="XDNK222"><p style="font-weight:bold">卡片类型:响动6次年卡 <font style="color:#F49D46;"> ¥222</font> </p></case>
-							    <case value="XDNK266"><p style="font-weight:bold">卡片类型:响动8次年卡 <font style="color:#F49D46;"> ¥266</font> </p></case>
-							    <case value="XDNK299"><p style="font-weight:bold">卡片类型:响动10次年卡 <font style="color:#F49D46;"> ¥299</font> </p></case>
-							</switch>
-
-        			卡号:<{$vo.card_code}>&nbsp &nbsp &nbsp剩余次数:<{$vo.card_leftnums}>
-        			<p>购买时间:<{$vo.order_paydt}></p>
-        			<p>激活时间:<{$vo.active_dt}></p>
-        			<strong style="float:left">过期时间:<{$vo.card_expired_dt}></strong>
-        		</div>
-        	</a>
-				</dl>
-			</volist>		
-		
-			<!-- 分页 -->
-			<div class="page bgstyle clearfix clear">
-				<div><{$page}></div>
-			</div>
-			<!-- 分页 END -->	
-	</div>
-
+  <if condition="($rowCount gt 0) ">
+	  <!-- 卡片列表 -->
+		<div class="listgoods" style="margin-top:5px;">
+				<volist name="list" id="vo">
+					<dl class="bgstyle">
+	        	<a href="__ROOT__/Wechat/usercardItem/cardcode/<{$vo.card_code}>/wx_openid/<{$wx_openid}>" >
+	        		<div>
+								<switch name="vo.card_type">
+								    <case value="XDYK199"><p style="font-weight:bold">卡片类型:响动4次月卡 <font style="color:#F49D46;"> ¥199</font> </p></case>
+								    <case value="XDNK199"><p style="font-weight:bold">卡片类型:响动4次年卡 <font style="color:#F49D46;"> ¥199</font> </p></case>
+								    <case value="XDNK222"><p style="font-weight:bold">卡片类型:响动6次年卡 <font style="color:#F49D46;"> ¥222</font> </p></case>
+								    <case value="XDNK266"><p style="font-weight:bold">卡片类型:响动8次年卡 <font style="color:#F49D46;"> ¥266</font> </p></case>
+								    <case value="XDNK299"><p style="font-weight:bold">卡片类型:响动10次年卡 <font style="color:#F49D46;"> ¥299</font> </p></case>
+								</switch>
+	
+	        			卡号:<{$vo.card_code}>&nbsp &nbsp &nbsp剩余次数:<{$vo.card_leftnums}>
+	        			<p>购买时间:<{$vo.order_paydt}></p>
+	        			<p>激活时间:<{$vo.active_dt}></p>
+	        			<strong style="float:left">
+	        				过期时间:
+	        				<if condition="($vo.card_expired_dt eq '1971-01-01 01:01:01') ">
+	        					(未使用)过期时间以第一次使用时间后计算
+	        				<else />
+	        					<{$vo.card_expired_dt}>
+	        				</if>
+	        			</strong>
+	        		</div>
+	        	</a>
+					</dl>
+				</volist>		
+			
+				<!-- 分页 -->
+				<div class="page bgstyle clearfix clear">
+					<div><{$page}></div>
+				</div>
+				<!-- 分页 END -->	
+		</div>
+	<else />
+		<div class="bgstyle indexsub">
+			响动er,您目前没有可使用的卡片记录。速速购买吧:)
+		</div>
+	</if>
+	
 	<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 	<script>
 		var checkJsApiSupport = false;

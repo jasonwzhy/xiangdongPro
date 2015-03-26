@@ -106,7 +106,8 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li class="active">
-                            <i class="fa fa-dashboard"></i> 商家合同信息
+                           
+                            <a href="#"  data-toggle="modal" data-target=".bs-example-modal-lg"> <i class="fa fa-dashboard"></i> 商家合同信息</a>
                         </li>
                     </ol>
                 </div>
@@ -217,19 +218,64 @@
             <elseif condition="$agentdata['agent_state'] eq '审核中' " />
                 <div class="alert alert-warning" role="alert">
                     感谢您关注响动，您提交的申请资料正在审核中！预计3-5个工作日，请耐心等待。
-                    <a href="#" class="alert-link">若有疑问，请联系我们xxxxxxx。</a>
+                    <a href="#" class="alert-link">若有疑问，请联系我们028-85482036。</a>
                 </div>
               
             <else />
                 <div class="alert alert-info" role="alert">
-                    <strong>感谢您注册响动!</strong> 您目前未提交加盟申请！想了解商家加盟的好处或如何加盟响动？
-                    <a href="#" class="alert-link">请点击这里(FAQ)</a>
+                    <strong>感谢您注册响动!</strong> 您目前未提交加盟申请！<!-- 想了解商家加盟的好处或如何加盟响动？
+                    <a href="#" class="alert-link">请点击这里(FAQ)</a> -->
                 </div>
                 <div class="alert alert-success" role="alert">
                     <a href="__ROOT__/Agent/joinmember" class="alert-link"><strong>点击这里，直接进入加盟申请资料提交。</strong></a>
                 </div>
                 
             </if>
+            <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content pact">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <h4 class="modal-title" id="myLargeModalLabel">《响动健身服务注册协议》</h4>
+                        </div>
+                        <div class="modal-body">
+                            <center><h1>《响动健身服务注册协议》合作协议</h1></center>                         
+                            <p>&nbsp&nbsp甲方融合网络平台与社会圈层的优势，为乙方提供企业宣传、产品销售、共享甲方会员等服务，甲乙双方在平等自愿的基础上，达成合作事宜，内容如下：</p>
+                            <p>一、双方的资格及权限</p>
+                            <p>（一）甲方是合法注册的经营企业，有合法的经营范围、充分的经营能力和经验从事本协议中的相关服务业务。</p>
+                            <p>（二）乙方是合法注册的经营企业，乙方应向甲方提交真实有效的资质证明文件，乙方保证对提交的资质证明文件的真实性、合法性和有效性承担全部责任，若因资质证明文件虚假、失效、缺失等产生法律责任的，由乙方独立承担。</p>
+                            <p>（三）乙方根据本协议在甲方网站上开展的业务经营和用户服务，其权利仅限于本协议所约定的内容，且只能由乙方自行单独行使，不得以任何方式转让该权利或与其他方共同使用。</p>
+                            <p>（四）甲方在与乙方合作的同时，有权与甲方以外的第三方进行合作。</p>
+                            <p>二、合作内容及方式</p>
+                            <p>（一）甲方向乙方开放其网站平台，宣传展示乙方向甲方提供的经营相关文字、图片等信息。</p>
+                            <p>（二）甲方为乙方推介甲方健身客户到店消费，甲方以人民币20元/人/次（大写贰拾元）的价格向乙方支付甲方对健身客户的预收款，乙方不得拒绝提供服务。</p>
+                            <p>（三）甲方代售乙方年卡，乙方向甲方支付成交金额的3%作为销售佣金，甲方在向乙方支付代售年卡的款项中直接予以扣除销售佣金。</p>
+                            <p>（四）乙方在向用户提供服务前，应通过甲方验证平台进行验证，未通过验证，甲方不予确认付款。验证成功后，甲方次日支付代收次卡次费及代收年卡年费至乙方指定账户（遇节假日顺延）。</p>
+                            <p>三、协议期限</p>
+                            <p>&nbsp&nbsp有效期从_______年_____月_____日至_______年_____月_____日。</p>
+                            <p>四、费用的承担</p>
+                            <p>（一）甲方自行承担甲方网站的建立、维护费用以及甲方为乙方宣传、组织健身客户的费用。</p>
+                            <p>（二）乙方无需向甲方支付推广费用。</p>
+                            <p>五、违约责任</p>
+                            <p>&nbsp&nbsp除非另有约定，否则甲乙任何一方未履行本协议约定的，在守约方要求改正的期限内未予以改正或改正后仍不符合本协议约定的，守约方有权解除协议，违约方须承担相应的违约责任。 , 性别，宗教歧视性和猥亵性的信息内容。</p>
+                            <p>&nbsp&nbsp对于由乙方提供给甲方会员的服务所产生，或与乙方提供给甲方会员服务相关的其他商品或服务所引发的任何索赔、诉讼或要示而导致的甲方损失或损害（包括但不仅于诉讼费、律师费、调查费、鉴定费等），乙方均应予以赔偿，并确保甲方不受损害。</p>
+                            <p>六、责任免除</p>
+                            <p>&nbsp&nbsp因战争、自然灾害等不可抗力导致本协议无法履行的，双方互不承担违约责任。</p>
+                            <p>七、协议的终止</p>
+                            <p>（一）本协议在符合以下条件时终止：</p>
+                            <p>&nbsp&nbsp1、本协议期满未达到延期条件的；</p>
+                            <p>&nbsp&nbsp2、双方达成一致提前终止协议的，除上述情形外，协议双方不得擅自终止协议。</p>                         
+                            <P>（二）本协议终止后，甲乙双方有未结算款项的，双方按照约定的结算方式结算。</P>
+                            <p>（三）本协议期满后终止，终止前双方均有意愿继续合作的，由双方另订协议延长。双方未及时订立延长协议的，视为按本协议规定的内容执行，有效期不定期延长，期间双方均有任意解除权。</p>
+                            <p>八、协议争议解决</p>
+                            <p>&nbsp&nbsp凡因本协议与本协议有关的一切争议，由甲乙双方共同协商，如协商不成，提交甲方公司所在地（成都市武侯区）人民法院管辖。</p>
+                            <p>&nbsp&nbsp本协议一式二份，双方各执一份，具有同等法律效力，协议修改须另行签署补充协议。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
         <!-- /.container-fluid -->

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=0,minimum-scale=1.0, maximum-scale=1.0">
+	<meta content="telephone=no" name="format-detection" />
+	<title>查找响动签约店</title>
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Public/Wechat/css/common.css" />
+	<link rel="stylesheet" type="text/css" href="__ROOT__/Public/Wechat/css/other.css" />
+	<script src="__ROOT__/Public/Wechat/js/jquery.min.js" type="text/javascript"></script>
+	<script src="__ROOT__/Public/Wechat/js/alert.js" type="text/javascript"></script>
+</head>
+<body>
+		<div style="height:200px">
+			<img  src="__ROOT__/Public/img/lbs.jpg" style="width:100%;height:100%" />
+			<div style="position: relative;z-index: 99999;background-color: black;filter:alpha(opacity:30);opacity:0.8;">
+				<h3 style="color:white;margin-left:15px;font-size:20px;margin-top: -35px;">自定义查询响动签约店</h3>
+			</div>
+		</div>
+		
+		<div class="listgoods" id="TotalGoodsDiv" style="margin-top:5px">
+			<div class="bgstyle textcontent evaluation">
+			  <div class="evalinput clearfix clear">
+			  	<form id="subForm">
+					 <dl>
+							<dt>城市:</dt>
+								<dd>
+									<select name="selCity" id="selCity"  class="a1 radius5"  style="width:80%;"> 
+							        <option value="成都">成都</option> 
+							        <option value="北京">北京</option> 
+							        <option value="南京">南京</option> 
+							    </select>
+							</dd>
+					 </dl>
+					 <dl>
+
+					 <lable name="wx_openid" id="wx_openid" type="text" class="a1 radius5"  style="display:none" ><{$wx_openid}></lable>
+					 <lable name="lng" id="lng" type="text" class="a1 radius5"  style="display:none" ><{$lng}></lable>
+					 <lable name="lat" id="lat" type="text" class="a1 radius5"  style="display:none" ><{$lat}></lable>
+							<dt>类型:</dt>
+							<dd style="padding-bottom:40px">
+								<input type="checkbox" name="chbx" value="健身">健身房
+								<input type="checkbox" name="chbx" value="瑜伽">瑜伽馆<br>
+								<input type="checkbox" name="chbx" value="羽毛球">羽毛球
+								<input type="checkbox" name="chbx" value="游泳">游泳馆<br>
+							</dd>
+					 </dl>
+			 
+					 <dl>
+							<dt>关键字:</dt>
+							<dd>
+								<input name="keyword" id="keyword" class="a1 radius5"  style="width:80%;">
+							</dd>
+					 </dl>
+					 <div class="clear martop15" style=" margin-left:90px;">
+							<input class="msubm radius5" type="button" id="btnSubmit" value="查 询">
+					</div>
+			  </div>
+	    </div>		  
+			
+ 			</div>
+
+</div>
+
+<script type="text/javascript">
+	$(function(){
+				
+		$('#btnSubmit').bind('click', function() {
+			var obj=document.getElementsByName('chbx');  //选择所有name="'test'"的对象，返回数组    
+			  //取到对象数组后，我们来循环检测它是不是被选中    
+			  var s='';var formData="";
+			  var lng = $('#lng').text();
+			  var lat = $('#lat').text();
+			  for(var i=0; i<obj.length; i++){    
+			    if(obj[i].checked) s+=obj[i].value+',';
+			  }    
+				if(''==s)
+				{
+					formData = 'lng/'+lng+'/lat/'+lat+'/selCity/'+$('#selCity').val()+'/keyword/'+$('#keyword').val();
+				}
+				else
+				{
+					formData = 'lng/'+lng+'/lat/'+lat+'/selCity/'+$('#selCity').val()+'/chbx/'+s+'/keyword/'+$('#keyword').val();
+				}
+				
+				//var formData = $('#subForm').serialize();
+				
+				console.info(formData);
+				window.location.href="__ROOT__/Wechat/searchRlts/"+formData;
+		});
+				
+	});
+	
+</script>
+
+
+</body>
+</html>

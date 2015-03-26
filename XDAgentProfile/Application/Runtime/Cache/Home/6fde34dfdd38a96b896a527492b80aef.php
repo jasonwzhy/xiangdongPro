@@ -277,7 +277,6 @@
     
 	<script>
 		$("#tradePic").change(function(){
-			alert("img");
 			var file = this.files[0];	//选择上传的文件
 			var r = new FileReader();
 			r.readAsDataURL(file);	//Base64

@@ -183,7 +183,7 @@ class WechatController extends Controller {
 					'lon'=>$v['lon'],
 					'lat'=>$v['lat'],
 					'tel'=>$v['contractor_tel'],		
-				);				
+				);
 			}
 			$total = count($rowsData);
 			$rowsData2 = $this->array_sort($rowsData,'distance');
@@ -237,6 +237,13 @@ class WechatController extends Controller {
     public function activecard(){
     	$this->assign("cardcode",$_GET["cardcode"]);
     	$this->assign("wx_openid",$this->wx_openid);
+    	
+			$signPackage = $this->getSignPackage();
+			$this->assign('appId',$signPackage['appId']);
+			$this->assign('timestamp',$signPackage['timestamp']);
+			$this->assign('nonceStr',$signPackage['nonceStr']);
+			$this->assign('signature',$signPackage['signature']);
+			
 			$this->show();
     }
     
@@ -289,9 +296,10 @@ class WechatController extends Controller {
 					$active_dt = date("Y-m-d H:i:s",time());
 					$row["active_dt"] = $active_dt;
 					$row["active_timestamp"] = time();
+					
 					$expired_days = $cardRow["expired_days"];
-					$row["card_expired_timestamp"] = $row["active_timestamp"] + $expired_days * 24 * 60 * 60;
-					$row["card_expired_dt"] =  date('Y-m-d H:i:s', $row["card_expired_timestamp"]); 
+					//$row["card_expired_timestamp"] = $row["active_timestamp"] + $expired_days * 24 * 60 * 60;
+					//$row["card_expired_dt"] =  date('Y-m-d H:i:s', $row["card_expired_timestamp"]); 
 
 					$result = $FindCardActive->where($data)->save($row);
 					unset($row);
@@ -327,7 +335,7 @@ class WechatController extends Controller {
 			$tbldata  = new \Think\Model("cardactive");
 			$currenttime = time();
 			$wx_openid = $_REQUEST['wx_openid'];
-			$str_where = "(card_leftnums >0 ) and ( card_expired_timestamp >=".$currenttime ." ) and (wx_openid = '".$wx_openid."')";
+			$str_where = "(card_leftnums >0 and card_expired_timestamp >=".$currenttime ."  and wx_openid = '".$wx_openid."') "." or ( wx_openid = '".$wx_openid."' and firstuse_dt is NULL) ";
 			$cardrows = $tbldata->field("card_code,card_leftnums")->where($str_where)->select();
 			
 			$this->assign("cardlist",$cardrows);
@@ -408,6 +416,17 @@ class WechatController extends Controller {
 						$msg = "您编号:".$orderRow["card_code"]."的响动卡还剩".$time_left."次";
 					}
 					
+					// 判断是否是第一次消费并且不是赠送的月卡记录,设定卡片过期时间
+					if(($orderRow["card_leftnums"] == $orderRow["card_totalnums"])&&(0 == $orderRow["card_gift_flag"]))
+					{
+						$expired_days = $orderRow["expired_days"];
+						$orderRow["firstuse_timestamp"]= time();
+						$orderRow["firstuse_dt"]= date("Y-m-d H:i:s",$orderRow["firstuse_timestamp"]);
+						
+						$orderRow["card_expired_timestamp"] = $orderRow["firstuse_timestamp"] + $expired_days * 24 * 60 * 60;
+						$orderRow["card_expired_dt"] =  date('Y-m-d H:i:s', $orderRow["card_expired_timestamp"]); 
+					}
+					
 					$orderRow["card_leftnums"] = $time_left;					
 					$result_card = $tblactivecard->save($orderRow);
 									
@@ -452,7 +471,7 @@ class WechatController extends Controller {
 					$CODE= $_GET['code'];
 			    //echo "code:".$_GET['code']."<br>";
 			}else{
-			    echo "网络数据异常,请稍候重试!";
+			    echo "<h3>网络数据异常,请稍候重试!</h3>";
 			    return;
 			}
 			$wx_openid = $this->getOpenid($CODE);
@@ -471,7 +490,7 @@ class WechatController extends Controller {
 		public function usercards(){
     	if(!isset($_REQUEST['wx_openid']))
     	{
-    		echo '数据获取失败,请在微信里打开!';
+    		echo '<h3>数据获取失败,请在微信里打开!</h3>';
     		return;
     	}
     				
@@ -516,6 +535,7 @@ class WechatController extends Controller {
 			$ordertel = $this->getOrderTelByOpenid($this->wx_openid);
 			$totalbuynums = $this->getTotalbuynumsByTel($ordertel);
 			$this->assign('totalbuynums',$totalbuynums);
+			$this->assign('rowCount',$count);
 			
 			$this->show();
 		}
@@ -561,6 +581,14 @@ class WechatController extends Controller {
 			
 			$this->assign("page", $page);
 			$this->assign("list", $rows);
+			$this->assign('rowCount',$count);
+			
+			$signPackage = $this->getSignPackage();
+			$this->assign('appId',$signPackage['appId']);
+			$this->assign('timestamp',$signPackage['timestamp']);
+			$this->assign('nonceStr',$signPackage['nonceStr']);
+			$this->assign('signature',$signPackage['signature']);
+						
 			$this->show();
 
 		}
@@ -576,6 +604,24 @@ class WechatController extends Controller {
 				$ordertel = $wxRow["phone"];
 			}
 			return $ordertel;
+		}
+		
+		// 根据openid获取用户信息
+		private function getUserInfosByOpenid($wx_openid){
+			$tbl_wxusers = new \Think\Model("wx_users");
+			$find['wx_openid']  = $_REQUEST['wx_openid'];
+			$wxRow = $tbl_wxusers->where($find)->find();
+			$ordertel ="";
+
+			if($wxRow !=  null)
+			{
+				$usrInfos = array(
+					'phone' =>$wxRow["phone"],
+					'email' =>$wxRow["email"],
+					'headpic' =>$wxRow["headpic"],
+				);
+			}
+			return $usrInfos;			
 		}
 
 		// 根据openid获取头像地址
@@ -656,6 +702,7 @@ class WechatController extends Controller {
 			$this->assign('signature',$signPackage['signature']);
 			
 			$this->assign('totalbuynums',$totalbuynums);
+			$this->assign('rowCount',$count);
 			
 			$this->show();
 		}		
@@ -719,6 +766,65 @@ class WechatController extends Controller {
 				return;
 			}	    	
 		}
+		
+		// 微信绑定Email页面
+		public function bindemail(){
+			if (isset($_GET['code'])){
+					$CODE= $_GET['code'];
+			    //echo "code:".$_GET['code']."<br>";
+			    $wx_openid = $this->getOpenid($CODE);
+			}else{
+				if(!isset($_REQUEST['wx_openid']))
+	    	{
+	    		echo '数据获取失败,请在微信里打开!';
+	    		return;
+	    	}
+	    	$wx_openid = $_REQUEST['wx_openid'];
+			}
+			
+			$this->assign("wx_openid",$wx_openid);
+			$this->show();			
+		}
+		
+		// 手机号和微信绑定函数
+		public function bindemailfun(){
+    	if(!isset($_REQUEST['wx_openid']))
+    	{
+    		echo '卡片激活失败,请在微信里打开!';
+    		return;
+    	}
+
+			$result = false;
+			//查找是否在激活订单里面,如果没有通知客户联系客服解决
+			
+			$tbl_wxusers = new \Think\Model("wx_users");
+			$find['wx_openid']  = $_REQUEST['wx_openid'];
+			$wxRow = $tbl_wxusers->where($find)->find();
+
+			if($wxRow !=  null)
+			{
+				$data["email"] = $_REQUEST['email'];
+				$tbl_wxusers->where($find)->save($data);
+				//$this->sendTplMsg_BindPhone($_REQUEST['wx_openid'],$_REQUEST['phone']);
+				
+				echo json_encode(array('success'=>true,'msg'=>'微信绑定Email成功!'));
+				return;
+
+			}
+			else
+			{
+				$data["wx_openid"] = $_REQUEST['wx_openid'];
+				$data["email"] = $_REQUEST['email'];
+				$data["sex"] = 0;
+				$data["fakeid"] = 0;
+
+				$tbl_wxusers->add($data);
+				//$this->sendTplMsg_BindPhone($_REQUEST['wx_openid'],$_REQUEST['phone']);
+				
+				echo json_encode(array('success'=>true,'msg'=>'微信绑定Email成功!'));
+				return;
+			}	    	
+		}		
 
 		// 我的账号页面
 		public function account(){
@@ -730,15 +836,113 @@ class WechatController extends Controller {
 			$this->assign('nonceStr',$signPackage['nonceStr']);
 			$this->assign('signature',$signPackage['signature']);
 			
-			$tel = $this->getOrderTelByOpenid($this->wx_openid);
-			$this->assign('bindtel',$tel);
+			$usrInfos = $this->getUserInfosByOpenid($this->wx_openid);
+			//$tel = $this->getOrderTelByOpenid($this->wx_openid);
+			$this->assign('bindtel',$usrInfos['phone']);
+			$this->assign('email',$usrInfos['email']);
 			
-			$headpic = $this->getHeadpicByOpenid($this->wx_openid);
-			$this->assign('headpic',$headpic);
+			//$headpic = $this->getHeadpicByOpenid($this->wx_openid);
+			$this->assign('headpic',$usrInfos['headpic']);
     	
     	$this->show();
 		}
+		
+		// 我的积分页面
+		public function myscore(){
+    	$this->assign("wx_openid",$this->wx_openid);
+			$signPackage = $this->getSignPackage();
+			$this->assign('appId',$signPackage['appId']);
+			$this->assign('timestamp',$signPackage['timestamp']);
+			$this->assign('nonceStr',$signPackage['nonceStr']);
+			$this->assign('signature',$signPackage['signature']);
 
+    	$this->show();
+    }
+
+		// 我的发票页面
+		public function myreceipt(){
+    	$this->assign("wx_openid",$this->wx_openid);
+			$signPackage = $this->getSignPackage();
+			$this->assign('appId',$signPackage['appId']);
+			$this->assign('timestamp',$signPackage['timestamp']);
+			$this->assign('nonceStr',$signPackage['nonceStr']);
+			$this->assign('signature',$signPackage['signature']);
+
+    	$this->show();
+    }
+    
+    public function searchshop(){
+   		$lng=isset($_REQUEST['lng'])?$_REQUEST['lng']:0.0;
+   		$lat=isset($_REQUEST['lat'])?$_REQUEST['lat']:0.0;
+   		
+   		$this->assign("lng",$lng);
+   		$this->assign("lat",$lat);
+    	$this->show();
+    }
+    
+    // 关键字查询店结果页面
+    public function searchRlts(){
+    	$city=isset($_REQUEST['selCity'])?$_REQUEST['selCity']:'成都';
+    	$lng=isset($_REQUEST['lng'])?$_REQUEST['lng']:0.0;
+    	$lat=isset($_REQUEST['lat'])?$_REQUEST['lat']:0.0;
+    	
+    	$shop_descr = $_REQUEST['chbx'];
+
+			if(""!=$shop_descr)
+			{
+				$shop_descr=substr($shop_descr,0,-1);
+    		$strSql = "shopcity='".$city."'"." and descrp like '%".$shop_descr."%' ";
+    	}
+    	else
+    	{
+    		$strSql = "shopcity='".$city."'";
+    	}
+    	$keyword = isset($_REQUEST['keyword'])?$_REQUEST['keyword']:'';
+    	if(""!=$keyword)
+    	{
+    		$strSql.=" and ( descrp like '%".$keyword."%' or shopname like '%".$keyword."%')";
+    	}
+
+  		//var_dump($strSql);
+    	
+			$tbl = M('agents_shops')->where($strSql);
+			//import("@.ORG.Page");             //导入分页类
+			$count = $tbl->count();        //计算总数
+			$p =  new  \Think\Page($count, 10);
+			$rows = $tbl->where($strSql)->limit($p->firstRow . ',' . $p->listRows)->order('id asc')->select();
+			
+			$p->setConfig('header','条');
+			$p->setConfig('prev', "上一页");//上一页
+			$p->setConfig('next', '下一页');//下一页
+			$p->setConfig('first', '|<');//第一页
+			$p->setConfig('last', ">|");//最后一页
+			//$p -> setConfig ('theme','%totalRow% %header% %nowPage%/%totalPage% 页 %upPage% %downPage% %first% %prePage% %linkPage% %nextPage% %end%' );
+			$p -> setConfig ('theme','%totalRow% %header% %nowPage%/%totalPage% %upPage% %downPage%' );
+			$page = $p->show();
+			
+			//$page->setConfig('header','个会员');
+			//var_dump($page);
+			$page = str_replace("index.php/","",$page);
+			
+			$this->assign("page", $page);
+			$this->assign("list", $rows);
+
+			$signPackage = $this->getSignPackage();
+			$this->assign('appId',$signPackage['appId']);
+			$this->assign('timestamp',$signPackage['timestamp']);
+			$this->assign('nonceStr',$signPackage['nonceStr']);
+			$this->assign('signature',$signPackage['signature']);
+			
+			$ordertel = $this->getOrderTelByOpenid($this->wx_openid);
+			$totalbuynums = $this->getTotalbuynumsByTel($ordertel);
+			$this->assign('totalbuynums',$totalbuynums);
+			$this->assign('rowCount',$count);
+			$this->assign('lng',$lng);
+			$this->assign('lat',$lat);
+			
+			$this->show();
+    }
+    		
 		// 授权页面
 		public function oauth(){
 			if (isset($_GET['code'])){
@@ -765,7 +969,43 @@ class WechatController extends Controller {
 			$this->show();
 						
 		}
+		
+		// 定位商户页面
+		public function shopinfo(){
+    	$this->assign("wx_openid",$this->wx_openid);
+			$signPackage = $this->getSignPackage();
+			$this->assign('appId',$signPackage['appId']);
+			$this->assign('timestamp',$signPackage['timestamp']);
+			$this->assign('nonceStr',$signPackage['nonceStr']);
+			$this->assign('signature',$signPackage['signature']);
+			$distance=isset($_REQUEST['distance'])?$_REQUEST['distance']:'';
+			$lng=isset($_REQUEST['lng'])?$_REQUEST['lng']:0.0;
+			$lat=isset($_REQUEST['lat'])?$_REQUEST['lat']:0.0;
+			
+			//根据店铺id获取信息
+			$tbldata  = new \Think\Model("agents_shops");
+			
+			$data_find['id']  = $_REQUEST['id'];
+			$shopRow = $tbldata->where($data_find)->find();
+			
+			if($shopRow !=  null)
+			{
+				$this->assign('lat',$shopRow['lat']);
+				$this->assign('lng',$shopRow['lon']);
+				$this->assign('name',$shopRow['shopname']);
+				$this->assign('addr',$shopRow['shopaddress']);
+				$this->assign('shoptel',$shopRow['contractor_tel']);
+				if(''== $distance)
+				{
+					$distance = $this->getDistance($lat,$lng,$shopRow['lat'],$shopRow['lon']);
+				}
+				
+				$this->assign('distance',$distance);
+			}
 
+    	$this->show();		
+		}
+		
 	  public function getAccessToken(){
 			// access_token 应该全局存储与更新，以下代码以写入到文件中做示例
 			//$path = "../App/Public/Upfiles";
@@ -899,7 +1139,7 @@ class WechatController extends Controller {
 				'topcolor'=>"#7B68EE",
 				'data'=>array(
 					'first'=>array('value'=>urlencode("亲,您已经成功绑定微信和手机号!"),'color'=>"#743A3A"),
-					'keyword1'=>array('value'=>urlencode($openid),'color'=>"#743A3A"),
+					'keyword1'=>array('value'=>urlencode(substr_replace($openid,"********************",3,20)),'color'=>"#743A3A"),
 					'keyword2'=>array('value'=>urlencode($phone),'color'=>'#743A3A'),
 					'keyword3'=>array('value'=>urlencode("查看卡片信息,消费记录,购买记录等"),'color'=>'#743A3A'),
 				

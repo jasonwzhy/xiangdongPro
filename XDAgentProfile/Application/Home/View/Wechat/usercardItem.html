@@ -14,20 +14,25 @@
   </div>
   
   <!-- 列表 -->
-	<div class="listgoods" style="margin-top:5px;">
-			<volist name="list" id="vo">
-				<dl class="bgstyle">
-					<li>卡号:<{$vo.card_code}>,消费地方:<{$vo.shopname}>&nbsp&nbsp城市:<{$vo.shopcity}><strong style="float:right">使用期时间:<{$vo.used_dt}></strong></li>
-				</dl>
-			</volist>		
-		
-			<!-- 分页 -->
-			<div class="page bgstyle clearfix clear">
-				<div><{$page}></div>
-			</div>
-			<!-- 分页 END -->	
-	</div>
-
+  <if condition="($rowCount gt 0) ">
+		<div class="listgoods" style="margin-top:5px;">
+				<volist name="list" id="vo">
+					<dl class="bgstyle">
+						<li>卡号:<{$vo.card_code}>,消费地方:<{$vo.shopname}>&nbsp&nbsp城市:<{$vo.shopcity}><strong style="float:right">使用期时间:<{$vo.used_dt}></strong></li>
+					</dl>
+				</volist>		
+			
+				<!-- 分页 -->
+				<div class="page bgstyle clearfix clear">
+					<div><{$page}></div>
+				</div>
+				<!-- 分页 END -->	
+		</div>
+	<else />
+		<div class="bgstyle indexsub">
+			响动er,您目前还没有健身记录。马上动起来:)
+		</div>
+	</if>
 </div>
 </body>
 </html>
