@@ -346,7 +346,8 @@ class AgentController extends Controller {
                             "contractor"        =>  $_POST["contractor"],
                             "contractor_tel"    =>  $_POST["contractor_tel"],
                             "shopdesc"          =>  $_POST["shopdesc"],
-                            "shoptype"          =>  $_POST["shoptype"]
+                            "shoptype"          =>  $_POST["shoptype"],
+                            "contact_tel"       =>  $_POST["shopcontactTel"]
                         );
                         $shopdata = $agentshop->add($agentshopdata);
                         if (!$shopdata) {

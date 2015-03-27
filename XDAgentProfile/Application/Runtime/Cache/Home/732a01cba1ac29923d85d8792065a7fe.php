@@ -251,6 +251,12 @@
 					</li>
 					<li class="list-group-item">
 						<div class="row">
+							<label for="shopcontactTel" class="col-md-3">店铺联系电话</label>
+							<div class="col-md-5"><input type="number" class="form-control" id="shopcontactTel" name="shopcontactTel" placeholder="店铺联系电话" required="required"></div>
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
 							<label for="shopmanagerTel" class="col-md-3">店铺项目</label>
 							<div class="col-md-5">
 								<input type="checkbox" id="inlineCheckbox1" value="器械"> 器械
