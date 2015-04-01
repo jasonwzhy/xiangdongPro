@@ -504,6 +504,7 @@ class AgentController extends Controller {
             $this->assign('waitSecond',3);
             $this->assign("jumpUrl",__ROOT__."/Agent/signin");
             $this->success('请先登录... 页面跳转中...');
+            
         }
     }
     public function delshoppic($AgentsId,$fname){
