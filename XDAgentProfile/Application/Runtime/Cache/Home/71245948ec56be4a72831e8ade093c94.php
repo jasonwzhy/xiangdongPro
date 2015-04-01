@@ -203,6 +203,7 @@
                                     
                                     <button  type="button" class="btn btn-primary btn-block " onclick="window.location.href='createqr/qrcode/<?php echo ($shopitem["qrcode"]); ?>'">生成二维码</button>
 
+                                    <button type="button" class="btn btn-primary btn-block">删除店铺</button>
                                 </div>
                             </div>
                         </div><?php endforeach; endif; endif; ?>

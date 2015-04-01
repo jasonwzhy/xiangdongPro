@@ -493,6 +493,32 @@ class AgentController extends Controller {
             $this->success('请先登录... 页面跳转中...');
         }
     }
+    public function delshop(){
+        if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $render['error'] = "";
+            $agentdata = $agent->where($condition)->find();
+        }else{
+            $this->assign('waitSecond',3);
+            $this->assign("jumpUrl",__ROOT__."/Agent/signin");
+            $this->success('请先登录... 页面跳转中...');
+        }
+    }
+    public function delshoppic($AgentsId,$fname){
+        if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $render['error'] = "";
+        }
+        else{
+            $this->assign('waitSecond',3);
+            $this->assign("jumpUrl",__ROOT__."/Agent/signin");
+            $this->success('请先登录... 页面跳转中...');
+        }
+    }
     public function faq(){
         echo "";
     }

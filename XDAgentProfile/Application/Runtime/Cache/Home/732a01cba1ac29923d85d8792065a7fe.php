@@ -428,6 +428,7 @@
 				contentType: false,
 				processData: false,
 				success: function (returndata) {
+					console.log(returndata);
 					addpic(returndata.savepath+returndata.savename);
 					$("#shoppic").val('');
 					alert("上传成功");
@@ -450,6 +451,7 @@
 			var contractor = $("#shopmanager").val() ? $("#shopmanager").val() : warring("店铺经理");
 			var contractor_tel = $("#shopmanagerTel").val() ? $("#shopmanagerTel").val() : warring("联系电话");
 			var shopdesc = $("#shopdesc").val();
+			var shopcontacttel = $("#shopcontactTel").val();
 			var shoptype = "";
 			$("input[type='checkbox']:checked").each(function(){
 				shoptype=$(this).val()+","+shoptype;
@@ -473,7 +475,8 @@
     					contractor_tel:contractor_tel,
     					shopdesc:shopdesc,
     					shoptype:shoptype,
-    					shoppicpaths:shoppicpaths
+    					shoppicpaths:shoppicpaths,
+    					shopcontacttel:shopcontacttel
     				},
     				function(ret){
     					if ("" != ret.error ) {
