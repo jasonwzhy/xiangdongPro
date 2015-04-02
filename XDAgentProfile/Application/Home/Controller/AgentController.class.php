@@ -163,7 +163,6 @@ class AgentController extends Controller {
     	}
     }
     
-
     public function signout(){
         unset($_SESSION['agentid']);
         //redirect('signin',1,'页面跳转中...');
@@ -439,7 +438,7 @@ class AgentController extends Controller {
     		$this->assign('waitSecond',3);
     		$this->assign("jumpUrl",__ROOT__."/Agent/signin");
 	    	$this->success('请先登录');            
-}
+        }
     }
     public function createqr(){
         if (isset($_GET['qrcode'])){
@@ -493,18 +492,49 @@ class AgentController extends Controller {
             $this->success('请先登录... 页面跳转中...');
         }
     }
-    public function delshop(){
+    public function delshop($shopId){
         if (isset($_SESSION['agentid'])) {
             $agent = M('agents');
+            $agentshop = M('agents_shops');
+            $agentshoppic = M('agents_albums');
+
             $agentid = $_SESSION['agentid'];
             $condition['id'] = $agentid;
             $render['error'] = "";
+
             $agentdata = $agent->where($condition)->find();
+            if ($agentdata) {
+                $delshopcondition = array(
+                    "id"        =>  $shopId,
+                    "agentid"   =>  $agentid
+                );
+                $agentshop->where($delshopcondition)->delete();
+                $delshoppiccon=array(
+                    "agentid"       =>  $agentid,
+                    "options"       =>  2,
+                    "optionsvalue"  =>  $shopId
+                );
+                $shoppics = $agentshoppic->where($delshoppiccon)->select();
+                foreach ($shoppics as $spitem) {
+                    # code...
+                    $imgpath = ".".$spitem["imgpath"];
+                    unlink($imgpath);
+                    
+                }
+                $agentshoppic->where($delshoppiccon)->delete();
+                $this->ajaxReturn($imgpath);
+                
+                # code...
+            }
+            else//agent not exist
+            {
+                
+            }
         }else{
             $this->assign('waitSecond',3);
             $this->assign("jumpUrl",__ROOT__."/Agent/signin");
             $this->success('请先登录... 页面跳转中...');
-            
+
         }
     }
     public function delshoppic($AgentsId,$fname){

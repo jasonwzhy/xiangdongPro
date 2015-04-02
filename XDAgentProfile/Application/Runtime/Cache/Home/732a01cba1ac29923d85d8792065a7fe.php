@@ -485,7 +485,7 @@
 						}
 						else{
 							alert("店铺创建成功!");
-							window.location.href="/Agent/index";
+							window.location.href="/Agent/shopsview";
 						}
     				}
 

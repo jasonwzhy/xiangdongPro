@@ -202,8 +202,9 @@
                                     <!-- <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%"> -->
                                     
                                     <button  type="button" class="btn btn-primary btn-block " onclick="window.location.href='createqr/qrcode/<?php echo ($shopitem["qrcode"]); ?>'">生成二维码</button>
-
-                                    <button type="button" class="btn btn-primary btn-block">删除店铺</button>
+                                    <button class="btn btn-success btn-block" id="<?php echo ($shopitem["id"]); ?>">编辑店铺</button>
+                                    <button type="button" class="btn btn-danger btn-block" id="<?php echo ($shopitem["id"]); ?>" onclick="delshop(this.id)">删除店铺</button>
+                                    
                                 </div>
                             </div>
                         </div><?php endforeach; endif; endif; ?>
@@ -252,6 +253,22 @@
      -->
     
     
+    <script>
+        function delshop(sid){
+            //var shopid = $(this).attr("id");
+            if (confirm("删除店铺后,店铺数据及此店铺二维码将无法使用,确定删除店铺?")) {
+                $.get("/Agent/delshop/shopId/"+sid,function(ret){
+                        console.log(ret);
+                        window.location.href="/Agent/shopsview";
+                    }
+                );
+            }else{
+                return false;
+            }
+        }
+
+    </script>
+
 
 </body>
 

@@ -162,7 +162,7 @@
 						$("#upImgBtn").attr("disabled",false).text("重新上传");
 						$("#upImgBtn").unbind();
 						$("#imgpath").val(returndata.savename);
-						alert($("#imgpath").val());
+						//alert($("#imgpath").val());
 						$("#upImgBtn").click(function(e){
 							//删除img->隐藏button->显示input
 							$("#tradeimg").remove();
@@ -170,7 +170,7 @@
 							$("#tradePic").show();
 							$("#tradePic").val("");
 							$("#imgpath").val("");
-							alert($("#imgpath").val());
+							//alert($("#imgpath").val());
 							//$("#tradePic").show().attr('value','');
 						});
 				    },
