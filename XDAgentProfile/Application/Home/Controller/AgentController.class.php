@@ -30,10 +30,10 @@ class AgentController extends Controller {
             $render['error'] = "";
             $Verify = new \Think\Verify();
             $code = $_POST['verifycode'];
-            if (!$Verify->check($code)) {
-                $render['error'] = "验证码错误";
-                $this->ajaxReturn($render);//error
-            }
+            // if (!$Verify->check($code)) {
+            //     $render['error'] = "验证码错误";
+            //     $this->ajaxReturn($render);//error
+            // }
             //if verify is right
     		if(isset($_POST['emaillogin']) && NULL != $_POST['emaillogin'] && NULL != $_POST['loginpwd']){
     			$condition['contract_loginname'] = $_POST['emaillogin'];
@@ -146,7 +146,7 @@ class AgentController extends Controller {
                     $retid=$AgentSginup->add($agdata);
                     if ($retid) {
                         $_SESSION['agentid'] = $retid;
-                        $agentdir = "./Uploads/".$retid;
+                        $agentdir = "./Uploads/Agents/".$retid;
                         mkdir($agentdir);
                         $this->ajaxReturn($render);
                     }
@@ -528,7 +528,7 @@ class AgentController extends Controller {
             }
             else//agent not exist
             {
-                
+                $this->signout();
             }
         }else{
             $this->assign('waitSecond',3);
@@ -550,6 +550,40 @@ class AgentController extends Controller {
             $this->success('请先登录... 页面跳转中...');
         }
     }
+    public function editshop($shopId)
+    {
+         if (isset($_SESSION['agentid'])) {
+            $agent = M('agents');
+            $agentshop = M('agents_shops');
+            $agentshoppic = M('agents_albums');
+
+            $agentid = $_SESSION['agentid'];
+            $condition['id'] = $agentid;
+            $render['error'] = "";
+
+            $agentdata = $agent->where($condition)->find();
+            if ($agentdata) 
+            {
+                if(IS_POST){
+
+                }
+                else
+                {
+                    $this->display('Agent/editshop');
+                }
+            }
+            else//agent not exist
+            {
+                $this->signout();
+            }
+        }else{
+            $this->assign('waitSecond',3);
+            $this->assign("jumpUrl",__ROOT__."/Agent/signin");
+            $this->success('请先登录... 页面跳转中...');
+
+        }
+    }
+
     public function faq(){
         echo "";
     }

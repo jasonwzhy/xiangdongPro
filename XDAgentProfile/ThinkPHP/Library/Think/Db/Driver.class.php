@@ -37,12 +37,12 @@ abstract class Driver {
     protected $_linkID    = null;
     // 数据库连接参数配置
     protected $config     = array(
-        'type'              =>  '',     // 数据库类型
+        'type'              =>  'mysql',     // 数据库类型
         'hostname'          =>  '127.0.0.1', // 服务器地址
-        'database'          =>  '',          // 数据库名
-        'username'          =>  '',      // 用户名
-        'password'          =>  '',          // 密码
-        'hostport'          =>  '',        // 端口     
+        'database'          =>  'xiangdongdb',          // 数据库名
+        'username'          =>  'root',      // 用户名
+        'password'          =>  'toortoor',          // 密码
+        'hostport'          =>  '3306',        // 端口     
         'dsn'               =>  '', //          
         'params'            =>  array(), // 数据库连接参数        
         'charset'           =>  'utf8',      // 数据库编码默认采用utf8  
