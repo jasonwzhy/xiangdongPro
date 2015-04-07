@@ -201,7 +201,7 @@
                                 <div class="col-md-2">
                                     <!-- <img id="qrimg" src="/Public/agent/img/qrcodeimg.png" width="80%"> -->
                                     
-                                    <button  type="button" class="btn btn-primary btn-block " onclick="window.location.href='createqr/qrcode/<?php echo ($shopitem["qrcode"]); ?>'">生成二维码</button>
+                                    <button  type="button" class="btn btn-primary btn-block " onclick="window.location.href='createqr/shopid/<?php echo ($shopitem["id"]); ?>'">生成二维码</button>
                                     <button class="btn btn-success btn-block" id="<?php echo ($shopitem["id"]); ?>" onclick="window.location.href='/Agent/editshop/shopId/'+this.id">编辑店铺</button>
                                     <button type="button" class="btn btn-danger btn-block" id="<?php echo ($shopitem["id"]); ?>" onclick="delshop(this.id)">删除店铺</button>
                                     

@@ -82,7 +82,7 @@
                                 <div class="col-md-2">
                                     <!-- <img id="qrimg" src="__PUBLIC__/agent/img/qrcodeimg.png" width="80%"> -->
                                     
-                                    <button  type="button" class="btn btn-primary btn-block " onclick="window.location.href='createqr/qrcode/<{$shopitem.qrcode}>'">生成二维码</button>
+                                    <button  type="button" class="btn btn-primary btn-block " onclick="window.location.href='createqr/shopid/<{$shopitem.id}>'">生成二维码</button>
                                     <button class="btn btn-success btn-block" id="<{$shopitem.id}>" onclick="window.location.href='__ROOT__/Agent/editshop/shopId/'+this.id">编辑店铺</button>
                                     <button type="button" class="btn btn-danger btn-block" id="<{$shopitem.id}>" onclick="delshop(this.id)">删除店铺</button>
                                     

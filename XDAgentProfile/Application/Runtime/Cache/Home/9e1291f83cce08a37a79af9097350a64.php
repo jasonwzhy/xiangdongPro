@@ -132,7 +132,7 @@
     		<div id="contentwrapper" class="contentwrapper">
 				<div>
 					<div style="width:40%;float:left">
-						<div>二维码信息:<textarea id="qrtext" disabled="true"><?php echo ($qrcode); ?></textarea></div><br>
+						<div>二维码信息:<textarea id="qrtext" disabled="true">AgentInfo:<?php echo ($contract_code); ?>_<?php echo ($shopid); ?></textarea></div><br>
 						<div>
 							<label><input id="cbimg" type=checkbox>没有Logo</label>
 							<div>

@@ -182,16 +182,15 @@ class AgentController extends Controller {
             if ($agentdata) {
                 if ($agentdata['agent_state'] == "未审核" || $agentdata['agent_state'] == "审核中") {
                     //redirect('index',1,'未提交审核或审核通过中... <br><br>不能使用此功能');
-										$this->assign('waitSecond',3);
-										$this->assign("jumpUrl",__ROOT__."/Agent/index");
-										$this->success('未提交审核或审核通过中...<br>不能使用此功能页面跳转中...');
-										return;
+					$this->assign('waitSecond',3);
+					$this->assign("jumpUrl",__ROOT__."/Agent/index");
+					$this->success('未提交审核或审核通过中...<br>不能使用此功能页面跳转中...');
+					return;
                 }
                 else{
                     //查询商家店铺数据
                     $agentshopcondition['agentid'] = $agentid;
                     $shopdata = $agentshop->where($agentshopcondition)->select();
-                    
                     if ($shopdata) {
                         foreach ($shopdata as $index => $shopitem) {
                             $agentshoppiccondition['options'] =2;
@@ -441,8 +440,13 @@ class AgentController extends Controller {
         }
     }
     public function createqr(){
-        if (isset($_GET['qrcode'])){
-            $render['qrcode']  = $_GET['qrcode'];
+        if (isset($_GET['shopid'])){
+            $agentshop = M('agents_shops');
+            $shopid = $_GET['shopid'];
+            $condition['id'] = $shopid;
+            $shopdata = $agentshop->where($condition)->find();
+            $render['contract_code']  = $shopdata['contract_code'];
+            $render['shopid']   =   $shopdata['shopid'];
             $this->assign($render);
             $this->display('Agent/createqr');
         }
@@ -523,8 +527,6 @@ class AgentController extends Controller {
                 }
                 $agentshoppic->where($delshoppiccon)->delete();
                 $this->ajaxReturn($imgpath);
-                
-                # code...
             }
             else//agent not exist
             {
@@ -537,12 +539,14 @@ class AgentController extends Controller {
 
         }
     }
-    public function delshoppic($AgentsId,$fname){
+    public function delshoppic($fname,$agentId){
         if (isset($_SESSION['agentid'])) {
             $agent = M('agents');
             $agentid = $_SESSION['agentid'];
             $condition['id'] = $agentid;
             $render['error'] = "";
+            $imgpath = "./Uploads/Agents/".$agentId."/".$fname;
+            unlink($imgpath);
         }
         else{
             $this->assign('waitSecond',3);
@@ -569,6 +573,15 @@ class AgentController extends Controller {
                 }
                 else
                 {
+                    $shopdata = $agentshop->where($shopId)->find();
+                    $render['shopdata'] = $shopdata;
+                    $shoppicscon = array(
+                        "options"       =>  2,
+                        "optionsvalue"  =>  $shopId
+                    );
+                    $shopalbums = $agentshoppic->where($shoppicscon)->select();
+                    $render['shopalbums'] = $shopalbums;
+                    $this->assign($render);
                     $this->display('Agent/editshop');
                 }
             }

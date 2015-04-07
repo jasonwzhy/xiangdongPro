@@ -151,7 +151,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <label for="shopName" class="col-md-3">店面名称</label>
-                            <div class="col-md-5"><input type="text" class="form-control" id="shopName" name="shopname" placeholder="店面名称" required="required"></div>
+                            <div class="col-md-5"><input type="text" class="form-control" id="shopName" name="shopname" placeholder="店面名称" required="required" value="<?php echo ($shopdata["shopname"]); ?>"></div>
                         </div>
                     </li>
                     
@@ -218,7 +218,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <label for="shopAddress" class="col-md-3">店铺详细地址</label>
-                            <div class="col-md-5"><input type="text" class="form-control" id="shopAddress" name="shopaddress" placeholder="店铺详细地址" required="required"></div>
+                            <div class="col-md-5"><input type="text" class="form-control" id="shopAddress" name="shopaddress" placeholder="店铺详细地址" required="required" value="<?php echo ($shopdata["shopaddress"]); ?>"></div>
                         </div>
                     </li>
 
@@ -226,7 +226,7 @@
                         <div class="row">
                             <label for="lonlat" class="col-md-3 col-xs-12">经纬度</label>
                             <!-- <div class="col-md-4 col-xs-5"><input type="text" class="form-control" id="lonlat" name="lonlat" placeholder="经纬度" required="required" readonly></div> -->
-                            <div class="col-md-4 col-xs-5"><input type="text" class="form-control" id="lonlat" name="lonlat" placeholder="经纬度" required="required"></div>
+                            <div class="col-md-4 col-xs-5"><input type="text" class="form-control" id="lonlat" name="lonlat" placeholder="经纬度" required="required" value="<?php echo ($shopdata["lon"]); ?>,<?php echo ($shopdata["lat"]); ?>"></div>
                             <div class="col-md-2 col-xs-3"><button type="button" id="amapbtn" style="margin-top:7%;" class="btn btn-success btn-xs">拾取坐标</button></div>
                         </div>
                         <div class="row">
@@ -239,23 +239,23 @@
                     <li class="list-group-item">
                         <div class="row">
                             <label for="shopmanager" class="col-md-3">店铺经理</label>
-                            <div class="col-md-5"><input type="text" class="form-control" id="shopmanager" name="shopmanager" placeholder="店铺经理" required="required"></div>
+                            <div class="col-md-5"><input type="text" class="form-control" id="shopmanager" name="shopmanager" placeholder="店铺经理" required="required" value="<?php echo ($shopdata["contractor"]); ?>"></div>
                         </div>
                     </li>
 
                     <li class="list-group-item">
                         <div class="row">
                             <label for="shopmanagerTel" class="col-md-3">店铺经理联系电话</label>
-                            <div class="col-md-5"><input type="number" class="form-control" id="shopmanagerTel" name="shopmanagerTel" placeholder="店铺经理联系电话" required="required"></div>
+                            <div class="col-md-5"><input type="number" class="form-control" id="shopmanagerTel" name="shopmanagerTel" placeholder="店铺经理联系电话" required="required" value="<?php echo ($shopdata["contractor_tel"]); ?>"></div>
                         </div>
                     </li>
                     <li class="list-group-item">
                         <div class="row">
                             <label for="shopcontactTel" class="col-md-3">店铺联系电话</label>
-                            <div class="col-md-5"><input type="number" class="form-control" id="shopcontactTel" name="shopcontactTel" placeholder="店铺联系电话" required="required"></div>
+                            <div class="col-md-5"><input type="number" class="form-control" id="shopcontactTel" name="shopcontactTel" placeholder="店铺联系电话" required="required" value="<?php echo ($shopdata["contact_tel"]); ?>"></div>
                         </div>
                     </li>
-                    <li class="list-group-item">
+                    <!-- <li class="list-group-item">
                         <div class="row">
                             <label for="shopmanagerTel" class="col-md-3">店铺项目</label>
                             <div class="col-md-5">
@@ -266,7 +266,7 @@
                                 <input type="checkbox" id="inlineCheckbox1" value="体操"> 体操
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                     <li class="list-group-item">
                         <div class="row">
                             <label for="shopmanagerTel" class="col-md-3">店铺描述</label>
@@ -326,11 +326,12 @@
                     <li class="list-group-item">
                         <div class="row"  id="piccontainer">
                             <label class="col-md-3" id="shoppreview">图片预览</label>
-                            
-
+                            <?php if(is_array($shopalbums)): foreach($shopalbums as $key=>$shopalbumsitem): ?><div class="col-sm-3" id="picsview">
+                                    <img src="<?php echo ($shopalbumsitem["imgpath"]); ?>" width="200px" height="130px"><br>
+                                    <button type="button" class="btn btn-primary btn-xs delbtn"   id="'+picid+'">删除</button>
+                                </div><?php endforeach; endif; ?>
                         </div>
                     </li>
-
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-offset-2 col-md-2">
@@ -402,8 +403,14 @@
     //--------------图片上传--------------
         function addpic(url){
             var picid = url.split("/")[1].split(".")[0];
+            var aid = url.split("/")[0];
+            var picname = url.split("/")[1];
             $("#shoppreview").after('<div class="col-sm-3" id="picsview"><img src="/Uploads/Agents/'+url+'" width="200px" height="130px"><br><button type="button" class="btn btn-primary btn-xs delbtn"   id="'+picid+'">删除</button></div>');
             $("#"+picid).click(function(){
+                var imgpath = $(this).prev().prev().attr("src");
+                $.get("/Agent/delshoppic/fname/"+picname+"/agentId/"+aid,function(ret){
+                    }
+                );
                 $(this).parent().remove();
             });
         };
