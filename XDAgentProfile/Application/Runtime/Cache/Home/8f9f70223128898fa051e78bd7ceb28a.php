@@ -155,7 +155,7 @@
                         </div>
                     </li>
                     
-                    <li class="list-group-item">
+                   <!--  <li class="list-group-item">
                         <div class="row">
                             <label for="province" class="col-sm-3">所在省市</label>
                             
@@ -202,18 +202,13 @@
                             <label for="province" class="col-sm-1 control-label">省</label>
                             
                             <div class="col-sm-2">
-                            <!--    <select class="form-control" id="city" name="city">
-                                    <option>成都</option>
-                                </select> -->
                                 <select name="selCity" id="city" class="form-control">
                                     <option value="">-城市-</option> 
                                 </select>
                             </div>
                             <label for="city" class="col-sm-1 control-label">市</label>
-                        <!--    <label for="tradeName" class="col-md-3">营业执照企业名</label>
-                            <div class="col-md-5"><input type="text" class="form-control" id="tradeName" name="tradename" placeholder="营业执照企业名" required="required"></div> -->
                         </div>
-                    </li>
+                    </li> -->
 
                     <li class="list-group-item">
                         <div class="row">
@@ -328,7 +323,7 @@
                             <label class="col-md-3" id="shoppreview">图片预览</label>
                             <?php if(is_array($shopalbums)): foreach($shopalbums as $key=>$shopalbumsitem): ?><div class="col-sm-3" id="picsview">
                                     <img src="<?php echo ($shopalbumsitem["imgpath"]); ?>" width="200px" height="130px"><br>
-                                    <button type="button" class="btn btn-primary btn-xs delbtn"   id="'+picid+'">删除</button>
+                                    <button type="button" class="btn btn-primary btn-xs delbtn"   id="<?php echo ($shopalbumsitem["id"]); ?>" onclick="delshoppicwithdb(this.id)">删除</button>
                                 </div><?php endforeach; endif; ?>
                         </div>
                     </li>
@@ -446,6 +441,12 @@
                     alert("图片上传失败,请将图片控制在3M以内,并且用 jpg | gif | png | jpeg格式");
                 }
             })
+        };
+        function delshoppicwithdb (data) {
+            $.get("/Agent/delshoppic/albumsid/"+data,function(ret){
+                }
+            );
+            $("#"+data).parent().remove();
         };
     //--------------ajax 提交表单----------------
         $("#submitbtn").click(function(e){

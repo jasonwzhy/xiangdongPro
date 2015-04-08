@@ -30,10 +30,10 @@ class AgentController extends Controller {
             $render['error'] = "";
             $Verify = new \Think\Verify();
             $code = $_POST['verifycode'];
-            // if (!$Verify->check($code)) {
-            //     $render['error'] = "验证码错误";
-            //     $this->ajaxReturn($render);//error
-            // }
+            if (!$Verify->check($code)) {
+                $render['error'] = "验证码错误";
+                $this->ajaxReturn($render);//error
+            }
             //if verify is right
     		if(isset($_POST['emaillogin']) && NULL != $_POST['emaillogin'] && NULL != $_POST['loginpwd']){
     			$condition['contract_loginname'] = $_POST['emaillogin'];
@@ -166,9 +166,9 @@ class AgentController extends Controller {
     public function signout(){
         unset($_SESSION['agentid']);
         //redirect('signin',1,'页面跳转中...');
-				$this->assign('waitSecond',3);
-				$this->assign("jumpUrl",__ROOT__."/Agent/signin");
-				$this->success('页面跳转中...');   
+		$this->assign('waitSecond',3);
+		$this->assign("jumpUrl",__ROOT__."/Agent/signin");
+		$this->success('页面跳转中...');
     }
     public function shopsview(){
         if (isset($_SESSION['agentid'])) {
@@ -217,10 +217,10 @@ class AgentController extends Controller {
         }
         else{
             //redirect('Agent/signin',1,'请先登录...');
-						$this->assign('waitSecond',3);
-						$this->assign("jumpUrl",__ROOT__."/Agent/signin");
-						$this->success('未提交审核或审核通过中... <br><br>不能使用此功能.页面跳转中...');
-						return;
+			$this->assign('waitSecond',3);
+			$this->assign("jumpUrl",__ROOT__."/Agent/signin");
+			$this->success('未提交审核或审核通过中... <br><br>不能使用此功能.页面跳转中...');
+			return;
         }
     }
     public function joinmember(){
@@ -234,10 +234,10 @@ class AgentController extends Controller {
                 //$render['agentdata'] = $agentdata;
                 if ($agentdata['agent_state'] == "已通过" || $agentdata['agent_state'] == "审核中") {
                     //redirect('index',1,' ');
-										$this->assign('waitSecond',3);
-										$this->assign("jumpUrl",__ROOT__."/Agent/index");
-										$this->success('未提交审核或审核通过中... <br><br>不能使用此功能.页面跳转中...');
-										return;
+					$this->assign('waitSecond',3);
+					$this->assign("jumpUrl",__ROOT__."/Agent/index");
+					$this->success('未提交审核或审核通过中... <br><br>不能使用此功能.页面跳转中...');
+					return;
                 }
                 elseif(IS_POST){
                     if ($_FILES != NULL) {
@@ -253,7 +253,7 @@ class AgentController extends Controller {
                         }else{
                             $this->ajaxReturn($info);
                         }
-                    } elseif(isset($_POST) && NULL != $_POST) {
+                    }elseif(isset($_POST) && NULL != $_POST){
                         $agentcheckdata = array(
                             "contract_sign_name"    => $_POST["contract_sign_name"],
                             "trade_no"              => $_POST["trade_no"],
@@ -539,14 +539,24 @@ class AgentController extends Controller {
 
         }
     }
-    public function delshoppic($fname,$agentId){
+    public function delshoppic($fname='',$agentId='',$albumsid=0){
         if (isset($_SESSION['agentid'])) {
             $agent = M('agents');
-            $agentid = $_SESSION['agentid'];
-            $condition['id'] = $agentid;
+            $agentsalbums = M('agents_albums');
             $render['error'] = "";
-            $imgpath = "./Uploads/Agents/".$agentId."/".$fname;
+            if ($albumsid == 0) {
+                $imgpath = "./Uploads/Agents/".$agentId."/".$fname;
+                
+            }
+            else
+            {
+                $albumscondition['id'] = $albumsid;
+                $aimg = $agentsalbums->where($albumscondition)->find();
+                $imgpath = ".".$aimg['imgpath'];
+                $agentsalbums->where($albumscondition)->delete();
+            }
             unlink($imgpath);
+            
         }
         else{
             $this->assign('waitSecond',3);
@@ -568,6 +578,7 @@ class AgentController extends Controller {
             $agentdata = $agent->where($condition)->find();
             if ($agentdata) 
             {
+                //如果此店铺id对应的商户id与目前登陆商户id不符，则跳转shopview
                 if(IS_POST){
 
                 }
