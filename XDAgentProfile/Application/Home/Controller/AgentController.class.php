@@ -604,13 +604,14 @@ class AgentController extends Controller {
                         // "shoptype"          =>  $_POST["shoptype"],
                         "contact_tel"       =>  $_POST["shopcontacttel"]
                     );
+                    $agentshop->where($shopcondition)->save($agentshopdata);
                     if ($_POST['shoppicpaths'] != NULL) {
                         $shoppicarry = explode(",",$_POST['shoppicpaths']);
                         for ($i=0; $i < count($shoppicarry)-1; $i++) {
                             $agentshoppicdata = array(
                                 "agentid"       =>  $agentid,
                                 "options"       =>  2,   //商铺相册
-                                "optionsvalue"  =>  $shopdata,  //商铺id
+                                "optionsvalue"  =>  $shopId,  //商铺id
                                 "imgpath"       =>  $shoppicarry[$i]
                             );
                             $shoppicdata = $agentshoppic->add($agentshoppicdata);
