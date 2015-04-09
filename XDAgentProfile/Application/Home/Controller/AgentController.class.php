@@ -575,16 +575,59 @@ class AgentController extends Controller {
             $condition['id'] = $agentid;
             $render['error'] = "";
 
+            $shopcondition['id'] = $shopId;
+
             $agentdata = $agent->where($condition)->find();
+            $agentshopfind = $agentshop->where($shopcondition)->find();
             if ($agentdata) 
             {
                 //如果此店铺id对应的商户id与目前登陆商户id不符，则跳转shopview
+                if ($agentshopfind['agentid'] != $agentid) {
+                    # code...
+                    redirect(__ROOT__.'/Agent/shopsview');
+                    return;
+                }
                 if(IS_POST){
+                    $agentshopdata = array(
+                        // "agentid"           =>  $agentid,
+                        // "contract_code"     =>  $agentdata["contract"],
+                        // "shopid"            =>  $shopid,
+                        "shopname"          =>  $_POST["shopname"],
+                        // "shopprovince"      =>  $_POST["province"],
+                        // "shopcity"          =>  $_POST["city"],
+                        "shopaddress"       =>  $_POST["shopaddress"],
+                        "lon"               =>  $_POST["lon"],
+                        "lat"               =>  $_POST["lat"],
+                        "contractor"        =>  $_POST["contractor"],
+                        "contractor_tel"    =>  $_POST["contractor_tel"],
+                        "shopdesc"          =>  $_POST["shopdesc"],
+                        // "shoptype"          =>  $_POST["shoptype"],
+                        "contact_tel"       =>  $_POST["shopcontacttel"]
+                    );
+                    if ($_POST['shoppicpaths'] != NULL) {
+                        $shoppicarry = explode(",",$_POST['shoppicpaths']);
+                        for ($i=0; $i < count($shoppicarry)-1; $i++) {
+                            $agentshoppicdata = array(
+                                "agentid"       =>  $agentid,
+                                "options"       =>  2,   //商铺相册
+                                "optionsvalue"  =>  $shopdata,  //商铺id
+                                "imgpath"       =>  $shoppicarry[$i]
+                            );
+                            $shoppicdata = $agentshoppic->add($agentshoppicdata);
+                            if (!$shoppicdata) {
+                                $render['error'] = "提交失败";
+                                $this->ajaxReturn($render);
+                            }
+                        }
+                        //$this->ajaxReturn($_POST['shoppicpaths']+count($shoppicarry));
+                    }
+                    $this->ajaxReturn($render);
 
                 }
                 else
                 {
-                    $shopdata = $agentshop->where($shopId)->find();
+                    $shopcondition['id'] = $shopId;
+                    $shopdata = $agentshop->where($shopcondition)->find();
                     $render['shopdata'] = $shopdata;
                     $shoppicscon = array(
                         "options"       =>  2,

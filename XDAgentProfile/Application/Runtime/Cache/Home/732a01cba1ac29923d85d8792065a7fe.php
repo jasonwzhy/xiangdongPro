@@ -402,10 +402,16 @@
 	//--------------图片上传--------------
 		function addpic(url){
 			var picid = url.split("/")[1].split(".")[0];
+			var aid = url.split("/")[0];
+			var picname = url.split("/")[1];
 			$("#shoppreview").after('<div class="col-sm-3" id="picsview"><img src="/Uploads/Agents/'+url+'" width="200px" height="130px"><br><button type="button" class="btn btn-primary btn-xs delbtn"   id="'+picid+'">删除</button></div>');
 			$("#"+picid).click(function(){
-				$(this).parent().remove();
-			});
+                var imgpath = $(this).prev().prev().attr("src");
+                $.get("/Agent/delshoppic/fname/"+picname+"/agentId/"+aid,function(ret){
+                    }
+                );
+                $(this).parent().remove();
+            });
 		};
 		$("#addpicbtn").click(function(e){
 			//如果图片预览超过三张，就return false

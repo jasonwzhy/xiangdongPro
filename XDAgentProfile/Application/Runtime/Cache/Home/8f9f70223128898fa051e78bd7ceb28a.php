@@ -322,7 +322,7 @@
                         <div class="row"  id="piccontainer">
                             <label class="col-md-3" id="shoppreview">图片预览</label>
                             <?php if(is_array($shopalbums)): foreach($shopalbums as $key=>$shopalbumsitem): ?><div class="col-sm-3" id="picsview">
-                                    <img src="<?php echo ($shopalbumsitem["imgpath"]); ?>" width="200px" height="130px"><br>
+                                    <img src="<?php echo ($shopalbumsitem["imgpath"]); ?>" width="200px" height="130px" id="db"><br>
                                     <button type="button" class="btn btn-primary btn-xs delbtn"   id="<?php echo ($shopalbumsitem["id"]); ?>" onclick="delshoppicwithdb(this.id)">删除</button>
                                 </div><?php endforeach; endif; ?>
                         </div>
@@ -330,7 +330,7 @@
                     <li class="list-group-item">
                         <div class="row">
                             <div class="col-md-offset-2 col-md-2">
-                                <button id="submitbtn" type="button" class="btn btn-success btn-block ">确定提交</button>
+                                <button id="<?php echo ($shopdata["id"]); ?>" type="button" class="btn btn-success btn-block submitbtn">确定提交</button>
                             </div>
                             <div class="col-md-offset-1 col-md-2">
                                 <button id="resetbtn" type="reset" class="btn btn-info btn-block ">重置</button>
@@ -449,10 +449,10 @@
             $("#"+data).parent().remove();
         };
     //--------------ajax 提交表单----------------
-        $("#submitbtn").click(function(e){
+        $(".submitbtn").click(function(e){
             var shopname = $("#shopName").val() ? $("#shopName").val() : warring("店面名称");
-            var province = $("#province").val() ? $("#province").val() : warring("所在省份");
-            var city = $("#city").val() ? $("#city").val() : warring("所在城市");
+            // var province = $("#province").val() ? $("#province").val() : warring("所在省份");
+            // var city = $("#city").val() ? $("#city").val() : warring("所在城市");
             var shopaddress = $("#shopAddress").val() ? $("#shopAddress").val() : warring("店铺详细地址");
             var lon = $("#lonlat").val() ? $("#lonlat").val().split(",")[0] : warring("经纬度");
             var lat = $("#lonlat").val() ? $("#lonlat").val().split(",")[1] : warring("经纬度");
@@ -460,29 +460,33 @@
             var contractor_tel = $("#shopmanagerTel").val() ? $("#shopmanagerTel").val() : warring("联系电话");
             var shopdesc = $("#shopdesc").val();
             var shopcontacttel = $("#shopcontactTel").val();
-            var shoptype = "";
-            $("input[type='checkbox']:checked").each(function(){
-                shoptype=$(this).val()+","+shoptype;
-            });
-            if (shoptype == "") {
-                warring("店铺项目类型");
-            };
+            // var shoptype = "";
+            // $("input[type='checkbox']:checked").each(function(){
+            //     shoptype=$(this).val()+","+shoptype;
+            // });
+            // if (shoptype == "") {
+            //     warring("店铺项目类型");
+            // };
             var shoppicpaths = "";
             $("#piccontainer > div > img").each(function(){
-                shoppicpaths = $(this).attr('src')+","+shoppicpaths;
+                if (this.id != "db") {
+                    shoppicpaths = $(this).attr('src')+","+shoppicpaths;
+                };
+                
             });
-            $.post("/Agent/createshop",
+            console.log(shoppicpaths);
+            $.post("/Agent/editshop/shopId/"+this.id,
                     {
                         shopname:shopname,
-                        province:province,
-                        city:city,
+                        // province:province,
+                        // city:city,
                         shopaddress:shopaddress,
                         lon:lon,
                         lat:lat,
                         contractor:contractor,
                         contractor_tel:contractor_tel,
                         shopdesc:shopdesc,
-                        shoptype:shoptype,
+                        // shoptype:shoptype,
                         shoppicpaths:shoppicpaths,
                         shopcontacttel:shopcontacttel
                     },
@@ -492,7 +496,7 @@
                             //$("#errlabel").text(ret.error);
                         }
                         else{
-                            alert("店铺创建成功!");
+                            alert("修改成功!");
                             window.location.href="/Agent/shopsview";
                         }
                     }
