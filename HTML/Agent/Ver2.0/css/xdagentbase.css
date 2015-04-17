@@ -1,0 +1,118 @@
+/*
+*	xiangdong agent base css
+*	
+*/
+
+/*
+*	重载bootstrap
+*/
+.form-control {
+	border-radius: 2px;
+	height: 40px;
+	border: 1px solid #F0F0F0;
+}
+button {
+	border-radius: 2px;
+	border: 0;
+	height: 40px;
+	width: 100%;
+}
+/*
+*	navbar
+*/
+.navbar-xd {
+	background-color: #D8D8D8;
+	height: 70px;
+}
+.navbar-header > .navlogo {
+	background-image: url(../img/logo-b-s.png);
+	background-repeat:no-repeat;
+	background-size: 120px auto;                      
+	height: 50px;
+	width: 120px;
+	margin-top: 10px;
+	display: block;
+}
+/* 
+*	signupbody
+*/
+.signupbody {
+	padding-top: 80px;
+	color: #666666;
+}
+.signupbody .formtitle {
+	color: #333333;
+	text-align: right;
+}
+.signupbody .formtitle h2 {
+	font-size: 26px;
+	padding-top: 37px;
+	padding-bottom: 37px;
+}
+.signupbody .formbody {
+	max-width: 360px;
+	min-width: 345px;
+}
+.signupbody .formbody label{
+	font-size: 14px;
+	color: #333333;
+}
+.signupbody .formbody label h4{
+	font-size: 13px;
+	color: #AAAAAA;
+	display: inline;
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+.signupbody .subbtn {
+	background-color: #f0f0f0;
+	color: #D8D8D8;
+}
+
+/*
+*	signupsuc
+*/
+.signupsuc {
+	padding-top: 200px;
+	color: #666666;	
+}
+.signupsuc .signupsucbody {
+	max-width: 460px;
+	min-width: 345px;
+}
+.signupsuc .signupsucbody .circlediv {
+	height: 80px;
+	width: 80px;
+	background-color: #F47960;
+	margin-left: 40%;
+	border-radius: 50px;
+	-webkit-border-radius:50px;
+	-moz-border-radius:50px;
+	-o-border-radius:50px;
+}
+.signupsuc .signupsucbody .circlediv .okinc {
+	margin-top: 30%;
+	margin-left: 30%;
+	color: white;
+	font-size: 30px;
+}
+.signupsuc .signupsucbody .suctext {
+	text-align: center;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.signupsuc .signupsucbody .suctext h3 {
+	font-size: 17px;
+	font-weight: bold;
+}
+.signupsuc .signupsucbody .suctext span{
+	color: #52BBEB;
+}
+.signupsuc .signupsucbody hr{
+	color: #F0F0F0;
+	border-style: solid;
+	width: 490;
+}
+
+
+
